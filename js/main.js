@@ -4,13 +4,12 @@
   let defaultIndex = 0;
   let keysMap = [];
   function show(slide) {
-    let content = slide.content;
-    let clone = content.cloneNode(true);
+    const content = slide.content;
+    const clone = content.cloneNode(true);
     centralContainer.innerHTML = ``;
     centralContainer.appendChild(clone);
   }
   function keyDownHandler(ev) {
-    ev = ev || event; // to deal with IE
     keysMap[ev.keyCode] = ev.type;
     if (ev.altKey && keysMap[39]) {
       defaultIndex++;
