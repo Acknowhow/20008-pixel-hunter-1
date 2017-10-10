@@ -1,6 +1,8 @@
 (function () {
   const centralContainer = document.querySelector(`.central`);
   const templates = Array.from(document.querySelectorAll(`template`));
+  const KEY_CODE_RIGHT = 39;
+  const KEY_CODE_LEFT = 37;
   let defaultIndex = 0;
   function show(slide) {
     const content = slide.content;
@@ -9,8 +11,6 @@
     centralContainer.appendChild(clone);
   }
   function keyDownHandler(ev) {
-    const KEY_CODE_RIGHT = 39;
-    const KEY_CODE_LEFT = 37;
     if (ev.altKey && ev.keyCode === KEY_CODE_RIGHT) {
       defaultIndex++;
       if (defaultIndex % templates.length === 0) {
