@@ -19,24 +19,25 @@
   }
   function keyDownHandler(ev) {
     ev = ev || event; // to deal with IE
-    keysMap[ev.keyCode] = ev.type === `keydown`;
-    if (keysMap[18] && keysMap[39]) {
+    keysMap[ev.key] = ev.type === `keydown`;
+    if (ev.key === `Alt`) {
+      return;
+    }
+    if (ev.altKey && keysMap[`ArrowRight`]) {
       defaultIndex++;
       if (defaultIndex % temps.length === 0) {
         defaultIndex--;
       }
       show(temps[defaultIndex % temps.length]);
       keysMap = {};
-      console.log(defaultIndex);
     }
-    if (keysMap[18] && keysMap[37]) {
+    if (ev.altKey && keysMap[`ArrowLeft`]) {
       defaultIndex--;
       if (defaultIndex === -1) {
         defaultIndex++;
       }
       show(temps[defaultIndex]);
       keysMap = {};
-      console.log(defaultIndex);
     }
   }
   document.addEventListener(`keydown`, function (ev) {
