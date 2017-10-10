@@ -11,13 +11,15 @@
   }
   function keyDownHandler(ev) {
     keysMap[ev.keyCode] = ev.type;
-    if (ev.altKey && keysMap[39]) {
+    const KEY_CODE_RIGHT = 39;
+    const KEY_CODE_LEFT = 37;
+    if (ev.altKey && keysMap[KEY_CODE_RIGHT]) {
       defaultIndex++;
       if (defaultIndex % templates.length === 0) {
         defaultIndex--;
       }
     }
-    if (ev.altKey && keysMap[37]) {
+    if (ev.altKey && keysMap[KEY_CODE_LEFT]) {
       defaultIndex--;
       if (defaultIndex === -1) {
         defaultIndex++;
