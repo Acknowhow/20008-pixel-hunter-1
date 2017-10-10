@@ -64,14 +64,10 @@ export const makeGame1Template = () => {
   // Second options screen
   const opts2 = document.querySelector(`form > div:nth-child(2)`);
   // Select all inputs in option1
-  const answers1 = document.querySelector(`.game__content`).children[0].querySelectorAll(`input`);
+  const answers1 = Array.from(document.querySelector(`.game__content`).children[0].querySelectorAll(`input`));
   // Select all inputs in option2
-  const answers2 = document.querySelector(`.game__content`).children[1].querySelectorAll(`input`);
-  const answers1Arr = [];
-  const answers2Arr = [];
+  const answers2 = Array.from(document.querySelector(`.game__content`).children[1].querySelectorAll(`input`));
   const linkBack = document.querySelector(`.header__back`);
-  Array.prototype.push.apply(answers1Arr, answers1);
-  Array.prototype.push.apply(answers2Arr, answers2);
   const switchBack = (ev) => {
     if (ev.currentTarget === linkBack) {
       linkBack.removeEventListener(`click`, switchBack);
@@ -82,14 +78,14 @@ export const makeGame1Template = () => {
     return a.checked === true;
   };
   const checkOpt1 = () => {
-    if (answers2Arr.some(checkArr) === true) {
+    if (answers2.some(checkArr) === true) {
       opts1.removeEventListener(`click`, checkOpt1);
       opts2.removeEventListener(`click`, checkOpt2);
       makeGame2Template();
     }
   };
   const checkOpt2 = () => {
-    if (answers1Arr.some(checkArr) === true) {
+    if (answers1.some(checkArr) === true) {
       opts1.removeEventListener(`click`, checkOpt1);
       opts2.removeEventListener(`click`, checkOpt2);
       makeGame2Template();
