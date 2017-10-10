@@ -1,8 +1,8 @@
 (function () {
-  const centralContainer = document.querySelector(`.central`);
-  const templates = Array.from(document.querySelectorAll(`template`));
   const KEY_CODE_RIGHT = 39;
   const KEY_CODE_LEFT = 37;
+  const centralContainer = document.querySelector(`.central`);
+  const templates = Array.from(document.querySelectorAll(`template`));
   let defaultIndex = 0;
   function show(slide) {
     const content = slide.content;
