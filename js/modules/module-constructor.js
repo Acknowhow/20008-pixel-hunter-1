@@ -5,9 +5,7 @@ export const makeTemplate = (templateMain, templateFooter) =>{
   footer.classList.add(`footer`);
   footer.innerHTML = templateFooter;
   container.innerHTML = templateMain;
-  while (centralContainer.firstChild) {
-    centralContainer.removeChild(centralContainer.firstChild);
-  }
+  centralContainer.innerHTML = ``;
   centralContainer.appendChild(container.content);
   centralContainer.appendChild(footer);
 };
