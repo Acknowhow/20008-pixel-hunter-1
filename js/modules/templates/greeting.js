@@ -19,10 +19,10 @@ export const makeGreetingTemplate = () => {
   makeTemplate(moduleGreeting, templateFooter);
   const next = (ev) => {
     if (ev.target === document.querySelector(`img[alt='Next']`)) {
-      central.removeEventListener(`click`, next);
+      centralContainer.removeEventListener(`click`, next);
       makeRulesTemplate();
     }
   };
-  central.addEventListener(`click`, next);
+  centralContainer.addEventListener(`click`, next);
 };
 
