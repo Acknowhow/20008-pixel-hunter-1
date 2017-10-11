@@ -1,4 +1,3 @@
-import {templateFooter} from './footer.js';
 import {centralContainer} from '../module-constructor';
 import {makeTemplate} from '../module-constructor.js';
 import {makeRulesTemplate} from './rules';
@@ -16,7 +15,7 @@ export const moduleGreeting = `<div class="greeting central--blur">
     <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
   </div>`;
 export const makeGreetingTemplate = () => {
-  makeTemplate(moduleGreeting, templateFooter);
+  makeTemplate(moduleGreeting);
   const next = (ev) => {
     if (ev.target === document.querySelector(`img[alt='Next']`)) {
       centralContainer.removeEventListener(`click`, next);

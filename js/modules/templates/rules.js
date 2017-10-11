@@ -1,4 +1,3 @@
-import {templateFooter} from './footer.js';
 import {makeIntroTemplate} from './intro';
 import {makeTemplate} from '../module-constructor.js';
 import {makeGame1Template} from './game-1.js';
@@ -24,7 +23,7 @@ export const moduleRules = `<header class="header">
   </form>
 </div>`;
 export const makeRulesTemplate = () => {
-  makeTemplate(moduleRules, templateFooter);
+  makeTemplate(moduleRules);
   const rulesInput = document.querySelector(`.rules__input`);
   const rulesButton = document.querySelector(`.rules__button`);
   const linkBack = document.querySelector(`.header__back`);

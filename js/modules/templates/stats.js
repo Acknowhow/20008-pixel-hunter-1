@@ -1,4 +1,3 @@
-import {templateFooter} from './footer';
 import {makeTemplate} from '../module-constructor.js';
 import {makeIntroTemplate} from './intro';
 const moduleStats = `<header class="header">
@@ -110,7 +109,7 @@ const moduleStats = `<header class="header">
     </table>
   </div>`;
 export const makeStatsTemplate = () => {
-  makeTemplate(moduleStats, templateFooter);
+  makeTemplate(moduleStats);
   const linkBack = document.querySelector(`.header__back`);
   const switchBack = (ev) => {
     if (ev.currentTarget === linkBack) {

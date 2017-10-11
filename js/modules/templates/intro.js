@@ -1,4 +1,3 @@
-import {templateFooter} from './footer.js';
 import {centralContainer} from '../module-constructor';
 import {makeTemplate} from "../module-constructor";
 import {makeGreetingTemplate} from './greeting.js';
@@ -9,7 +8,7 @@ const contentIntro = `<div id="main" class="central__content">
     </div>
   </div>`;
 export const makeIntroTemplate = () => {
-  makeTemplate(contentIntro, templateFooter);
+  makeTemplate(contentIntro);
   let next = (ev) => {
     if (ev.target === document.querySelector(`.intro__asterisk`)) {
       centralContainer.removeEventListener(`click`, next);

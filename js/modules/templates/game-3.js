@@ -1,4 +1,3 @@
-import {templateFooter} from './footer.js';
 import {makeTemplate} from '../module-constructor.js';
 import {makeIntroTemplate} from './intro';
 import {makeStatsTemplate} from './stats.js';
@@ -45,7 +44,7 @@ const templateGame3 = `<header class="header">
     </div>
   </div>`;
 export const makeGame3Template = () => {
-  makeTemplate(templateGame3, templateFooter);
+  makeTemplate(templateGame3);
   const gameContent = document.querySelector(`.game__content`);
   const linkBack = document.querySelector(`.header__back`);
   const switchBack = (ev) => {
