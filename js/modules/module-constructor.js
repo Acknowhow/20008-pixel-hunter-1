@@ -6,10 +6,10 @@ export const makeTemplate = (templateMain, templateFooter = templateFooterDefaul
   footer.classList.add(`footer`);
   template.innerHTML = templateMain;
   footer.innerHTML = templateFooter;
-  template.appendChild(footer);
+  template.content.appendChild(footer);
   return template;
 };
 export const insertIntoContainer = (template, container) =>{
   container.innerHTML = ``;
-  container.appendChild(template);
+  container.appendChild(template.content);
 };
