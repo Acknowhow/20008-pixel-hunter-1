@@ -1,6 +1,4 @@
-import {centralContainer} from '../module-constructor';
 import {makeTemplate} from "../module-constructor";
-import {makeGreetingTemplate} from './greeting.js';
 const contentIntro = `<div id="main" class="central__content">
     <div class="intro">
       <h1 class="intro__asterisk">*</h1>
@@ -8,12 +6,12 @@ const contentIntro = `<div id="main" class="central__content">
     </div>
   </div>`;
 export const makeIntroTemplate = () => {
-  makeTemplate(contentIntro);
+  const el = makeTemplate(contentIntro);
   let next = (ev) => {
-    if (ev.target === document.querySelector(`.intro__asterisk`)) {
-      centralContainer.removeEventListener(`click`, next);
-      makeGreetingTemplate();
+    if (ev.target === el.querySelector(`.intro__asterisk`)) {
+      el.removeEventListener(`click`, next);
     }
   };
-  centralContainer.addEventListener(`click`, next);
+  el.addEventListener(`click`, next);
+  return el;
 };

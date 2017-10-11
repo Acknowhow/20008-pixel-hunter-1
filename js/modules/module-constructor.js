@@ -4,8 +4,12 @@ export const makeTemplate = (templateMain, templateFooter = templateFooterDefaul
   const template = document.createElement(`template`);
   const footer = document.createElement(`footer`);
   footer.classList.add(`footer`);
-  footer.innerHTML = templateFooter;
   template.innerHTML = templateMain;
+  footer.innerHTML = templateFooter;
   template.appendChild(footer);
   return template;
+};
+export const insertIntoContainer = (template, container) =>{
+  container.innerHTML = ``;
+  container.appendChild(template);
 };
