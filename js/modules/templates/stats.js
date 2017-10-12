@@ -1,5 +1,7 @@
 import {makeTemplate} from '../module-constructor.js';
 import {makeIntroTemplate} from './intro';
+import {centralContainer} from "../module-constructor";
+import {insertIntoContainer} from "../module-constructor";
 const moduleStats = `<header class="header">
     <div class="header__back">
       <span class="back">
@@ -109,13 +111,13 @@ const moduleStats = `<header class="header">
     </table>
   </div>`;
 export const makeStatsTemplate = () => {
-  makeTemplate(moduleStats);
-  const linkBack = document.querySelector(`.header__back`);
-  const switchBack = (ev) => {
-    if (ev.currentTarget === linkBack) {
-      linkBack.removeEventListener(`click`, switchBack);
-      makeIntroTemplate();
-    }
+  const el = makeTemplate(moduleStats);
+  const linkBack = el.content.querySelector(`.header__back`);
+  const switchBack = () => {
+    linkBack.removeEventListener(`click`, switchBack);
+    const introTemplate = makeIntroTemplate();
+    insertIntoContainer(introTemplate, centralContainer);
   };
   linkBack.addEventListener(`click`, switchBack);
+  return el;
 };

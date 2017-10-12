@@ -53,15 +53,15 @@ export const makeGame2Template = () => {
   const formOption = form.children[0];
   const answer1 = formOption.querySelector(`.game__answer--photo`).children[0];
   const answer2 = formOption.querySelector(`.game__answer--paint`).children[0];
-  const answersArr = [].push(answer1, answer2);
+  const answersArr = [answer1, answer2];
   const linkBack = el.content.querySelector(`.header__back`);
   const switchBack = () => {
     linkBack.removeEventListener(`click`, switchBack);
     const introTemplate = makeIntroTemplate();
     insertIntoContainer(introTemplate, centralContainer);
   };
-  const checkArr = (a) => {
-    return a.checked === true;
+  const checkArr = (input) => {
+    return input.checked === true;
   };
   const check = (ev) => {
     if (ev.currentTarget !== formOption) {
@@ -69,7 +69,8 @@ export const makeGame2Template = () => {
     }
     if (answersArr.some(checkArr)) {
       formOption.removeEventListener(`click`, check);
-      makeGame3Template();
+      const game3Template = makeGame3Template();
+      insertIntoContainer(game3Template, centralContainer);
     }
   };
   formOption.addEventListener(`click`, check);

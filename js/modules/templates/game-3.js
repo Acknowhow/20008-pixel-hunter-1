@@ -1,6 +1,8 @@
 import {makeTemplate} from '../module-constructor.js';
 import {makeIntroTemplate} from './intro';
 import {makeStatsTemplate} from './stats.js';
+import {centralContainer} from "../module-constructor";
+import {insertIntoContainer} from "../module-constructor";
 const templateGame3 = `<header class="header">
     <div class="header__back">
       <span class="back">
@@ -44,21 +46,22 @@ const templateGame3 = `<header class="header">
     </div>
   </div>`;
 export const makeGame3Template = () => {
-  makeTemplate(templateGame3);
-  const gameContent = document.querySelector(`.game__content`);
+  const el = makeTemplate(templateGame3);
+  const form = el.content.querySelector(`.game__content`);
   const linkBack = document.querySelector(`.header__back`);
-  const switchBack = (ev) => {
-    if (ev.currentTarget === linkBack) {
-      linkBack.removeEventListener(`click`, switchBack);
-      makeIntroTemplate();
-    }
+  const switchBack = () => {
+    linkBack.removeEventListener(`click`, switchBack);
+    const introTemplate = makeIntroTemplate();
+    insertIntoContainer(introTemplate, centralContainer);
   };
   const check = (ev) => {
     if (ev.target.classList.contains(`game__option`)) {
-      makeStatsTemplate();
+      const statsTemplate = makeStatsTemplate();
+      insertIntoContainer(statsTemplate, centralContainer);
     }
     return false;
   };
-  gameContent.addEventListener(`click`, check);
+  form.addEventListener(`click`, check);
   linkBack.addEventListener(`click`, switchBack);
+  return el;
 };
