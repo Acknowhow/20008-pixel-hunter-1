@@ -1,6 +1,5 @@
-import {makeTemplate} from '../module-constructor.js';
 import {makeIntroTemplate} from './intro';
-import {insertIntoContainer} from '../module-constructor';
+import {insertIntoContainer, makeTemplate} from '../module-constructor';
 
 const moduleStats = `<header class="header">
     <div class="header__back">

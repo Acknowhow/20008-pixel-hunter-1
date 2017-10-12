@@ -17,18 +17,16 @@ const moduleGreeting = `<div class="greeting central--blur">
 
 export const makeGreetingTemplate = () => {
   const el = makeTemplate(moduleGreeting);
-  const greeting = el.querySelector(`.greeting`);
+  const linkNext = el.querySelector(`img[alt='Next']`);
 
-  const next = (ev) => {
-    if (ev.target === greeting.querySelector(`img[alt='Next']`)) {
-      greeting.removeEventListener(`click`, next);
+  const next = () => {
+    const rulesTemplate = makeRulesTemplate();
+    insertIntoContainer(rulesTemplate);
 
-      const rulesTemplate = makeRulesTemplate();
-      insertIntoContainer(rulesTemplate);
-    }
+    linkNext.removeEventListener(`click`, next);
   };
 
-  greeting.addEventListener(`click`, next);
+  linkNext.addEventListener(`click`, next);
   return el;
 };
 

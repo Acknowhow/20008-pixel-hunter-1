@@ -10,17 +10,15 @@ const contentIntro = `<div id="main" class="central__content">
 
 export const makeIntroTemplate = () => {
   const el = makeTemplate(contentIntro);
-  const main = el.querySelector(`#main`);
+  const asterisk = el.querySelector(`.intro__asterisk`);
 
-  const next = (ev) => {
-    if (ev.target === main.querySelector(`.intro__asterisk`)) {
-      main.removeEventListener(`click`, next);
+  const next = () => {
+    const greetingTemplate = makeGreetingTemplate();
+    insertIntoContainer(greetingTemplate);
 
-      const greetingTemplate = makeGreetingTemplate();
-      insertIntoContainer(greetingTemplate);
-    }
+    asterisk.removeEventListener(`click`, next);
   };
 
-  main.addEventListener(`click`, next);
+  asterisk.addEventListener(`click`, next);
   return el;
 };
