@@ -2,6 +2,7 @@ import {makeTemplate} from '../module-constructor.js';
 import {makeIntroTemplate} from './intro';
 import {makeGame2Template} from './game-2.js';
 import {insertIntoContainer} from '../module-constructor';
+
 const moduleGame1 = `<header class="header">
     <div class="header__back">
       <span class="back">
@@ -60,25 +61,29 @@ const moduleGame1 = `<header class="header">
 export const makeGame1Template = () => {
   const el = makeTemplate(moduleGame1);
   const form = el.content.querySelector(`.game__content`);
-  // First options screen
+  // First and Second options screen
   const formOptions1 = form.children[0];
-  // Second options screen
   const formOptions2 = form.children[1];
+
   const formAnswers1 = Array.from(formOptions1.querySelectorAll(`input`));
   const formAnswers2 = Array.from(formOptions2.querySelectorAll(`input`));
+
   const linkBack = el.content.querySelector(`.header__back`);
   const switchBack = () => {
     linkBack.removeEventListener(`click`, switchBack);
     const introTemplate = makeIntroTemplate();
     insertIntoContainer(introTemplate);
   };
+
   const checkArr = (a) => {
     return a.checked === true;
   };
+
   const checkOpt1 = () => {
     if (formAnswers2.some(checkArr) === true) {
       formOptions1.removeEventListener(`click`, checkOpt1);
       formOptions2.removeEventListener(`click`, checkOpt2);
+
       const game2Template = makeGame2Template();
       insertIntoContainer(game2Template);
     }
@@ -87,12 +92,14 @@ export const makeGame1Template = () => {
     if (formAnswers1.some(checkArr) === true) {
       formOptions1.removeEventListener(`click`, checkOpt1);
       formOptions2.removeEventListener(`click`, checkOpt2);
+
       const game2Template = makeGame2Template();
       insertIntoContainer(game2Template);
     }
   };
   formOptions1.addEventListener(`click`, checkOpt1);
   formOptions2.addEventListener(`click`, checkOpt2);
+
   linkBack.addEventListener(`click`, switchBack);
   return el;
 };

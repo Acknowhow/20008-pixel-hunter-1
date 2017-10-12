@@ -1,6 +1,7 @@
 import {makeTemplate} from '../module-constructor.js';
 import {makeIntroTemplate} from './intro';
 import {insertIntoContainer} from '../module-constructor';
+
 const moduleStats = `<header class="header">
     <div class="header__back">
       <span class="back">
@@ -109,14 +110,17 @@ const moduleStats = `<header class="header">
       </tr>
     </table>
   </div>`;
+
 export const makeStatsTemplate = () => {
   const el = makeTemplate(moduleStats);
   const linkBack = el.content.querySelector(`.header__back`);
+
   const switchBack = () => {
     linkBack.removeEventListener(`click`, switchBack);
     const introTemplate = makeIntroTemplate();
     insertIntoContainer(introTemplate);
   };
+
   linkBack.addEventListener(`click`, switchBack);
   return el;
 };
