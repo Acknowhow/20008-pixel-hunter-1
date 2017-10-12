@@ -41,19 +41,14 @@ export const makeRulesTemplate = () => {
     rulesButton.removeAttribute(`disabled`);
   };
 
-  const empty = () => {
-    rulesInput.addEventListener(`input`, enable);
-  };
-
   const next = () => {
     rulesInput.removeEventListener(`input`, enable);
-    rulesInput.removeEventListener(`keydown`, empty);
     rulesButton.removeEventListener(`click`, next);
 
     const game1Template = makeGame1Template();
     insertIntoContainer(game1Template);
   };
-  rulesInput.addEventListener(`keydown`, empty);
+  rulesInput.addEventListener(`input`, enable);
   rulesButton.addEventListener(`click`, next);
 
   linkBack.addEventListener(`click`, switchBack);
