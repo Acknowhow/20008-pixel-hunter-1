@@ -1,7 +1,7 @@
 import {makeTemplate} from '../module-constructor.js';
 import {makeRulesTemplate} from './rules';
-import {centralContainer} from "../../modules/module-constructor";
-import {insertIntoContainer} from "../../modules/module-constructor";
+import {centralContainer} from "../module-constructor";
+import {insertIntoContainer} from "../module-constructor";
 const moduleGreeting = `<div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
     <h1 class="greeting__asterisk">*</h1>

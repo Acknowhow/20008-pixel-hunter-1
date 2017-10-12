@@ -1,7 +1,9 @@
-import {makeIntroTemplate} from './intro';
 import {makeTemplate} from '../module-constructor.js';
-import {makeGame1Template} from './game-1.js';
-export const moduleRules = `<header class="header">
+import {introTemplate} from '../../main.js';
+// import {makeGame1Template} from './game-1.js';
+import {centralContainer} from "../module-constructor";
+import {insertIntoContainer} from "../module-constructor";
+const moduleRules = `<header class="header">
   <div class="header__back">
     <span class="back">
     <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -23,36 +25,33 @@ export const moduleRules = `<header class="header">
   </form>
 </div>`;
 export const makeRulesTemplate = () => {
-  makeTemplate(moduleRules);
-  const rulesInput = document.querySelector(`.rules__input`);
-  const rulesButton = document.querySelector(`.rules__button`);
-  const linkBack = document.querySelector(`.header__back`);
-  const switchBack = (ev) => {
-    if (ev.currentTarget === linkBack) {
-      linkBack.removeEventListener(`click`, switchBack);
-      makeIntroTemplate();
-    }
+  const el = makeTemplate(moduleRules);
+  // const rulesInput = centralContainer.querySelector(`.rules__input`);
+  // const rulesButton = centralContainer.querySelector(`.rules__button`);
+  // const linkBack = centralContainer.querySelector(`img[alt='Back']`);
+  // console.log(linkBack);
+  const switchBack = () => {
+    centralContainer.removeEventListener(`click`, switchBack);
+    insertIntoContainer(introTemplate, centralContainer);
   };
-  const enable = () => {
-    if (rulesButton.hasAttribute(`disabled`)) {
-      rulesButton.removeAttribute(`disabled`);
-    }
-  };
-  const empty = (ev) => {
-    if (ev.target === rulesInput) {
-      rulesInput.addEventListener(`input`, enable);
-    }
-  };
-  const next = (ev) => {
-    if (ev.target === rulesButton) {
-      rulesInput.removeEventListener(`input`, enable);
-      rulesInput.removeEventListener(`keydown`, empty);
-      rulesButton.removeEventListener(`click`, next);
-      makeGame1Template();
-    }
-  };
-  rulesInput.addEventListener(`keydown`, empty);
-  rulesButton.addEventListener(`click`, next);
-  linkBack.addEventListener(`click`, switchBack);
+  // const enable = () => {
+  //   if (rulesButton.hasAttribute(`disabled`)) {
+  //     rulesButton.removeAttribute(`disabled`);
+  //   }
+  // };
+  // const empty = () => {
+  //   rulesInput.addEventListener(`input`, enable);
+  // };
+  // const next = (ev) => {
+  //   if (ev.target === rulesButton) {
+  //     rulesInput.removeEventListener(`input`, enable);
+  //     rulesInput.removeEventListener(`keydown`, empty);
+  //     rulesButton.removeEventListener(`click`, next);
+  //     makeGame1Template();
+  //   }
+  // };
+  // centralContainer.addEventListener(`keydown`, empty);
+  // centralContainer.addEventListener(`click`, next);
+  centralContainer.addEventListener(`click`, switchBack);
+  return el;
 };
-
