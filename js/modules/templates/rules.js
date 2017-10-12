@@ -1,6 +1,6 @@
 import {makeTemplate} from '../module-constructor.js';
-import {introTemplate} from '../../main.js';
-// import {makeGame1Template} from './game-1.js';
+import {makeIntroTemplate} from "./intro";
+import {makeGame1Template} from './game-1.js';
 import {centralContainer} from "../module-constructor";
 import {insertIntoContainer} from "../module-constructor";
 const moduleRules = `<header class="header">
@@ -26,32 +26,30 @@ const moduleRules = `<header class="header">
 </div>`;
 export const makeRulesTemplate = () => {
   const el = makeTemplate(moduleRules);
-  // const rulesInput = centralContainer.querySelector(`.rules__input`);
-  // const rulesButton = centralContainer.querySelector(`.rules__button`);
-  // const linkBack = centralContainer.querySelector(`img[alt='Back']`);
-  // console.log(linkBack);
+  const rulesInput = el.content.querySelector(`.rules__input`);
+  const rulesButton = el.content.querySelector(`.rules__button`);
+  const linkBack = el.content.querySelector(`img[alt='Back']`);
   const switchBack = () => {
-    centralContainer.removeEventListener(`click`, switchBack);
+    linkBack.removeEventListener(`click`, switchBack);
+    const introTemplate = makeIntroTemplate();
     insertIntoContainer(introTemplate, centralContainer);
   };
-  // const enable = () => {
-  //   if (rulesButton.hasAttribute(`disabled`)) {
-  //     rulesButton.removeAttribute(`disabled`);
-  //   }
-  // };
-  // const empty = () => {
-  //   rulesInput.addEventListener(`input`, enable);
-  // };
-  // const next = (ev) => {
-  //   if (ev.target === rulesButton) {
-  //     rulesInput.removeEventListener(`input`, enable);
-  //     rulesInput.removeEventListener(`keydown`, empty);
-  //     rulesButton.removeEventListener(`click`, next);
-  //     makeGame1Template();
-  //   }
-  // };
-  // centralContainer.addEventListener(`keydown`, empty);
-  // centralContainer.addEventListener(`click`, next);
-  centralContainer.addEventListener(`click`, switchBack);
+  const enable = () => {
+    rulesButton.removeAttribute(`disabled`);
+  };
+  const empty = () => {
+    rulesInput.addEventListener(`input`, enable);
+  };
+  const next = (ev) => {
+    if (ev.target === rulesButton) {
+      rulesInput.removeEventListener(`input`, enable);
+      rulesInput.removeEventListener(`keydown`, empty);
+      rulesButton.removeEventListener(`click`, next);
+      makeGame1Template();
+    }
+  };
+  rulesInput.addEventListener(`keydown`, empty);
+  rulesButton.addEventListener(`click`, next);
+  linkBack.addEventListener(`click`, switchBack);
   return el;
 };

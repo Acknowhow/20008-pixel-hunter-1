@@ -12,5 +12,4 @@ export const makeTemplate = (templateMain, templateFooter = templateFooterDefaul
 export const insertIntoContainer = (template, container) =>{
   container.innerHTML = ``;
   container.appendChild(template.content);
-  console.log(container);
 };
