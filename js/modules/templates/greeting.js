@@ -1,6 +1,5 @@
-import {makeTemplate} from '../module-constructor.js';
 import {makeRulesTemplate} from './rules';
-import {insertIntoContainer} from '../module-constructor';
+import {insertIntoContainer, makeTemplate} from '../module-constructor';
 
 const moduleGreeting = `<div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
@@ -18,7 +17,7 @@ const moduleGreeting = `<div class="greeting central--blur">
 
 export const makeGreetingTemplate = () => {
   const el = makeTemplate(moduleGreeting);
-  const greeting = el.content.querySelector(`.greeting`);
+  const greeting = el.querySelector(`.greeting`);
 
   const next = (ev) => {
     if (ev.target === greeting.querySelector(`img[alt='Next']`)) {

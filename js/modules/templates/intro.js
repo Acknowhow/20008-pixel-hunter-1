@@ -1,6 +1,5 @@
-import {makeTemplate} from "../module-constructor";
-import {makeGreetingTemplate} from "./greeting";
-import {insertIntoContainer} from "../module-constructor";
+import {makeGreetingTemplate} from './greeting';
+import {insertIntoContainer, makeTemplate} from '../module-constructor';
 
 const contentIntro = `<div id="main" class="central__content">
     <div class="intro">
@@ -11,7 +10,7 @@ const contentIntro = `<div id="main" class="central__content">
 
 export const makeIntroTemplate = () => {
   const el = makeTemplate(contentIntro);
-  const main = el.content.querySelector(`#main`);
+  const main = el.querySelector(`#main`);
 
   const next = (ev) => {
     if (ev.target === main.querySelector(`.intro__asterisk`)) {

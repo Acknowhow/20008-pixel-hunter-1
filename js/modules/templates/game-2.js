@@ -49,14 +49,14 @@ const moduleGame2 = `<header class="header">
   </div>`;
 export const makeGame2Template = () => {
   const el = makeTemplate(moduleGame2);
-  const form = el.content.querySelector(`.game__content`);
+  const form = el.querySelector(`.game__content`);
 
   const formOption = form.children[0];
   const answer1 = formOption.querySelector(`.game__answer--photo`).children[0];
   const answer2 = formOption.querySelector(`.game__answer--paint`).children[0];
 
   const answersArr = [answer1, answer2];
-  const linkBack = el.content.querySelector(`.header__back`);
+  const linkBack = el.querySelector(`.header__back`);
 
   const switchBack = () => {
     linkBack.removeEventListener(`click`, switchBack);

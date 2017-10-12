@@ -48,7 +48,7 @@ const templateGame3 = `<header class="header">
 
 export const makeGame3Template = () => {
   const el = makeTemplate(templateGame3);
-  const form = el.content.querySelector(`.game__content`);
+  const form = el.querySelector(`.game__content`);
 
   const linkBack = document.querySelector(`.header__back`);
   const switchBack = () => {

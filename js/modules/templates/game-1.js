@@ -60,7 +60,7 @@ const moduleGame1 = `<header class="header">
   </div>`;
 export const makeGame1Template = () => {
   const el = makeTemplate(moduleGame1);
-  const form = el.content.querySelector(`.game__content`);
+  const form = el.querySelector(`.game__content`);
   // First and Second options screen
   const formOptions1 = form.children[0];
   const formOptions2 = form.children[1];
@@ -68,7 +68,7 @@ export const makeGame1Template = () => {
   const formAnswers1 = Array.from(formOptions1.querySelectorAll(`input`));
   const formAnswers2 = Array.from(formOptions2.querySelectorAll(`input`));
 
-  const linkBack = el.content.querySelector(`.header__back`);
+  const linkBack = el.querySelector(`.header__back`);
   const switchBack = () => {
     linkBack.removeEventListener(`click`, switchBack);
     const introTemplate = makeIntroTemplate();

@@ -27,10 +27,10 @@ const moduleRules = `<header class="header">
 
 export const makeRulesTemplate = () => {
   const el = makeTemplate(moduleRules);
-  const rulesInput = el.content.querySelector(`.rules__input`);
+  const rulesInput = el.querySelector(`.rules__input`);
 
-  const rulesButton = el.content.querySelector(`.rules__button`);
-  const linkBack = el.content.querySelector(`img[alt='Back']`);
+  const rulesButton = el.querySelector(`.rules__button`);
+  const linkBack = el.querySelector(`img[alt='Back']`);
 
   const switchBack = () => {
     linkBack.removeEventListener(`click`, switchBack);

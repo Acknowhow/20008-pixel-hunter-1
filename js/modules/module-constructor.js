@@ -11,10 +11,10 @@ export const makeTemplate = (templateMain, templateFooter = templateFooterDefaul
 
   footer.innerHTML = templateFooter;
   template.content.appendChild(footer);
-  return template;
+  return template.content;
 };
 
 export const insertIntoContainer = (template, container = centralContainer) =>{
   container.innerHTML = ``;
-  container.appendChild(template.content);
+  container.appendChild(template);
 };
