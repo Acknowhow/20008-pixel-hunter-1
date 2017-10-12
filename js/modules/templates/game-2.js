@@ -1,6 +1,8 @@
 import {makeTemplate} from '../module-constructor.js';
 import {makeIntroTemplate} from './intro';
 import {makeGame3Template} from './game-3.js';
+import {centralContainer} from "../module-constructor";
+import {insertIntoContainer} from "../module-constructor";
 const moduleGame2 = `<header class="header">
     <div class="header__back">
       <span class="back">
@@ -46,31 +48,31 @@ const moduleGame2 = `<header class="header">
     </div>
   </div>`;
 export const makeGame2Template = () => {
-  makeTemplate(moduleGame2);
-  const linkBack = document.querySelector(`.header__back`);
-  const opt = document.querySelector(`.game__option`);
-  const answer1 = document.querySelector(`.game__answer--photo`).children[0];
-  const answer2 = document.querySelector(`.game__answer--paint`).children[0];
-  const answersArr = [];
-  answersArr.push(answer1, answer2);
-  const switchBack = (ev) => {
-    if (ev.currentTarget === linkBack) {
-      linkBack.removeEventListener(`click`, switchBack);
-      makeIntroTemplate();
-    }
+  const el = makeTemplate(moduleGame2);
+  const form = el.content.querySelector(`.game__content`);
+  const formOption = form.children[0];
+  const answer1 = formOption.querySelector(`.game__answer--photo`).children[0];
+  const answer2 = formOption.querySelector(`.game__answer--paint`).children[0];
+  const answersArr = [].push(answer1, answer2);
+  const linkBack = el.content.querySelector(`.header__back`);
+  const switchBack = () => {
+    linkBack.removeEventListener(`click`, switchBack);
+    const introTemplate = makeIntroTemplate();
+    insertIntoContainer(introTemplate, centralContainer);
   };
   const checkArr = (a) => {
     return a.checked === true;
   };
   const check = (ev) => {
-    if (ev.currentTarget !== opt) {
+    if (ev.currentTarget !== formOption) {
       return;
     }
     if (answersArr.some(checkArr)) {
-      opt.removeEventListener(`click`, check);
+      formOption.removeEventListener(`click`, check);
       makeGame3Template();
     }
   };
-  opt.addEventListener(`click`, check);
+  formOption.addEventListener(`click`, check);
   linkBack.addEventListener(`click`, switchBack);
+  return el;
 };

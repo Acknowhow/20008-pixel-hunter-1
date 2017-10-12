@@ -40,13 +40,12 @@ export const makeRulesTemplate = () => {
   const empty = () => {
     rulesInput.addEventListener(`input`, enable);
   };
-  const next = (ev) => {
-    if (ev.target === rulesButton) {
-      rulesInput.removeEventListener(`input`, enable);
-      rulesInput.removeEventListener(`keydown`, empty);
-      rulesButton.removeEventListener(`click`, next);
-      makeGame1Template();
-    }
+  const next = () => {
+    rulesInput.removeEventListener(`input`, enable);
+    rulesInput.removeEventListener(`keydown`, empty);
+    rulesButton.removeEventListener(`click`, next);
+    const game1Template = makeGame1Template();
+    insertIntoContainer(game1Template, centralContainer);
   };
   rulesInput.addEventListener(`keydown`, empty);
   rulesButton.addEventListener(`click`, next);

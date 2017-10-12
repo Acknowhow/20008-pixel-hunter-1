@@ -1,6 +1,8 @@
 import {makeTemplate} from '../module-constructor.js';
 import {makeIntroTemplate} from './intro';
 import {makeGame2Template} from './game-2.js';
+import {centralContainer} from "../module-constructor";
+import {insertIntoContainer} from "../module-constructor";
 const moduleGame1 = `<header class="header">
     <div class="header__back">
       <span class="back">
@@ -57,41 +59,42 @@ const moduleGame1 = `<header class="header">
     </div>
   </div>`;
 export const makeGame1Template = () => {
-  makeTemplate(moduleGame1);
+  const el = makeTemplate(moduleGame1);
+  const form = el.content.querySelector(`.game__content`);
   // First options screen
-  const opts1 = document.querySelector(`form > div:nth-child(1)`);
+  const formOptions1 = form.children[0];
   // Second options screen
-  const opts2 = document.querySelector(`form > div:nth-child(2)`);
-  // Select all inputs in option1
-  const answers1 = Array.from(document.querySelector(`.game__content`).children[0].querySelectorAll(`input`));
-  // Select all inputs in option2
-  const answers2 = Array.from(document.querySelector(`.game__content`).children[1].querySelectorAll(`input`));
-  const linkBack = document.querySelector(`.header__back`);
-  const switchBack = (ev) => {
-    if (ev.currentTarget === linkBack) {
-      linkBack.removeEventListener(`click`, switchBack);
-      makeIntroTemplate();
-    }
+  const formOptions2 = form.children[1];
+  const formAnswers1 = Array.from(formOptions1.querySelectorAll(`input`));
+  const formAnswers2 = Array.from(formOptions2.querySelectorAll(`input`));
+  const linkBack = el.content.querySelector(`.header__back`);
+  const switchBack = () => {
+    linkBack.removeEventListener(`click`, switchBack);
+    const introTemplate = makeIntroTemplate();
+    insertIntoContainer(introTemplate, centralContainer);
   };
   const checkArr = (a) => {
     return a.checked === true;
   };
   const checkOpt1 = () => {
-    if (answers2.some(checkArr) === true) {
-      opts1.removeEventListener(`click`, checkOpt1);
-      opts2.removeEventListener(`click`, checkOpt2);
-      makeGame2Template();
+    if (formAnswers2.some(checkArr) === true) {
+      formOptions1.removeEventListener(`click`, checkOpt1);
+      formOptions2.removeEventListener(`click`, checkOpt2);
+      const game2Template = makeGame2Template();
+      insertIntoContainer(game2Template, centralContainer);
     }
   };
   const checkOpt2 = () => {
-    if (answers1.some(checkArr) === true) {
-      opts1.removeEventListener(`click`, checkOpt1);
-      opts2.removeEventListener(`click`, checkOpt2);
-      makeGame2Template();
+    if (formAnswers1.some(checkArr) === true) {
+      formOptions1.removeEventListener(`click`, checkOpt1);
+      formOptions2.removeEventListener(`click`, checkOpt2);
+      const game2Template = makeGame2Template();
+      insertIntoContainer(game2Template, centralContainer);
     }
   };
-  opts1.addEventListener(`click`, checkOpt1);
-  opts2.addEventListener(`click`, checkOpt2);
+  formOptions1.addEventListener(`click`, checkOpt1);
+  formOptions2.addEventListener(`click`, checkOpt2);
   linkBack.addEventListener(`click`, switchBack);
+  return el;
 };
 
