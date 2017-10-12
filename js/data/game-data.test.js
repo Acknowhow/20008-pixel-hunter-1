@@ -25,7 +25,7 @@ describe(`Array`, () => {
 });
 describe(`Timeout`, () => {
   describe(`TimeElapsed`, () => {
-    it(`should clearTimeout when the timeElapsed reaches 5 seconds`, () => {
+    it(`should take no more than 1s to execute`, () => {
       assert(display() <= 1000);
     });
   });
