@@ -1,7 +1,6 @@
 import {makeTemplate} from '../module-constructor.js';
 import {makeIntroTemplate} from './intro';
-import {centralContainer} from "../module-constructor";
-import {insertIntoContainer} from "../module-constructor";
+import {insertIntoContainer} from '../module-constructor';
 const moduleStats = `<header class="header">
     <div class="header__back">
       <span class="back">
@@ -116,7 +115,7 @@ export const makeStatsTemplate = () => {
   const switchBack = () => {
     linkBack.removeEventListener(`click`, switchBack);
     const introTemplate = makeIntroTemplate();
-    insertIntoContainer(introTemplate, centralContainer);
+    insertIntoContainer(introTemplate);
   };
   linkBack.addEventListener(`click`, switchBack);
   return el;

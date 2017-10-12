@@ -1,8 +1,7 @@
 import {makeTemplate} from '../module-constructor.js';
-import {makeIntroTemplate} from "./intro";
+import {makeIntroTemplate} from './intro';
 import {makeGame1Template} from './game-1.js';
-import {centralContainer} from "../module-constructor";
-import {insertIntoContainer} from "../module-constructor";
+import {insertIntoContainer} from '../module-constructor';
 const moduleRules = `<header class="header">
   <div class="header__back">
     <span class="back">
@@ -32,7 +31,7 @@ export const makeRulesTemplate = () => {
   const switchBack = () => {
     linkBack.removeEventListener(`click`, switchBack);
     const introTemplate = makeIntroTemplate();
-    insertIntoContainer(introTemplate, centralContainer);
+    insertIntoContainer(introTemplate);
   };
   const enable = () => {
     rulesButton.removeAttribute(`disabled`);
@@ -45,7 +44,7 @@ export const makeRulesTemplate = () => {
     rulesInput.removeEventListener(`keydown`, empty);
     rulesButton.removeEventListener(`click`, next);
     const game1Template = makeGame1Template();
-    insertIntoContainer(game1Template, centralContainer);
+    insertIntoContainer(game1Template);
   };
   rulesInput.addEventListener(`keydown`, empty);
   rulesButton.addEventListener(`click`, next);

@@ -1,8 +1,7 @@
 import {makeTemplate} from '../module-constructor.js';
 import {makeIntroTemplate} from './intro';
 import {makeStatsTemplate} from './stats.js';
-import {centralContainer} from "../module-constructor";
-import {insertIntoContainer} from "../module-constructor";
+import {insertIntoContainer} from '../module-constructor';
 const templateGame3 = `<header class="header">
     <div class="header__back">
       <span class="back">
@@ -52,12 +51,12 @@ export const makeGame3Template = () => {
   const switchBack = () => {
     linkBack.removeEventListener(`click`, switchBack);
     const introTemplate = makeIntroTemplate();
-    insertIntoContainer(introTemplate, centralContainer);
+    insertIntoContainer(introTemplate);
   };
   const check = (ev) => {
     if (ev.target.classList.contains(`game__option`)) {
       const statsTemplate = makeStatsTemplate();
-      insertIntoContainer(statsTemplate, centralContainer);
+      insertIntoContainer(statsTemplate);
     }
     return false;
   };

@@ -1,8 +1,7 @@
 import {makeTemplate} from '../module-constructor.js';
 import {makeIntroTemplate} from './intro';
 import {makeGame3Template} from './game-3.js';
-import {centralContainer} from "../module-constructor";
-import {insertIntoContainer} from "../module-constructor";
+import {insertIntoContainer} from '../module-constructor';
 const moduleGame2 = `<header class="header">
     <div class="header__back">
       <span class="back">
@@ -58,7 +57,7 @@ export const makeGame2Template = () => {
   const switchBack = () => {
     linkBack.removeEventListener(`click`, switchBack);
     const introTemplate = makeIntroTemplate();
-    insertIntoContainer(introTemplate, centralContainer);
+    insertIntoContainer(introTemplate);
   };
   const checkArr = (input) => {
     return input.checked === true;
@@ -70,7 +69,7 @@ export const makeGame2Template = () => {
     if (answersArr.some(checkArr)) {
       formOption.removeEventListener(`click`, check);
       const game3Template = makeGame3Template();
-      insertIntoContainer(game3Template, centralContainer);
+      insertIntoContainer(game3Template);
     }
   };
   formOption.addEventListener(`click`, check);

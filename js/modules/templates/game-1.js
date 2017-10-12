@@ -1,8 +1,7 @@
 import {makeTemplate} from '../module-constructor.js';
 import {makeIntroTemplate} from './intro';
 import {makeGame2Template} from './game-2.js';
-import {centralContainer} from "../module-constructor";
-import {insertIntoContainer} from "../module-constructor";
+import {insertIntoContainer} from '../module-constructor';
 const moduleGame1 = `<header class="header">
     <div class="header__back">
       <span class="back">
@@ -71,7 +70,7 @@ export const makeGame1Template = () => {
   const switchBack = () => {
     linkBack.removeEventListener(`click`, switchBack);
     const introTemplate = makeIntroTemplate();
-    insertIntoContainer(introTemplate, centralContainer);
+    insertIntoContainer(introTemplate);
   };
   const checkArr = (a) => {
     return a.checked === true;
@@ -81,7 +80,7 @@ export const makeGame1Template = () => {
       formOptions1.removeEventListener(`click`, checkOpt1);
       formOptions2.removeEventListener(`click`, checkOpt2);
       const game2Template = makeGame2Template();
-      insertIntoContainer(game2Template, centralContainer);
+      insertIntoContainer(game2Template);
     }
   };
   const checkOpt2 = () => {
@@ -89,7 +88,7 @@ export const makeGame1Template = () => {
       formOptions1.removeEventListener(`click`, checkOpt1);
       formOptions2.removeEventListener(`click`, checkOpt2);
       const game2Template = makeGame2Template();
-      insertIntoContainer(game2Template, centralContainer);
+      insertIntoContainer(game2Template);
     }
   };
   formOptions1.addEventListener(`click`, checkOpt1);
