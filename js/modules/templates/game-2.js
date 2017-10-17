@@ -1,6 +1,7 @@
 import {makeIntroTemplate} from './intro';
 import {makeGame3Template} from './game-3.js';
 import {insertIntoContainer, makeTemplate} from '../module-constructor';
+import Clock from '../../data/game-timer';
 
 const moduleGame2 = `<header class="header">
     <div class="header__back">
@@ -9,7 +10,7 @@ const moduleGame2 = `<header class="header">
         <img src="img/logo_small.svg" width="101" height="44">
       </span>
     </div>
-    <h1 class="game__timer">NN</h1>
+    <h1 class="game__timer">30</h1>
     <div class="game__lives">
       <img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">
       <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
@@ -48,6 +49,11 @@ const moduleGame2 = `<header class="header">
   </div>`;
 export const makeGame2Template = () => {
   const el = makeTemplate(moduleGame2);
+  const clock = new Clock({
+    el: el.querySelector(`.game__timer`),
+    count: 30
+  });
+  el.querySelector(`img`).onload = clock.start.bind(clock);
   const form = el.querySelector(`.game__content`);
 
   const formOption = form.children[0];

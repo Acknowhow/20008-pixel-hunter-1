@@ -10,7 +10,7 @@ const moduleGame1 = `<header class="header">
         <img src="img/logo_small.svg" width="101" height="44">
       </span>
     </div>
-    <h1 class="game__timer">NN</h1>
+    <h1 class="game__timer">30</h1>
     <div class="game__lives">
       <img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">
       <img src="img/heart__full.svg" class="game__heart" alt="Life" width="32" height="32">
@@ -58,11 +58,16 @@ const moduleGame1 = `<header class="header">
       </ul>
     </div>
   </div>`;
+export const initialGame = {
+  level: 0,
+  lives: 3,
+  time: 0
+}
 export const makeGame1Template = () => {
   const el = makeTemplate(moduleGame1);
   const clock = new Clock({
     el: el.querySelector(`.game__timer`),
-    count: 1
+    count: 30
   });
   el.querySelector(`img`).onload = clock.start.bind(clock);
   const form = el.querySelector(`.game__content`);

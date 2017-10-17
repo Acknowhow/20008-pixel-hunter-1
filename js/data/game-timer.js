@@ -8,10 +8,10 @@ export default class Clock {
   }
   render() {
     this.secondsElem.innerHTML = (() =>{
-      if (this.count >= 10) {
-        return this.count++;
+      if (this.count === 0) {
+        clearInterval(this.interval);
       }
-      return `0` + this.count++;
+      return this.count--;
     })();
   }
   reset() {
