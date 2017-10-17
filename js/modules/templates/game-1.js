@@ -1,6 +1,7 @@
 import {makeIntroTemplate} from './intro';
 import {makeGame2Template} from './game-2.js';
 import {insertIntoContainer, makeTemplate} from '../module-constructor';
+import Clock from '../../data/game-timer';
 
 const moduleGame1 = `<header class="header">
     <div class="header__back">
@@ -59,6 +60,11 @@ const moduleGame1 = `<header class="header">
   </div>`;
 export const makeGame1Template = () => {
   const el = makeTemplate(moduleGame1);
+  const clock = new Clock({
+    el: el.querySelector(`.game__timer`),
+    count: 1
+  });
+  el.querySelector(`.game__timer`).onclick = clock.start.bind(clock);
   const form = el.querySelector(`.game__content`);
   // First and Second options screen
   const formOptions1 = form.children[0];
