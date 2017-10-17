@@ -62,7 +62,7 @@ export const initialGame = {
   level: 0,
   lives: 3,
   time: 0
-}
+};
 export const makeGame1Template = () => {
   const el = makeTemplate(moduleGame1);
   const clock = new Clock({
@@ -91,6 +91,7 @@ export const makeGame1Template = () => {
 
   const checkOpt1 = () => {
     if (formAnswers2.some(checkArr) === true) {
+      console.log(`formAnswer2`);
       formOptions1.removeEventListener(`click`, checkOpt1);
       formOptions2.removeEventListener(`click`, checkOpt2);
 
@@ -100,6 +101,7 @@ export const makeGame1Template = () => {
   };
   const checkOpt2 = () => {
     if (formAnswers1.some(checkArr) === true) {
+      console.log(`formAnswer1`);
       formOptions1.removeEventListener(`click`, checkOpt1);
       formOptions2.removeEventListener(`click`, checkOpt2);
 
