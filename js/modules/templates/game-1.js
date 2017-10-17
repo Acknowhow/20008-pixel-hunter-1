@@ -2,7 +2,6 @@ import {makeIntroTemplate} from './intro';
 import {makeGame2Template} from './game-2.js';
 import {insertIntoContainer, makeTemplate} from '../module-constructor';
 import Clock from '../../data/game-timer';
-
 const moduleGame1 = `<header class="header">
     <div class="header__back">
       <span class="back">
@@ -91,7 +90,6 @@ export const makeGame1Template = () => {
 
   const checkOpt1 = () => {
     if (formAnswers2.some(checkArr) === true) {
-      console.log(`formAnswer2`);
       formOptions1.removeEventListener(`click`, checkOpt1);
       formOptions2.removeEventListener(`click`, checkOpt2);
 
@@ -101,7 +99,6 @@ export const makeGame1Template = () => {
   };
   const checkOpt2 = () => {
     if (formAnswers1.some(checkArr) === true) {
-      console.log(`formAnswer1`);
       formOptions1.removeEventListener(`click`, checkOpt1);
       formOptions2.removeEventListener(`click`, checkOpt2);
 
