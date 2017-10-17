@@ -1,4 +1,4 @@
-export const Images = [
+const Images = [
   {
     peoplePaint: {
       [`Man bearded`]: [`http://i.imgur.com/5kcp9i0.jpg`],
@@ -42,4 +42,4 @@ export const Images = [
     }
   }
 ];
-
+export default Images;
