@@ -64,7 +64,7 @@ export const makeGame1Template = () => {
     el: el.querySelector(`.game__timer`),
     count: 1
   });
-  el.querySelector(`.game__timer`).onclick = clock.start.bind(clock);
+  el.querySelector(`img`).onload = clock.start.bind(clock);
   const form = el.querySelector(`.game__content`);
   // First and Second options screen
   const formOptions1 = form.children[0];
