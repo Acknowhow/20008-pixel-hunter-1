@@ -2,6 +2,8 @@ import {makeIntroTemplate} from './intro';
 import {makeGame2Template} from './game-2.js';
 import {insertIntoContainer, makeTemplate} from '../module-constructor';
 import Clock from '../../data/game-timer';
+import {Question1} from "../../data/game-data";
+
 const moduleGame1 = `<header class="header">
     <div class="header__back">
       <span class="back">
@@ -19,17 +21,6 @@ const moduleGame1 = `<header class="header">
   <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     <form class="game__content">
-      <div class="game__option">
-        <img src="http://placehold.it/468x458" alt="Option 1" width="468" height="458">
-        <label class="game__answer game__answer--photo">
-          <input name="question1" type="radio" value="photo">
-          <span>Фото</span>
-        </label>
-        <label class="game__answer game__answer--paint">
-          <input name="question1" type="radio" value="paint">
-          <span>Рисунок</span>
-        </label>
-      </div>
       <div class="game__option">
         <img src="http://placehold.it/468x458" alt="Option 2" width="468" height="458">
         <label class="game__answer  game__answer--photo">
