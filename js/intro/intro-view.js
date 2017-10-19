@@ -11,12 +11,12 @@ export default class IntroView extends ModuleView {
   </div>`.trim();
   }
 
-  // bind() {
-  //   const asterisk = this.el.querySelector(`.intro__asterisk`);
-  //   asterisk.onclick = () => {
-  //     this.onProceed();
-  //   };
-  // }
-  // onProceed() {
-  // }
+  bind() {
+    const asterisk = this.element.querySelector(`.intro__asterisk`);
+    asterisk.onclick = () => {
+      this.onProceed();
+    };
+  }
+  onProceed() {
+  }
 }
