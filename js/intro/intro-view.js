@@ -1,6 +1,6 @@
 import ModuleView from '../view';
 
-export default class WelcomeView extends ModuleView {
+export default class IntroView extends ModuleView {
 
   get template() {
     return `<div id="main" class="central__content">
@@ -14,11 +14,9 @@ export default class WelcomeView extends ModuleView {
   // bind() {
   //   const asterisk = this.el.querySelector(`.intro__asterisk`);
   //   asterisk.onclick = () => {
-  //     this.onStart();
+  //     this.onProceed();
   //   };
   // }
-  //
-  // onStart() {
-  //
+  // onProceed() {
   // }
 }
