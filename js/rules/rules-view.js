@@ -35,7 +35,11 @@ export default class RulesView extends ModuleView {
     const button = this.element.querySelector(`.rules__button`);
 
     const linkBack = this.element.querySelector(`img[alt='Back']`);
-    // linkBack.onclick =
+    linkBack.onclick = () => {
+      this.onReturn();
+    };
+  }
+  onReturn() {
   }
 }
 

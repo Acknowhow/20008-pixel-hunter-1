@@ -1,7 +1,6 @@
 import ModuleView from '../view';
 
 export default class IntroView extends ModuleView {
-
   get template() {
     return `<div id="main" class="central__content">
     <div class="intro">

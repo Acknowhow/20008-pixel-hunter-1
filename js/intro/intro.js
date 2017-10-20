@@ -1,9 +1,10 @@
 import {changeView} from './../utils';
-import IntroView from './intro-view';
+import Intro from './intro-view';
 import showRules from '../rules/rules';
 
 
-const intro = new IntroView();
+const intro = new Intro();
+
 intro.onProceed = () => {
   changeView(showRules());
 }
