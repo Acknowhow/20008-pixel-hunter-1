@@ -1,5 +1,5 @@
 export const welcomeState = {
-  level: 0
+  screen: 0
 };
 
 export const huntState = {

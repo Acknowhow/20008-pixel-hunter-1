@@ -1,6 +1,5 @@
 import ModuleView from '../view';
 
-
 export default class RulesView extends ModuleView {
   get template() {
     return `<header class="header">
