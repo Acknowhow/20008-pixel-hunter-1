@@ -6,5 +6,7 @@ const intro = new IntroView();
 intro.onProceed = () => {
   changeView(showRules());
 }
-
+showRules.onReset = () => {
+  changeView(intro());
+}
 export default () => intro;
