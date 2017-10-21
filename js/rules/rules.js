@@ -1,4 +1,5 @@
-import Rules from './rules-view';
-const rules = new Rules();
+import RulesView from './rules-view';
+
+const rules = new RulesView();
 
 export default () => rules;

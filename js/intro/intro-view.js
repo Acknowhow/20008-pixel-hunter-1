@@ -9,7 +9,6 @@ export default class IntroView extends ModuleView {
     </div>
   </div>`.trim();
   }
-
   bind() {
     const asterisk = this.element.querySelector(`.intro__asterisk`);
     asterisk.onclick = () => {

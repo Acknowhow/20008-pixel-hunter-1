@@ -1,4 +1,8 @@
-export const initialHunt = {
+export const welcomeState = {
+  level: 0
+};
+
+export const huntState = {
   level: 0,
   lives: 3,
   time: 0
