@@ -1,9 +1,13 @@
 import {changeView} from "./utils";
 import showIntro from './intro/intro';
-import returnIntro from './rules/rules';
-console.log(returnIntro().onReturn);
-returnIntro().onReturn = () => {
+import showRules from './rules/rules';
+showRules().onReturn = () => {
   changeView(showIntro());
-}
+};
+console.log(showRules());
+console.log(showIntro());
+showIntro().onProceed = () => {
+  changeView(showRules());
+};
 changeView(showIntro());
 
