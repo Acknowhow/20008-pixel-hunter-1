@@ -1,6 +1,10 @@
 import ModuleView from '../view';
 
 export default class IntroView extends ModuleView {
+  constructor(screen) {
+    super();
+    this.screen = screen;
+  }
   get template() {
     return `<div id="main" class="central__content">
     <div class="intro">
@@ -12,8 +16,11 @@ export default class IntroView extends ModuleView {
   bind() {
     const asterisk = this.element.querySelector(`.intro__asterisk`);
     asterisk.onclick = () => {
-      this.onProceed();
+      this.onScreen(this.screen);
     };
+  }
+  onScreen(screen) {
+    return screen;
   }
   onProceed() {
   }
