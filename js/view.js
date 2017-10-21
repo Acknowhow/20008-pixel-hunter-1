@@ -10,10 +10,6 @@ export default class ModuleView {
     return createElement(this.template);
   }
 
-  bind() {
-
-  }
-
   get element() {
     if (!this._element) {
       this._element = this.render();

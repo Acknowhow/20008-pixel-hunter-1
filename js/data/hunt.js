@@ -2,7 +2,6 @@ export const welcomeState = {
   screen: 0
 };
 
-
 export const getScreen = (num) => screen[`screen-${num}`];
 
 export const nextScreen = (state) => {
@@ -19,7 +18,7 @@ export const screen = {
   'screen-0': `intro`,
   'screen-1': `greeting`,
   'screen-2': `rules`
-}
+};
 
 // const CHECKED = `checked`;
 // const UNCHECKED = ``;

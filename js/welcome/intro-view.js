@@ -1,27 +1,42 @@
 import ModuleView from '../view';
 
 export default class IntroView extends ModuleView {
-  constructor(screen) {
+  constructor(temp, el) {
     super();
-    this.screen = screen;
+    this.temp = temp;
+    this.el = el;
+    // this.bnd = bnd;
+    // this.bnd.el = bnd.element; // element
+    // this.bnd.class = bnd.class; // element class
   }
+
   get template() {
-    return `<div id="main" class="central__content">
-    <div class="intro">
-      <h1 class="intro__asterisk">*</h1>
-      <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
-    </div>
-  </div>`.trim();
+    return this.temp.trim();
   }
-  bind() {
-    const asterisk = this.element.querySelector(`.intro__asterisk`);
-    asterisk.onclick = () => {
-      this.onScreen(this.screen);
-    };
+
+  set template(tmp) {
+    this.temp = tmp;
   }
-  onScreen(screen) {
-    return screen;
+
+  // bind() {
+  //   const element = this.element.querySelector(this.el);
+  //   element.onclick = () => {
+  //     alert('Yes');
+  //   };
+  // }
+
+
+  // bind() {
+  //   const asterisk = this.element.querySelector(`.intro__asterisk`);
+  //   asterisk.onclick = () => {
+  //     this.onScreen(this.state);
+  //   };
+  // }
+
+  onScreen(state) {
+    return state;
   }
+
   onProceed() {
   }
 }

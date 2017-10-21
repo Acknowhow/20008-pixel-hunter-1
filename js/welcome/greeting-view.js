@@ -1,8 +1,9 @@
 import ModuleView from './../view';
+
 export default class GreetingView extends ModuleView {
-  constructor(screen) {
+  constructor(state) {
     super();
-    this.screen = screen;
+    this.state = state;
   }
   get template() {
     return `<div class="greeting central--blur">

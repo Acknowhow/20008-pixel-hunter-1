@@ -1,9 +1,9 @@
 import ModuleView from '../view';
 
 export default class RulesView extends ModuleView {
-  constructor(screen) {
+  constructor(state) {
     super();
-    this.screen = screen;
+    this.state = state;
   }
   get template() {
     return `<header class="header">
@@ -35,11 +35,16 @@ export default class RulesView extends ModuleView {
 
     const linkBack = this.element.querySelector(`img[alt='Back']`);
     linkBack.onclick = () => {
-      this.onScreen(this.screen);
+      this.onScreen(this.state);
     };
   }
-  onScreen(screen) {
-    return screen;
+
+  onScreen(state) {
+    return state;
+  }
+
+  onReset() {
+
   }
 }
 
