@@ -1,5 +1,6 @@
 import {initialWelcomeState, getScreen, nextScreen} from "../data/hunt";
-import IntroView from './intro-view';
+import IntroView from './welcome-view';
+import {changeView} from "../utils";
 
 const introTemp = `<div id="main" class="central__content">
     <div class="intro">
@@ -44,24 +45,44 @@ const rulesTemp = `<header class="header">
   </form>
 </div>`;
 
-const intro = new IntroView();
-intro.template = introTemp;
 
-intro.bind = () => {
-  const element = intro.element.querySelector(`.intro__asterisk`);
-  element.onclick = () => {
-    alert('Yes'); // Must add state +1 on click and change screen
-  };
-}
-intro.template = greetingTemp;
-intro.bind = () => {
-  const element = intro.element.querySelector(`.greeting__continue`);
-  element.onclick = () => {
-    alert('No');
-  };
-}
+const changeScreen = (state) => {
+  const intro = new IntroView(state);
+  switch (state.screen) {
+    case 0:
+      intro.template = introTemp;
+      intro.bind = () => {
+        const element = intro.element.querySelector(`.intro__asterisk`);
+        element.onclick = () => {
+          intro.onChange(state);
+          changeView(changeScreen(nextScreen(state))); // Must add state +1 on click and change screen
+        };
+      };
+      break;
+    case 1:
+      intro.template = greetingTemp;
+      intro.bind = () => {
+        const element = intro.element.querySelector(`.greeting__continue`);
+        element.onclick = () => {
+          intro.onChange(state);
+          changeView(changeScreen(nextScreen(state)));
+        };
+      };
+      break;
+    case 2:
+      intro.template = rulesTemp;
+      intro.bind = () => {
+        const element = intro.element.querySelector(`img[alt='Back']`);
+        element.onclick = () => {
+          changeView(changeScreen(initialWelcomeState));
+        };
+      };
+      break;
+  }
+  return intro;
+};
 
 
-export default () => intro;
+export default () => changeScreen(initialWelcomeState);
 
 

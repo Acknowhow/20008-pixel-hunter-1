@@ -1,21 +1,28 @@
-import IntroView from './intro-view';
-import GreetingView from './greeting-view';
-import RulesView from './rules-view';
-import getScreen from './../data/hunt';
+import ModuleView from '../view';
 
-const intro = new IntroView(screen);
-const greeting = new GreetingView(screen);
-const rules = new RulesView(screen);
-
-export default class WelcomeView extends ModuleView {
+export default class IntroView extends ModuleView {
   constructor(state) {
     super();
-    this.screen = state;
+    this.state = state;
   }
+  // this.bnd = bnd;
+  // this.bnd.el = bnd.element; // element
+  // this.bnd.class = bnd.class; // element class
+
 
   get template() {
-    const screen = getScreen(this.state.screen);
+    return this.temp.trim();
+  }
+
+  set template(tmp) {
+    this.temp = tmp;
+  }
+
+  bind() {
+
+  }
+
+  onChange() {
 
   }
 }
-
