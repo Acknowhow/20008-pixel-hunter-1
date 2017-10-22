@@ -5,10 +5,6 @@ export default class IntroView extends ModuleView {
     super();
     this.state = state;
   }
-  // this.bnd = bnd;
-  // this.bnd.el = bnd.element; // element
-  // this.bnd.class = bnd.class; // element class
-
 
   get template() {
     return this.temp.trim();
@@ -26,3 +22,5 @@ export default class IntroView extends ModuleView {
 
   }
 }
+
+
