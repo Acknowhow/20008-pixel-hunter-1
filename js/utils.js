@@ -1,6 +1,6 @@
 const centralContainer = document.querySelector(`.central`);
 const footerDefault = `<a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
-    <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2016</span>
+    <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2017</span>
     <div class="footer__social-links">
       <a href="https://twitter.com/htmlacademy_ru" class="social-link  social-link--tw">Твиттер</a>
       <a href="https://www.instagram.com/htmlacademy/" class="social-link  social-link--ins">Инстаграм</a>
