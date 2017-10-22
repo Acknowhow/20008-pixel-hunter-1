@@ -1,14 +1,13 @@
 import ModuleView from '../view';
 
 export default class IntroView extends ModuleView {
-  constructor(temp, el) {
+  constructor() {
     super();
-    this.temp = temp;
-    this.el = el;
-    // this.bnd = bnd;
-    // this.bnd.el = bnd.element; // element
-    // this.bnd.class = bnd.class; // element class
   }
+  // this.bnd = bnd;
+  // this.bnd.el = bnd.element; // element
+  // this.bnd.class = bnd.class; // element class
+
 
   get template() {
     return this.temp.trim();

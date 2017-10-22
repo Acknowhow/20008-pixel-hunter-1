@@ -1,4 +1,4 @@
-export const welcomeState = {
+export const initialWelcomeState = {
   screen: 0
 };
 
