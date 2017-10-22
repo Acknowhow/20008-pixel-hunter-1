@@ -1,7 +1,7 @@
 import {changeView} from "./utils";
 import IntroView from './welcome/intro-view';
 
-const header = `<header class="header">
+const headerTemp = `<header class="header">
       <div class="header__back">
       <span class="back">
       <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -23,7 +23,7 @@ const header = `<header class="header">
   </form>
 </div>`;
 
-const greeting = `<div class="greeting central--blur">
+const greetingTemp = `<div class="greeting central--blur">
     <div class="greeting__logo"><img src="img/logo_big.png" width="201" height="89" alt="Pixel Hunter"></div>
     <h1 class="greeting__asterisk">*</h1>
     <div class="greeting__challenge">
