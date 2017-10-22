@@ -1,5 +1,5 @@
 import {changeView} from "./utils";
-import IntroView from './welcome/intro-view';
+import showIntro from './welcome/welcome';
 
 const headerTemp = `<header class="header">
       <div class="header__back">
@@ -37,19 +37,5 @@ const greetingTemp = `<div class="greeting central--blur">
     <div class="greeting__continue"><span><img src="img/arrow_right.svg" width="64" height="64" alt="Next"></span></div>
   </div>`;
 
-const introTemp = `<div id="main" class="central__content">
-    <div class="intro">
-      <h1 class="intro__asterisk">*</h1>
-      <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
-    </div>
-  </div>`;
 
-
-const intro = new IntroView(introTemp, `.intro__asterisk`);
-
-intro.bind = `.intro__motto`;
-console.log(intro.template);
-
-
-
-changeView(intro);
+changeView(showIntro());

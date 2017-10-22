@@ -18,12 +18,9 @@ export default class IntroView extends ModuleView {
     this.temp = tmp;
   }
 
-  // bind() {
-  //   const element = this.element.querySelector(this.el);
-  //   element.onclick = () => {
-  //     alert('Yes');
-  //   };
-  // }
+  bind() {
+
+  }
 
 
   // bind() {
@@ -33,10 +30,10 @@ export default class IntroView extends ModuleView {
   //   };
   // }
 
-  onScreen(state) {
-    return state;
-  }
+  // onScreen(state) {
+  //   return state;
+  // }
 
-  onProceed() {
-  }
+  // onProceed() {
+  // }
 }
