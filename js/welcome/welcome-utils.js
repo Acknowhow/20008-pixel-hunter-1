@@ -1,3 +1,4 @@
+// Later make into Object
 export const introTemp = `<div id="main" class="central__content">
     <div class="intro">
       <h1 class="intro__asterisk">*</h1>
