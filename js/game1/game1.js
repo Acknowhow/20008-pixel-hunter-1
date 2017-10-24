@@ -1,6 +1,6 @@
-import showIntro from './../welcome/welcome';
 import {changeView} from "../utils";
 import {initialGame} from './../data/hunt';
+import showIntro from './../welcome/welcome';
 import Game1View from './game1-view';
 
 const changeLevel = (state) => {
