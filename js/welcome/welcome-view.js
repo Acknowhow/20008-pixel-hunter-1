@@ -18,9 +18,4 @@ export default class IntroView extends ModuleView {
 
   }
 
-  onChange() {
-
-  }
 }
-
-

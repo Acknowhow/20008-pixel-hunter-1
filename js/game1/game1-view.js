@@ -23,13 +23,13 @@ export default class Game1View extends ModuleView {
     <form class="game__content">
        ${optionsParams.map(({option, imageParams, questionParams}) => `<div class="game__option">
         <img src="${imageParams.src}" alt="${option}" width="${imageParams.width}" height="${imageParams.height}">
-        <label class="game__answer game__answer--${questionParams.paint.value}">
-          <input name="${questionParams.paint.name}" type="radio" value="${questionParams.paint.value}">
-          <span>${questionParams.paint.text}</span>
-        </label>
         <label class="game__answer game__answer--${questionParams.photo.value}">
           <input name="${questionParams.photo.name}" type="radio" value="${questionParams.photo.value}">
           <span>${questionParams.photo.text}</span>
+        </label>
+        <label class="game__answer game__answer--${questionParams.paint.value}">
+          <input name="${questionParams.paint.name}" type="radio" value="${questionParams.paint.value}">
+          <span>${questionParams.paint.text}</span>
         </label>
 </div>`).join(``)}
     </form>

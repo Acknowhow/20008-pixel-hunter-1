@@ -22,4 +22,8 @@ export default class ModuleView {
     return this._element;
   }
 
+  onChange() {
+
+  }
+
 }

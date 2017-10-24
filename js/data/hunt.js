@@ -47,16 +47,16 @@ export const game1 = {
         height: 458
       },
       question: {
-        [PAINT]: {
-          name: `question1`,
-          value: `paint`,
-          isWin: true,
-          text: `Фото`
-        },
         [PHOTO]: {
           name: `question1`,
           value: `photo`,
           isWin: false,
+          text: `Фото`
+        },
+        [PAINT]: {
+          name: `question1`,
+          value: `paint`,
+          isWin: true,
           text: `Рисунок`
         }
       }
@@ -69,22 +69,28 @@ export const game1 = {
         height: 458
       },
       question: {
-        [PAINT]: {
-          name: `question2`,
-          value: `paint`,
-          result: false,
-          text: `Фото`
-        },
         [PHOTO]: {
           name: `question2`,
           value: `photo`,
           result: true,
+          text: `Фото`
+        },
+        [PAINT]: {
+          name: `question2`,
+          value: `paint`,
+          result: false,
           text: `Рисунок`
         }
       }
     }
   }
 };
+
+export const game2 = {
+  'screen-0': {
+
+  }
+}
 
 // const CHECKED = `checked`;
 // const UNCHECKED = ``;
