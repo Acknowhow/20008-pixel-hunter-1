@@ -1,4 +1,4 @@
-import {getScreen} from "../data/hunt";
+import {getScreen} from '../data/hunt';
 import ModuleView from './../view';
 
 const drawHeart = (full) => {
@@ -20,7 +20,7 @@ const drawHeader = (data) => {
       ${drawHeart(data.lives > 0)}
     </div>
   </header>`;
-}
+};
 
 export default class Game1View extends ModuleView {
   constructor(state) {

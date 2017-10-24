@@ -2,6 +2,7 @@ export const initialWelcomeState = {
   screen: 0
 };
 export const initialGame = {
+  screen: 0,
   level: 0,
   lives: 3,
   time: 0,
@@ -48,13 +49,13 @@ export const game1 = {
         [PAINT]: {
           name: `question1`,
           value: `paint`,
-          isPaint: true,
+          isWin: true,
           text: `Фото`
         },
         [PHOTO]: {
           name: `question1`,
           value: `photo`,
-          isPhoto: false,
+          isWin: false,
           text: `Рисунок`
         }
       }
@@ -68,15 +69,15 @@ export const game1 = {
       },
       question: {
         [PAINT]: {
-          name: `question1`,
+          name: `question2`,
           value: `paint`,
-          isPaint: true,
+          result: false,
           text: `Фото`
         },
         [PHOTO]: {
-          name: `question1`,
+          name: `question2`,
           value: `photo`,
-          isPhoto: true,
+          result: true,
           text: `Рисунок`
         }
       }

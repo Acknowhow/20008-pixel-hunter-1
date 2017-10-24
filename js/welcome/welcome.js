@@ -2,6 +2,7 @@ import {changeView} from "../utils";
 import {initialWelcomeState, nextScreen} from "../data/hunt";
 import IntroView from './welcome-view';
 import {introTemp, greetingTemp, rulesTemp} from './welcome-utils';
+import startGame from './../game1/game1';
 
 const changeScreen = (state) => {
   const intro = new IntroView(state);
@@ -40,6 +41,9 @@ const changeScreen = (state) => {
         };
         rulesInput.oninput = () => {
           rulesButton.removeAttribute(`disabled`);
+        };
+        rulesButton.onclick = () => {
+          changeView(startGame());
         };
       };
       break;
