@@ -8,11 +8,13 @@ export const initialGame = {
   score: 0
 }
 
-export const getScreen = (num) => screen[`screen-${num}`];
+export const getWelcomeScreen = (num) => welcomeScreen[`screen-${num}`];
+
+export const getScreen = (num) => game1[`screen-${num}`];
 
 export const nextScreen = (state) => {
   const next = state.screen + 1;
-  if (!getScreen(next)) {
+  if (!getWelcomeScreen(next)) {
     throw new RangeError(`Can't find screen ${next}`);
   }
   state = Object.assign({}, state);
@@ -27,7 +29,7 @@ export const Action = {
   PAINT, PHOTO
 };
 
-export const screen = {
+export const welcomeScreen = {
   'screen-0': `intro`,
   'screen-1': `greeting`,
   'screen-2': `rules`
@@ -38,7 +40,9 @@ export const game1 = {
     Option1: {
       image: {
         src: `http://i.imgur.com/5kcp9i0.jpg`,
-        alt: `Man bearded`
+        alt: `Man bearded`,
+        width: 468,
+        height: 458
       },
       question: {
         [PAINT]: {
@@ -58,7 +62,9 @@ export const game1 = {
     Option2: {
       image: {
         src: `http://i.imgur.com/8aNXpLk.jpg`,
-        alt: `Morgan Freeman`
+        alt: `Morgan Freeman`,
+        width: 468,
+        height: 458
       },
       question: {
         [PAINT]: {

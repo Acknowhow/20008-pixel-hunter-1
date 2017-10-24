@@ -29,34 +29,32 @@ export default class Game1View extends ModuleView {
   }
 
   get template() {
-    // const screen = getScreen(this.state.screen);
-    const answerNames = Object.keys(screen.answers);
+    // this.state = initialGame
+    // const screen returns game1[`screen-{num}`], so we are working with current screen
+    const screen = getScreen(this.state.screen);
+    // options
+    const options = Object.keys(screen);
+
+    // options Params
+    const optionsParams = options.map((option, imageParams, questionParams) => ({option, imageParams: screen[option].image, questionParams: screen[option].question}));
+
+
     return `
+    ${drawHeader(this.state)}
   <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     <form class="game__content">
-       <div class="game__option">
-        <img src="http://placehold.it/468x458" alt="Option 1" width="468" height="458">
-        <label class="game__answer game__answer--photo">
-          <input name="question1" type="radio" value="photo">
-          <span>Фото</span>
+       ${optionsParams.map(({option, imageParams, questionParams}) => `<div class="game__option">
+        <img src="${imageParams.src}" alt="${option}" width="${imageParams.width}" height="${imageParams.height}">
+        <label class="game__answer game__answer--${questionParams.paint.value}">
+          <input name="${questionParams.paint.name}" type="radio" value="${questionParams.paint.value}">
+          <span>${questionParams.paint.text}</span>
         </label>
-        <label class="game__answer game__answer--paint">
-          <input name="question1" type="radio" value="paint">
-          <span>Рисунок</span>
+        <label class="game__answer game__answer--${questionParams.photo.value}">
+          <input name="${questionParams.photo.name}" type="radio" value="${questionParams.photo.value}">
+          <span>${questionParams.photo.text}</span>
         </label>
-      </div>  
-      <div class="game__option">
-        <img src="http://placehold.it/468x458" alt="Option 2" width="468" height="458">
-        <label class="game__answer  game__answer--photo">
-          <input name="question2" type="radio" value="photo">
-          <span>Фото</span>
-        </label>
-        <label class="game__answer  game__answer--paint">
-          <input name="question2" type="radio" value="paint">
-          <span>Рисунок</span>
-        </label>
-      </div>
+</div>`).join(``)}
     </form>
     <div class="stats">
       <ul class="stats">
