@@ -2,7 +2,7 @@ import {getScreen} from '../data/hunt';
 import ModuleView from './../view';
 
 const drawHeart = (full) => {
-  return `<img src="img/heart__${full ? `full` : `empty`}" class="game__heart" alt="Life" width="32" height="32">`;
+  return `<img src="img/heart__${full ? `full` : `empty`}.svg" class="game__heart" alt="Life" width="32" height="32">`;
 };
 
 const drawHeader = (data) => {
@@ -29,15 +29,12 @@ export default class Game1View extends ModuleView {
   }
 
   get template() {
-    // this.state = initialGame
-    // const screen returns game1[`screen-{num}`], so we are working with current screen
+
     const screen = getScreen(this.state.screen);
-    // options
     const options = Object.keys(screen);
 
-    // options Params
-    const optionsParams = options.map((option, imageParams, questionParams) => ({option, imageParams: screen[option].image, questionParams: screen[option].question}));
-
+    const optionsParams = options.map((option, imageParams, questionParams) => (
+      {option, imageParams: screen[option].image, questionParams: screen[option].question}));
 
     return `
     ${drawHeader(this.state)}
@@ -75,6 +72,24 @@ export default class Game1View extends ModuleView {
   }
 
   bind() {
+
+    const form = this.element.querySelector(`.game__content`);
+    // First and Second options screen
+    const formOptions1 = form.children[0];
+    const formOptions2 = form.children[1];
+
+    const formAnswers1 = Array.from(formOptions1.querySelectorAll(`input`));
+    const formAnswers2 = Array.from(formOptions2.querySelectorAll(`input`));
+
+    const linkBack = this.element.querySelector(`img[alt='Back']`);
+
+    linkBack.onclick = () => {
+      this.onReturn();
+    };
+
+  }
+
+  onReturn() {
 
   }
 

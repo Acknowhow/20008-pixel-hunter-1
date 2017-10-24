@@ -9,6 +9,7 @@ export const initialGame = {
   score: 0
 }
 
+
 export const getWelcomeScreen = (num) => welcomeScreen[`screen-${num}`];
 
 export const getScreen = (num) => game1[`screen-${num}`];
