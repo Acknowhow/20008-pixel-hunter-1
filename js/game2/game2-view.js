@@ -52,11 +52,32 @@ export default class Game2View extends ModuleView {
 
   bind() {
 
+    const formOption = this.element.querySelector(`.game__option`);
+
+    formOption.onclick = (evt) => {
+      const target = evt.target;
+      const value = evt.target.value;
+
+      const screen = getGame2Screen(this.state.screen);
+
+      if (target.tagName.toLowerCase() === `input`) {
+        const answer = screen.Option1.question[value];
+
+        if (answer) {
+          this.onAnswer(answer);
+        }
+      }
+    }
+
     const linkBack = this.element.querySelector(`img[alt='Back']`);
 
     linkBack.onclick = () => {
       this.onReturn();
     };
+  }
+
+  onAnswer(answer) {
+    return answer.isWin;
   }
 
   onReturn() {

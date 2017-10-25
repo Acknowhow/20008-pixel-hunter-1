@@ -12,6 +12,7 @@ const changeLevel = (state) => {
 
     switch (answer.isWin) {
       case true:
+
         answers.push(`ans1`);
         if (answers.find((el) => el === `ans2`)) {
           changeView(showGame2());
@@ -28,6 +29,7 @@ const changeLevel = (state) => {
 
     switch (answer.isWin) {
       case true:
+
         answers.push(`ans2`);
         if (answers.find((el) => el === `ans1`)) {
           changeView(showGame2());

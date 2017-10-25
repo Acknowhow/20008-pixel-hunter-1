@@ -94,22 +94,22 @@ export const game2 = {
   'screen-0': {
     Option1: {
       image: {
-        src: `http://i.imgur.com/5kcp9i0.jpg`,
-        alt: `Man bearded`,
-        width: 468,
-        height: 458
+        src: `http://i.imgur.com/PKtMBLt.jpg`,
+        alt: `Grandma Indian`,
+        width: 705,
+        height: 455
       },
       question: {
         [PHOTO]: {
           name: `question1`,
           value: `photo`,
-          isWin: false,
+          isWin: true,
           text: `Фото`
         },
         [PAINT]: {
           name: `question1`,
           value: `paint`,
-          isWin: true,
+          isWin: false,
           text: `Рисунок`
         }
       }
