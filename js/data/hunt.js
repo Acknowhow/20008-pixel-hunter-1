@@ -115,7 +115,23 @@ export const game2 = {
       }
     }
   }
-}
+};
+
+export const game3 = {
+  'screen-0': {
+    Option1: {
+      image: {
+
+      },
+      question: {
+        [PHOTO]: {
+          isWin: true
+        }
+
+      }
+    }
+  }
+};
 
 // const CHECKED = `checked`;
 // const UNCHECKED = ``;
