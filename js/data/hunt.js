@@ -15,6 +15,10 @@ export const getGame1Screen = (num) => game1[`screen-${num}`];
 export const getGame2Screen = (num) => game2[`screen-${num}`];
 export const getGame3Screen = (num) => game3[`screen-${num}`];
 
+export const getScore = () => {
+
+}
+
 export const nextScreen = (state) => {
   const next = state.screen + 1;
 
