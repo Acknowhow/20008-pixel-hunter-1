@@ -59,6 +59,10 @@ export default class Game3View extends ModuleView {
       }
 
       target.classList.add(`game__option--selected`);
+      console.log(target);
+      // const answer = target.querySelector(`img`) ? screen.Option1.question
+
+
     };
 
     linkBack.onclick = () => {
@@ -71,5 +75,8 @@ export default class Game3View extends ModuleView {
 
   }
 
+  onAnswer(target) {
+    return target;
+  }
 
 }

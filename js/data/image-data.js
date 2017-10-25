@@ -7,7 +7,7 @@ const Images = [
       [`Girls sitting`]: [`http://i.imgur.com/27nbLSA.jpg`]
     },
     animalPaint: {
-      [`Lizard`]: [`http://i.imgur.com/FA4D3kO.jpg`],
+      [`Lizard`]: [`https://i.imgur.com/2xA1DbO.jpg`],
       [`Spider`]: [`http://i.imgur.com/kIyT2iO.jpg`]
     },
     itemPaint: {

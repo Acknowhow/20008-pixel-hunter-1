@@ -137,7 +137,7 @@ export const game3 = {
           alt: `Option 1`,
           width: 304,
           height: 455,
-          isWin: true
+          isWin: false
         },
         [PAINT_1]: {
           src: `http://i.imgur.com/FA4D3kO.jpg`,
