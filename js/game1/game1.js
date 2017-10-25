@@ -50,5 +50,4 @@ const changeLevel = (state) => {
 
 };
 
-
 export default () => changeLevel(initialGame);

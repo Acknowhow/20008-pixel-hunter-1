@@ -7,8 +7,7 @@ export const initialGame = {
   lives: 3,
   time: 0,
   score: 0
-}
-
+};
 
 export const getWelcomeScreen = (num) => welcomeScreen[`screen-${num}`];
 
@@ -31,8 +30,10 @@ export const nextScreen = (state) => {
 
 const PAINT = `paint`;
 const PHOTO = `photo`;
+
 const PHOTO_1 = `photo_1`;
 const PHOTO_2 = `photo_2`;
+
 const PAINT_1 = `paint_1`;
 const PAINT_2 = `paint_2`;
 

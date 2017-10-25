@@ -20,10 +20,12 @@ export default class Game3View extends ModuleView {
     return `${drawHeader(this.state)}
     <div class="game">
     <p class="game__task">${title}</p>
+    
     <form class="game__content  game__content--triple">
       ${question1Params.map(({img}) => `<div class="game__option">
       <img src="${img.src}" alt="${img.alt}" width="${img.width}" height="${img.height}"></div>`).join(``)}
     </form>
+    
     <div class="stats">
       <ul class="stats">
         <li class="stats__result stats__result--wrong"></li>

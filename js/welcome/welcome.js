@@ -1,7 +1,7 @@
 import {changeView} from "../utils";
 import {initialWelcomeState, nextScreen} from "../data/hunt";
 import IntroView from './welcome-view';
-import {introTemp, greetingTemp, rulesTemp} from './welcome-utils';
+import {introTemp, greetingTemp, rulesTemp} from './welcome-temps';
 import startGame from './../game1/game1';
 
 const changeScreen = (state) => {
