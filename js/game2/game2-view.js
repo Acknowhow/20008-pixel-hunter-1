@@ -1,4 +1,4 @@
-import {getScreen} from '../data/hunt';
+import {getGame2Screen} from '../data/hunt';
 import {drawHeader} from "../utils";
 import ModuleView from './../view';
 
@@ -9,7 +9,7 @@ export default class Game2View extends ModuleView {
   }
 
   get template() {
-    const screen = getScreen(this.state.screen);
+    const screen = getGame2Screen(this.state.screen);
     const options = Object.keys(screen);
 
     const optionsParams = options.map((option, imageParams, questionParams) => (

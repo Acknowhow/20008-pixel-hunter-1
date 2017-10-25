@@ -1,4 +1,4 @@
-import {getScreen} from '../data/hunt';
+import {getGame1Screen} from '../data/hunt';
 import {drawHeader} from "../utils";
 import ModuleView from './../view';
 
@@ -10,7 +10,7 @@ export default class Game1View extends ModuleView {
 
   get template() {
 
-    const screen = getScreen(this.state.screen);
+    const screen = getGame1Screen(this.state.screen);
     const options = Object.keys(screen);
 
     const optionsParams = options.map((option, imageParams, questionParams) => (
@@ -62,22 +62,22 @@ export default class Game1View extends ModuleView {
 
     formOptions1.onclick = (evt) => {
       const target = evt.target;
-      const screen = getScreen(this.state.screen);
+      const screen = getGame1Screen(this.state.screen);
       if (target.tagName.toLowerCase() === `input`) {
-        const answer = screen.Option1.question;
+        const answer = screen.Option1.question[evt.target.value];
         if (answer) {
-          this.onAnswer(answer);
+          this.onAnswer1(answer);
         }
       }
     };
 
     formOptions2.onclick = (evt) => {
       const target = evt.target;
-      const screen = getScreen(this.state.screen);
+      const screen = getGame1Screen(this.state.screen);
       if (target.tagName.toLowerCase() === `input`) {
-        const answer = screen.Option1.question;
+        const answer = screen.Option1.question[evt.target.value];
         if (answer) {
-          this.onAnswer(answer);
+          this.onAnswer2(answer);
         }
       }
     };
@@ -88,8 +88,12 @@ export default class Game1View extends ModuleView {
 
   }
 
-  onAnswer(answer) {
-    return answer;
+  onAnswer1(answer) {
+    return answer.isWin;
+  }
+
+  onAnswer2(answer) {
+    return answer.isWin;
   }
 
   onReturn() {

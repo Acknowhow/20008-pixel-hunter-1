@@ -12,7 +12,8 @@ export const initialGame = {
 
 export const getWelcomeScreen = (num) => welcomeScreen[`screen-${num}`];
 
-export const getScreen = (num) => game1[`screen-${num}`];
+export const getGame1Screen = (num) => game1[`screen-${num}`];
+export const getGame2Screen = (num) => game2[`screen-${num}`];
 
 export const nextScreen = (state) => {
   const next = state.screen + 1;
@@ -73,13 +74,13 @@ export const game1 = {
           name: `question2`,
           value: `photo`,
           result: true,
-          text: `Фото`
+          text: `Фоsdто`
         },
         [PAINT]: {
           name: `question2`,
           value: `paint`,
           result: false,
-          text: `Рисунок`
+          text: `Риfgсунок`
         }
       }
     }
@@ -88,7 +89,28 @@ export const game1 = {
 
 export const game2 = {
   'screen-0': {
-
+    Option1: {
+      image: {
+        src: `http://i.imgur.com/5kcp9i0.jpg`,
+        alt: `Man bearded`,
+        width: 468,
+        height: 458
+      },
+      question: {
+        [PHOTO]: {
+          name: `question1`,
+          value: `photo`,
+          isWin: false,
+          text: `Фото`
+        },
+        [PAINT]: {
+          name: `question1`,
+          value: `paint`,
+          isWin: true,
+          text: `Рисунок`
+        }
+      }
+    }
   }
 }
 
