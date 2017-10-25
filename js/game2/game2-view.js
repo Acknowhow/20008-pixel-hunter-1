@@ -12,8 +12,7 @@ export default class Game2View extends ModuleView {
     const screen = getGame2Screen(this.state.screen);
     const options = Object.keys(screen);
 
-    const optionsParams = options.map((option, imageParams, questionParams) => (
-      {option, imageParams: screen[option].image, questionParams: screen[option].question}));
+    const optionsParams = options.map((option) => ({option, imageParams: screen[option].image, questionParams: screen[option].question}));
 
     return `
     ${drawHeader(this.state)}
@@ -67,7 +66,7 @@ export default class Game2View extends ModuleView {
           this.onAnswer(answer);
         }
       }
-    }
+    };
 
     const linkBack = this.element.querySelector(`img[alt='Back']`);
 
