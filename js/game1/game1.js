@@ -8,18 +8,18 @@ const changeLevel = (state) => {
   let answers = [];
   const game1 = new Game1View(state);
 
-  game1.onAnswer1 = (answer) =>{
+  game1.onAnswer1 = (answer) => {
 
     switch (answer.isWin) {
       case true:
-        if (answers.find((el) => el === `ans1`)) {
-          break;
-        }
         answers.push(`ans1`);
-        if (answers.length >= 2) {
+        if (answers.find((el) => el === `ans2`)) {
           changeView(showGame2());
-          answers = [];
         }
+        break;
+
+      case false:
+        answers = [];
         break;
     }
   };
@@ -28,14 +28,14 @@ const changeLevel = (state) => {
 
     switch (answer.isWin) {
       case true:
-        if (answers.find((el) => el === `ans2`)) {
-          break;
-        }
         answers.push(`ans2`);
-        if (answers.length >= 2) {
+        if (answers.find((el) => el === `ans1`)) {
           changeView(showGame2());
-          answers = [];
         }
+        break;
+
+      case false:
+        answers = [];
         break;
     }
   };

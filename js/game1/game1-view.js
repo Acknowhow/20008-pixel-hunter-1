@@ -62,9 +62,14 @@ export default class Game1View extends ModuleView {
 
     formOptions1.onclick = (evt) => {
       const target = evt.target;
+      const value = evt.target.value;
+
+      const checked = evt.target.checked;
       const screen = getGame1Screen(this.state.screen);
+
       if (target.tagName.toLowerCase() === `input`) {
-        const answer = screen.Option1.question[evt.target.value];
+        const answer = checked ? screen.Option1.question[value] : null;
+
         if (answer) {
           this.onAnswer1(answer);
         }
@@ -73,9 +78,14 @@ export default class Game1View extends ModuleView {
 
     formOptions2.onclick = (evt) => {
       const target = evt.target;
+      const value = evt.target.value;
+
+      const checked = evt.target.checked;
       const screen = getGame1Screen(this.state.screen);
+
       if (target.tagName.toLowerCase() === `input`) {
-        const answer = screen.Option1.question[evt.target.value];
+        const answer = checked ? screen.Option2.question[value] : null;
+
         if (answer) {
           this.onAnswer2(answer);
         }

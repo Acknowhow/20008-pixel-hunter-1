@@ -17,11 +17,14 @@ export const getGame2Screen = (num) => game2[`screen-${num}`];
 
 export const nextScreen = (state) => {
   const next = state.screen + 1;
+
   if (!getWelcomeScreen(next)) {
     throw new RangeError(`Can't find screen ${next}`);
   }
+
   state = Object.assign({}, state);
   state.screen = next;
+
   return state;
 };
 
@@ -73,14 +76,14 @@ export const game1 = {
         [PHOTO]: {
           name: `question2`,
           value: `photo`,
-          result: true,
-          text: `Фоsdто`
+          isWin: true,
+          text: `Фото`
         },
         [PAINT]: {
           name: `question2`,
           value: `paint`,
-          result: false,
-          text: `Риfgсунок`
+          isWin: false,
+          text: `Рисунок`
         }
       }
     }
