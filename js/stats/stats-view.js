@@ -1,7 +1,14 @@
-import {makeIntroTemplate} from './intro';
-import {insertIntoContainer, makeTemplate} from '../module-constructor';
+import ModuleView from './../view';
 
-const moduleStats = `<header class="header">
+export default class StatsView extends ModuleView {
+
+  constructor(state) {
+    super();
+    this.state = state;
+  }
+
+  get template() {
+    return `<header class="header">
     <div class="header__back">
       <span class="back">
         <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
@@ -109,17 +116,17 @@ const moduleStats = `<header class="header">
       </tr>
     </table>
   </div>`;
+  }
 
-export const makeStatsTemplate = () => {
-  const el = makeTemplate(moduleStats);
-  const linkBack = el.querySelector(`.header__back`);
+  bind() {
+    const linkBack = this.element.querySelector(`img[alt='Back']`);
 
-  const switchBack = () => {
-    linkBack.removeEventListener(`click`, switchBack);
-    const introTemplate = makeIntroTemplate();
-    insertIntoContainer(introTemplate);
-  };
+    linkBack.onclick = () => {
+      this.onReturn();
+    };
+  }
 
-  linkBack.addEventListener(`click`, switchBack);
-  return el;
-};
+  onReturn() {
+
+  }
+}

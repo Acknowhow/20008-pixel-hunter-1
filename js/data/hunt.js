@@ -208,8 +208,8 @@ export const game3 = {
 //   return game;
 // };
 //
-// export const tick = (game) => {
-//   game = Object.assign({}, game);
-//   game.time++;
-//   return game;
-// };
+export const tick = (game) => {
+  game = Object.assign({}, game);
+  game.time++;
+  return game;
+};
