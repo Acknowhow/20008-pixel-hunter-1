@@ -6,23 +6,30 @@ export default class Game3View extends ModuleView {
   constructor(state) {
     super();
     this.state = state;
+    this.screen = getGame3Screen(this.state.screen);
+
+    this.title = this.screen.Option1.title.text;
+    this.question1Obj = this.screen.Option1.question;
+
+    this.question1Keys = Object.keys(this.screen.Option1.question);
+    this.question1Params = this.question1Keys.map((key) => ({img: this.question1Obj[key]}));
+
+    this.question1Result = this.question1Keys.map((key) => ({src: this.screen.Option1.question[key].src,
+      isWin: this.screen.Option1.question[key].isWin}));
+
+    this.questionResultFilter = this.question1Result.filter((key) => (key.isWin === true));
+    this.link = this.questionResultFilter.map((key) => key.src);
+
   }
 
   get template() {
-    const screen = getGame3Screen(this.state.screen);
-    const title = screen.Option1.title.text;
-
-    const question1Obj = screen.Option1.question;
-    const question1Keys = Object.keys(screen.Option1.question);
-
-    const question1Params = question1Keys.map((key) => ({img: question1Obj[key]}));
 
     return `${drawHeader(this.state)}
     <div class="game">
-    <p class="game__task">${title}</p>
+    <p class="game__task">${this.title}</p>
     
     <form class="game__content  game__content--triple">
-      ${question1Params.map(({img}) => `<div class="game__option">
+      ${this.question1Params.map(({img}) => `<div class="game__option">
       <img src="${img.src}" alt="${img.alt}" width="${img.width}" height="${img.height}"></div>`).join(``)}
     </form>
     
@@ -46,6 +53,7 @@ export default class Game3View extends ModuleView {
 
   bind() {
 
+    const [winLink] = this.link;
     const formContent = this.element.querySelector(`.game__content`);
     const formOptions = Array.from(formContent.querySelectorAll(`.game__option`));
 
@@ -59,8 +67,9 @@ export default class Game3View extends ModuleView {
       }
 
       target.classList.add(`game__option--selected`);
-      console.log(target);
-      // const answer = target.querySelector(`img`) ? screen.Option1.question
+
+      const answer = target.querySelector(`img`).src;
+      this.onAnswer(answer, winLink);
 
 
     };
@@ -75,8 +84,9 @@ export default class Game3View extends ModuleView {
 
   }
 
-  onAnswer(target) {
-    return target;
+  onAnswer(answer, winLink) {
+    return answer === winLink;
   }
+
 
 }

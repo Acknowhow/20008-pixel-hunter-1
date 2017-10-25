@@ -6,9 +6,9 @@ import Game3View from './game3-view';
 const changeLevel = (state) => {
   const game3 = new Game3View(state);
 
-  game3.onParent = (target) => {
-    console.log(target);
-  };
+  game3.onAnswer = (answer, winLink) => {
+    console.log(answer === winLink);
+  }
 
   game3.onReturn = () => {
     changeView(showIntro());
