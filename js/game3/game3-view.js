@@ -46,7 +46,20 @@ export default class Game3View extends ModuleView {
 
   bind() {
 
+    const formContent = this.element.querySelector(`.game__content`);
+    const formOptions = Array.from(formContent.querySelectorAll(`.game__option`));
+
     const linkBack = this.element.querySelector(`img[alt='Back']`);
+
+    formContent.onclick = (evt) => {
+      const target = evt.target;
+
+      for (const option of formOptions) {
+        option.classList.remove(`game__option--selected`);
+      }
+
+      target.classList.add(`game__option--selected`);
+    };
 
     linkBack.onclick = () => {
       this.onReturn();
@@ -57,5 +70,6 @@ export default class Game3View extends ModuleView {
   onReturn() {
 
   }
+
 
 }
