@@ -53,20 +53,43 @@ export default class Game1View extends ModuleView {
 
   bind() {
 
-    const form = this.element.querySelector(`.game__content`);
-    // First and Second options screen
-    const formOptions1 = form.children[0];
-    const formOptions2 = form.children[1];
+    const form = Array.from(this.element.querySelectorAll(`.game__option`));
 
-    const formAnswers1 = Array.from(formOptions1.querySelectorAll(`input`));
-    const formAnswers2 = Array.from(formOptions2.querySelectorAll(`input`));
+    const formOptions1 = form[0];
+    const formOptions2 = form[1];
 
     const linkBack = this.element.querySelector(`img[alt='Back']`);
+
+    formOptions1.onclick = (evt) => {
+      const target = evt.target;
+      const screen = getScreen(this.state.screen);
+      if (target.tagName.toLowerCase() === `input`) {
+        const answer = screen.Option1.question;
+        if (answer) {
+          this.onAnswer(answer);
+        }
+      }
+    };
+
+    formOptions2.onclick = (evt) => {
+      const target = evt.target;
+      const screen = getScreen(this.state.screen);
+      if (target.tagName.toLowerCase() === `input`) {
+        const answer = screen.Option1.question;
+        if (answer) {
+          this.onAnswer(answer);
+        }
+      }
+    };
 
     linkBack.onclick = () => {
       this.onReturn();
     };
 
+  }
+
+  onAnswer(answer) {
+    return answer;
   }
 
   onReturn() {
