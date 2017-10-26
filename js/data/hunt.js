@@ -52,9 +52,27 @@ export const welcomeScreen = {
 };
 
 export const answers = {
+  'game-1': {
+    question: {
 
+      'stats': {
+        elapsedTime: 11,
+        speedBonus: 50,
+        speeePenalty: 0,
+        lifeBonus: 50,
+        bonusAdded: -150,
+        bonusTotal: 300
+      },
+      'question-1': {
+        isWin: true
+      },
+      'question-2': {
+        isWin: false
+      }
 
-}
+    }
+  }
+};
 
 export const game1 = {
   'screen-0': {
