@@ -1,4 +1,4 @@
-import {makeIntroTemplate} from './modules/templates/intro.js';
-import {insertIntoContainer} from './modules/module-constructor';
-const introTemplate = makeIntroTemplate();
-insertIntoContainer(introTemplate);
+import {changeView} from "./utils";
+import showIntro from './welcome/welcome';
+
+changeView(showIntro());
