@@ -8,9 +8,9 @@ const changeLevel = (state) => {
 
   stats.onReturn = () => {
     changeView(showIntro());
-  }
+  };
 
   return stats;
-}
+};
 
 export default () => changeLevel(initialGame);
