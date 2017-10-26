@@ -51,6 +51,11 @@ export const welcomeScreen = {
   'screen-2': `rules`
 };
 
+export const answers = {
+
+
+}
+
 export const game1 = {
   'screen-0': {
     Option1: {
