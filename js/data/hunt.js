@@ -9,6 +9,12 @@ export const initialGame = {
   score: 0
 };
 
+export const tick = (game) => {
+  game = Object.assign({}, game);
+  game.time++;
+  return game;
+};
+
 export const getWelcomeScreen = (num) => welcomeScreen[`screen-${num}`];
 
 export const getGame1Screen = (num) => game1[`screen-${num}`];
@@ -18,6 +24,28 @@ export const getGame3Screen = (num) => game3[`screen-${num}`];
 export const getScore = () => {
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const nextScreen = (state) => {
   const next = state.screen + 1;
@@ -51,14 +79,14 @@ export const welcomeScreen = {
   'screen-2': `rules`
 };
 
-export const answers = {
+export const answersGame1 = {
   'game-1': {
     question: {
 
       'stats': {
         elapsedTime: 11,
         speedBonus: 50,
-        speeePenalty: 0,
+        speedPenalty: 0,
         lifeBonus: 50,
         bonusAdded: -150,
         bonusTotal: 300
@@ -74,7 +102,7 @@ export const answers = {
   }
 };
 
-export const game1 = {
+export const questionsGame1 = {
   'screen-0': {
     Option1: {
       image: {
@@ -123,7 +151,7 @@ export const game1 = {
   }
 };
 
-export const game2 = {
+export const questionsGame2 = {
   'screen-0': {
     Option1: {
       image: {
@@ -151,7 +179,7 @@ export const game2 = {
 };
 
 
-export const game3 = {
+export const questionsGame3 = {
   'screen-0': {
     Option1: {
       title: {
@@ -219,24 +247,3 @@ export const game3 = {
 };
 
 
-// const CHECKED = `checked`;
-// const UNCHECKED = ``;
-
-// export const game1 = {
-//   'level-0': {
-//   }
-// }
-// export const setLives = (game, lives) => {
-//   if (lives < 0) {
-//     throw new RangeError(`Can't set negative lives`);
-//   }
-//   game = Object.assign({}, game);
-//   game.lives = lives;
-//   return game;
-// };
-//
-export const tick = (game) => {
-  game = Object.assign({}, game);
-  game.time++;
-  return game;
-};
