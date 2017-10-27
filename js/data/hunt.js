@@ -59,9 +59,42 @@ export const welcomeScreen = {
 
 // Footer data
 const date = new Date();
-export const year = date.getFullYear();
+const year = date.getFullYear();
 
-export const socialLinks = [`Твиттер`, `Инстаграм`, `Фэйсбук`, `Вконтакте`];
+const socialLinks = [`Твиттер`, `Инстаграм`, `Фэйсбук`, `Вконтакте`];
+
+export const footer = {
+  credits: {
+    author: `HTML Academy`,
+    text: `Сделано в`,
+    data: [year]
+  },
+  social: {
+    [socialLinks[0]]: {
+      src: `https://twitter.com/htmlacademy_ru`,
+      prefix: `--tw`
+    },
+    [socialLinks[1]]: {
+      src: `https://www.instagram.com/htmlacademy/`,
+      prefix: `--ins`
+    },
+    [socialLinks[2]]: {
+      src: `https://www.facebook.com/htmlacademy`,
+      prefix: `--fb`
+    },
+    [socialLinks[3]]: {
+      src: `https://vk.com/htmlacademy`,
+      prefix: `--vk`
+    }
+  }
+};
+// linkBack
+
+export const LINK_BACK = `<span class="back">
+  <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
+  <img src="img/logo_small.svg" width="101" height="44">
+  </span>`;
+
 
 // Answer sample obj
 
@@ -89,6 +122,7 @@ export const answersGame1 = {
 };
 
 // Questions objects
+
 export const questionsGame1 = {
   'screen-0': {
     Option1: {
