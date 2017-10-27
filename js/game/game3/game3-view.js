@@ -1,6 +1,6 @@
-import {getGame3Screen} from '../data/hunt';
-import {drawHeader} from "../utils";
-import ModuleView from './../view';
+import {getGame3Screen} from '../../data/hunt';
+import {drawHeader} from "../../utils";
+import ModuleView from '../../view';
 
 export default class Game3View extends ModuleView {
   constructor(state) {

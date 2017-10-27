@@ -1,7 +1,7 @@
-import {changeView} from "../utils";
-import {initialGame} from './../data/hunt';
-import showIntro from './../welcome/welcome';
-import showGame3 from './../game3/game3';
+import {changeView} from "../../utils";
+import {initialGame} from '../../data/hunt';
+import showIntro from '../../welcome/welcome';
+import showGame3 from '../game3/game3';
 import Game2View from './game2-view';
 
 

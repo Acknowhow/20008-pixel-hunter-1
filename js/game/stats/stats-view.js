@@ -1,4 +1,4 @@
-import ModuleView from './../view';
+import ModuleView from '../../view';
 
 export default class StatsView extends ModuleView {
 

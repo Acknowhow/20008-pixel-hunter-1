@@ -1,4 +1,4 @@
-import {footer} from './../data/hunt';
+import {footer} from './footer-data';
 
 const socialData = Object.keys(footer.social);
 const socialLink = socialData.map((link, value) => ({value: socialData[value], link: footer.social[link]}));

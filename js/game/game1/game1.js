@@ -1,7 +1,7 @@
-import {changeView} from "../utils";
-import {initialGame} from './../data/hunt';
-import showIntro from './../welcome/welcome';
-import showGame2 from './../game2/game2';
+import {changeView} from "../../utils";
+import {initialGame} from '../../data/hunt';
+import showIntro from '../../welcome/welcome';
+import showGame2 from '../game2/game2';
 import Game1View from './game1-view';
 
 const changeLevel = (state) => {

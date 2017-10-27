@@ -1,6 +1,10 @@
 import footerDefault from 'footer/footer';
 const centralContainer = document.querySelector(`.central`);
 
+export const LINK_BACK = `<span class="back">
+  <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
+  <img src="img/logo_small.svg" width="101" height="44">
+  </span>`;
 
 export const createElement = (template, footer = footerDefault()) => {
   const templateElement = document.createElement(`template`);
@@ -14,7 +18,7 @@ export const createElement = (template, footer = footerDefault()) => {
   return templateElement.content;
 };
 
-export const changeView = (view, container = centralContainer) =>{
+export const showElement = (element, container = centralContainer) => {
   container.innerHTML = ``;
-  container.appendChild(view.element);
+  container.appendChild(element);
 };
