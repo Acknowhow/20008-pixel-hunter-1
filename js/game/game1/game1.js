@@ -15,6 +15,8 @@ const changeLevel = (state) => {
 
         answers.push(`ans1`);
         if (answers.find((el) => el === `ans2`)) {
+
+          // Add method for assigning answers
           changeView(showGame2());
         }
         break;

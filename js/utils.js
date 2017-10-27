@@ -15,6 +15,7 @@ export const createElement = (template, footer = footerDefault()) => {
 
   footerElement.innerHTML = footer;
   templateElement.content.appendChild(footerElement);
+
   return templateElement.content;
 };
 

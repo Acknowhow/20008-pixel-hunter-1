@@ -3,6 +3,7 @@ import rulesElement from '../rules/rules';
 import {createElement, showElement} from '../../utils';
 
 const pKeys = Object.keys(greetingData.text.p);
+
 const [greetingSrc, greetingWidth, greetingHeight, greetingAlt] =
   Object.keys(greetingData.img.greeting).map((key) => greetingData.img.greeting[key]);
 
@@ -29,13 +30,9 @@ const greeting = () => {
   const el = createElement(moduleGreeting);
   const linkNext = el.querySelector(`img[alt='Next']`);
 
-  const next = () => {
+  linkNext.onclick = () => {
     showElement(rulesElement());
-
-    linkNext.removeEventListener(`click`, next);
   };
-
-  linkNext.addEventListener(`click`, next);
   return el;
 };
 
