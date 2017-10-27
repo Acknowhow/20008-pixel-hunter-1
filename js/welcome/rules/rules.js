@@ -34,9 +34,8 @@ const rules = () => {
   const rulesInput = el.querySelector(`.rules__input`);
 
   const rulesButton = el.querySelector(`.rules__button`);
-  const linkBack = el.querySelector(`img[alt='Back']`);
 
-  linkBack.onclick = () => {
+  LINK_BACK.onclick = () => {
     showElement(introElement());
   };
 

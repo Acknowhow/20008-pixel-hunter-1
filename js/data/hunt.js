@@ -1,8 +1,5 @@
 // One to many data file
 
-export const initialWelcomeState = {
-  screen: 0
-};
 export const initialGame = {
   screen: 0,
   level: 0,

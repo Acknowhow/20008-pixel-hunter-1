@@ -1,23 +1,16 @@
-import {getGame1Screen} from '../../data/hunt';
-import {drawHeader} from "../../utils";
-import ModuleView from '../../view';
+import introElement from './../../welcome/intro/intro';
+import {initialGame, getGame1Screen} from '../../data/hunt';
+import {LINK_BACK, showElement} from '../../utils';
+import {drawHeader} from '../header/header';
 
-export default class Game1View extends ModuleView {
-  constructor(state) {
-    super();
-    this.state = state;
-  }
 
-  get template() {
+const screen = getGame1Screen(initialGame.screen);
+const options = Object.keys(screen);
 
-    const screen = getGame1Screen(this.state.screen);
-    const options = Object.keys(screen);
+const optionsParams = options.map((option) => (
+  {option, imageParams: screen[option].image, questionParams: screen[option].question}));
 
-    const optionsParams = options.map((option) => (
-      {option, imageParams: screen[option].image, questionParams: screen[option].question}));
-
-    return `
-    ${drawHeader(this.state)}
+const game1Content = `${drawHeader(initialGame)}
   <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     
@@ -54,32 +47,27 @@ export default class Game1View extends ModuleView {
     </div>
   </div>`;
 
-  }
+const game1 = (state) => {
+  const form = Array.from(document.querySelectorAll(`.game__option`));
 
-  bind() {
+  const formOptions1 = form[0];
+  const formOptions2 = form[1];
 
-    const form = Array.from(this.element.querySelectorAll(`.game__option`));
+  formOptions1.onclick = (evt) => {
+    const target = evt.target;
+    const value = evt.target.value;
 
-    const formOptions1 = form[0];
-    const formOptions2 = form[1];
+    const checked = evt.target.checked;
+    const screen = getGame1Screen(this.state.screen);
 
-    const linkBack = this.element.querySelector(`img[alt='Back']`);
+    if (target.tagName.toLowerCase() === `input`) {
+      const answer = checked ? screen.Option1.question[value] : null;
+      if (answer) {
 
-    formOptions1.onclick = (evt) => {
-      const target = evt.target;
-      const value = evt.target.value;
-
-      const checked = evt.target.checked;
-      const screen = getGame1Screen(this.state.screen);
-
-      if (target.tagName.toLowerCase() === `input`) {
-        const answer = checked ? screen.Option1.question[value] : null;
-
-        if (answer) {
-          this.onAnswer1(answer);
-        }
+        this.onAnswer1(answer);
       }
-    };
+    }
+  };
 
     formOptions2.onclick = (evt) => {
       const target = evt.target;
@@ -97,22 +85,10 @@ export default class Game1View extends ModuleView {
       }
     };
 
-    linkBack.onclick = () => {
-      this.onReturn();
-    };
+  LINK_BACK.onclick = () => {
+    showElement(introElement());
+  };
+};
 
-  }
+export default () => game1(initialGame);
 
-  onAnswer1(answer) {
-    return answer.isWin;
-  }
-
-  onAnswer2(answer) {
-    return answer.isWin;
-  }
-
-  onReturn() {
-
-  }
-
-}

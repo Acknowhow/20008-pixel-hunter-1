@@ -7,7 +7,7 @@ export default class Clock {
     this.interval = setInterval(() => this.render(), 1000);
   }
   render() {
-    this.secondsElem.innerHTML = (() =>{
+    this.secondsElem.innerHTML = (() => {
       if (this.count === 0) {
         clearInterval(this.interval);
       }

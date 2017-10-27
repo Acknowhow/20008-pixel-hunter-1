@@ -1,4 +1,4 @@
-import {changeView} from "./utils";
-import showIntro from './welcome/welcome';
+import {showElement} from './utils';
+import showIntro from './welcome/intro/intro';
 
-changeView(showIntro());
+showElement(showIntro());
