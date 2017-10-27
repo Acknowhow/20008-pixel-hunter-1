@@ -10,7 +10,7 @@ const [greetingSrc, greetingWidth, greetingHeight, greetingAlt] =
 const [nextSrc, nextWidth, nextHeight, nextAlt] =
   Object.keys(greetingData.img.next).map((key) => greetingData.img.next[key]);
 
-const moduleGreeting = `<div class="greeting central--blur">
+const greetingPrint = `<div class="greeting central--blur">
     <div class="greeting__logo">
       <img src="${greetingSrc}" width="${greetingWidth}" height="${greetingHeight}" alt="${greetingAlt}">
     </div>
@@ -27,7 +27,7 @@ const moduleGreeting = `<div class="greeting central--blur">
   </div>`;
 
 const greeting = () => {
-  const el = createElement(moduleGreeting);
+  const el = createElement(greetingPrint);
   const linkNext = el.querySelector(`img[alt='Next']`);
 
   linkNext.onclick = () => {

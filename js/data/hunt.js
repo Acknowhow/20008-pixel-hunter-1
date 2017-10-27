@@ -14,11 +14,8 @@ export const tick = (game) => {
   return game;
 };
 
-export const getWelcomeScreen = (num) => welcomeScreen[`screen-${num}`];
 
-export const getGame1Screen = (num) => game1[`screen-${num}`];
-export const getGame2Screen = (num) => game2[`screen-${num}`];
-export const getGame3Screen = (num) => game3[`screen-${num}`];
+export const getGameScreen = (num) => gameQuestions[`screen-${num}`];
 
 export const getScore = () => {
 
@@ -27,7 +24,7 @@ export const getScore = () => {
 export const nextScreen = (state) => {
   const next = state.screen + 1;
 
-  if (!getWelcomeScreen(next)) {
+  if (!getGameScreen(next)) {
     throw new RangeError(`Can't find screen ${next}`);
   }
 
@@ -58,7 +55,7 @@ export const welcomeScreen = {
 
 // Answer sample obj
 
-export const answersGame1 = {
+export const gameAnswers = {
   'game-1': {
     question: {
 
@@ -81,146 +78,143 @@ export const answersGame1 = {
   }
 };
 
-// Questions objects
-
-export const questionsGame1 = {
-  'screen-0': {
-    Option1: {
-      image: {
-        src: `http://i.imgur.com/5kcp9i0.jpg`,
-        name: `Man bearded`,
-        width: 468,
-        height: 458
-      },
-      question: {
-        [PHOTO]: {
-          name: `question1`,
-          value: `photo`,
-          isWin: false,
-          text: `Фото`
+export const gameQuestions = {
+  type1: {
+    'screen-0': {
+      Option1: {
+        image: {
+          src: `http://i.imgur.com/5kcp9i0.jpg`,
+          name: `Man bearded`,
+          width: 468,
+          height: 458
         },
-        [PAINT]: {
-          name: `question1`,
-          value: `paint`,
-          isWin: true,
-          text: `Рисунок`
+        question: {
+          [PHOTO]: {
+            name: `question1`,
+            value: `photo`,
+            isWin: false,
+            text: `Фото`
+          },
+          [PAINT]: {
+            name: `question1`,
+            value: `paint`,
+            isWin: true,
+            text: `Рисунок`
+          }
         }
-      }
-    },
-    Option2: {
-      image: {
-        src: `http://i.imgur.com/8aNXpLk.jpg`,
-        name: `Morgan Freeman`,
-        width: 468,
-        height: 458
       },
-      question: {
-        [PHOTO]: {
-          name: `question2`,
-          value: `photo`,
-          isWin: true,
-          text: `Фото`
+      Option2: {
+        image: {
+          src: `http://i.imgur.com/8aNXpLk.jpg`,
+          name: `Morgan Freeman`,
+          width: 468,
+          height: 458
         },
-        [PAINT]: {
-          name: `question2`,
-          value: `paint`,
-          isWin: false,
-          text: `Рисунок`
-        }
-      }
-    }
-  }
-};
-
-export const questionsGame2 = {
-  'screen-0': {
-    Option1: {
-      image: {
-        src: `http://i.imgur.com/PKtMBLt.jpg`,
-        name: `Grandma Indian`,
-        width: 705,
-        height: 455
-      },
-      question: {
-        [PHOTO]: {
-          name: `question1`,
-          value: `photo`,
-          isWin: true,
-          text: `Фото`
-        },
-        [PAINT]: {
-          name: `question1`,
-          value: `paint`,
-          isWin: false,
-          text: `Рисунок`
+        question: {
+          [PHOTO]: {
+            name: `question2`,
+            value: `photo`,
+            isWin: true,
+            text: `Фото`
+          },
+          [PAINT]: {
+            name: `question2`,
+            value: `paint`,
+            isWin: false,
+            text: `Рисунок`
+          }
         }
       }
     }
-  }
-};
-
-
-export const questionsGame3 = {
-  'screen-0': {
-    Option1: {
-      title: {
-        text: `Найдите рисунок среди изображений`
-      },
-      question: {
-        [PHOTO_1]: {
-          src: `http://i.imgur.com/LWFCQSK.jpg`,
-          name: `Cheetah`,
-          alt: `Option 1`,
-          width: 304,
-          height: 455,
-          isWin: false
+  },
+  type2: {
+    'screen-0': {
+      Option1: {
+        image: {
+          src: `http://i.imgur.com/PKtMBLt.jpg`,
+          name: `Grandma Indian`,
+          width: 705,
+          height: 455
         },
-        [PAINT_1]: {
-          src: `http://i.imgur.com/FA4D3kO.jpg`,
-          name: `Lizard`,
-          alt: `Option 1`,
-          width: 304,
-          height: 455,
-          isWin: true
-        },
-        [PHOTO_2]: {
-          src: `http://i.imgur.com/y9cN0UD.jpg`,
-          name: `Figs`,
-          alt: `Option 1`,
-          width: 304,
-          height: 455,
-          isWin: false
+        question: {
+          [PHOTO]: {
+            name: `question1`,
+            value: `photo`,
+            isWin: true,
+            text: `Фото`
+          },
+          [PAINT]: {
+            name: `question1`,
+            value: `paint`,
+            isWin: false,
+            text: `Рисунок`
+          }
         }
       }
-    },
-    Option2: {
-      title: {
-        text: `Найдите изображение среди рисунков`
+    }
+  },
+  type3: {
+    'screen-0': {
+      Option1: {
+        title: {
+          text: `Найдите рисунок среди изображений`
+        },
+        question: {
+          [PHOTO_1]: {
+            src: `http://i.imgur.com/LWFCQSK.jpg`,
+            name: `Cheetah`,
+            alt: `Option 1`,
+            width: 304,
+            height: 455,
+            isWin: false
+          },
+          [PAINT_1]: {
+            src: `http://i.imgur.com/FA4D3kO.jpg`,
+            name: `Lizard`,
+            alt: `Option 1`,
+            width: 304,
+            height: 455,
+            isWin: true
+          },
+          [PHOTO_2]: {
+            src: `http://i.imgur.com/y9cN0UD.jpg`,
+            name: `Figs`,
+            alt: `Option 1`,
+            width: 304,
+            height: 455,
+            isWin: false
+          }
+        }
       },
-      question: {
-        [PHOTO_1]: {
-          src: `http://i.imgur.com/OI49pzH.jpg`,
-          name: `Bumble bee`,
-          alt: `Option 2`,
-          width: 304,
-          height: 455,
-          isWin: true
+      Option2: {
+        title: {
+          text: `Найдите изображение среди рисунков`
         },
-        [PAINT_1]: {
-          src: `http://i.imgur.com/Sjjnuyi.jpg`,
-          name: `Metal spheres`,
-          alt: `Option 2`,
-          width: 304,
-          height: 455,
-          isWin: false
-        },
-        [PAINT_2]: {
-          src: `http://i.imgur.com/rvDgwaA.jpg`,
-          name: `Watermelon`,
-          alt: `Option 2`,
-          width: 304,
-          height: 455,
-          isWin: false
+        question: {
+          [PHOTO_1]: {
+            src: `http://i.imgur.com/OI49pzH.jpg`,
+            name: `Bumble bee`,
+            alt: `Option 2`,
+            width: 304,
+            height: 455,
+            isWin: true
+          },
+          [PAINT_1]: {
+            src: `http://i.imgur.com/Sjjnuyi.jpg`,
+            name: `Metal spheres`,
+            alt: `Option 2`,
+            width: 304,
+            height: 455,
+            isWin: false
+          },
+          [PAINT_2]: {
+            src: `http://i.imgur.com/rvDgwaA.jpg`,
+            name: `Watermelon`,
+            alt: `Option 2`,
+            width: 304,
+            height: 455,
+            isWin: false
+          }
         }
       }
     }

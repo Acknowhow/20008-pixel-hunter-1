@@ -4,13 +4,13 @@ import {LINK_BACK, showElement} from '../../utils';
 import {drawHeader} from '../header/header';
 
 
-const screen = getGame1Screen(initialGame.screen);
-const options = Object.keys(screen);
+const screenIndex = getGame1Screen(initialGame.screen);
+const options = Object.keys(screenIndex);
 
 const optionsParams = options.map((option) => (
-  {option, imageParams: screen[option].image, questionParams: screen[option].question}));
+  {option, imageParams: screenIndex[option].image, questionParams: screenIndex[option].question}));
 
-const game1Content = `${drawHeader(initialGame)}
+const game1Print = (screen) => `${drawHeader(screen)}
   <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     
@@ -47,7 +47,7 @@ const game1Content = `${drawHeader(initialGame)}
     </div>
   </div>`;
 
-const game1 = (state) => {
+const game1Element = (state) => {
   const form = Array.from(document.querySelectorAll(`.game__option`));
 
   const formOptions1 = form[0];
@@ -58,37 +58,37 @@ const game1 = (state) => {
     const value = evt.target.value;
 
     const checked = evt.target.checked;
-    const screen = getGame1Screen(this.state.screen);
+    const screen = getGame1Screen(state.screen);
 
     if (target.tagName.toLowerCase() === `input`) {
       const answer = checked ? screen.Option1.question[value] : null;
       if (answer) {
 
-        this.onAnswer1(answer);
+        // this.onAnswer1(answer);
       }
     }
   };
 
-    formOptions2.onclick = (evt) => {
-      const target = evt.target;
-      const value = evt.target.value;
+  formOptions2.onclick = (evt) => {
+    const target = evt.target;
+    const value = evt.target.value;
 
-      const checked = evt.target.checked;
-      const screen = getGame1Screen(this.state.screen);
+    const checked = evt.target.checked;
+    const screen = getGame1Screen(this.state.screen);
 
-      if (target.tagName.toLowerCase() === `input`) {
-        const answer = checked ? screen.Option2.question[value] : null;
+    if (target.tagName.toLowerCase() === `input`) {
+      const answer = checked ? screen.Option2.question[value] : null;
 
-        if (answer) {
-          this.onAnswer2(answer);
-        }
+      if (answer) {
+        this.onAnswer2(answer);
       }
-    };
+    }
+  };
 
   LINK_BACK.onclick = () => {
     showElement(introElement());
   };
 };
 
-export default () => game1(initialGame);
+export default () => game1Element(initialGame);
 
