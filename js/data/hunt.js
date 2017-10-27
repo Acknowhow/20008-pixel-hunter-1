@@ -25,28 +25,6 @@ export const getScore = () => {
 
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const nextScreen = (state) => {
   const next = state.screen + 1;
 
@@ -79,6 +57,14 @@ export const welcomeScreen = {
   'screen-2': `rules`
 };
 
+// Footer data
+const date = new Date();
+export const year = date.getFullYear();
+
+export const socialLinks = [`Твиттер`, `Инстаграм`, `Фэйсбук`, `Вконтакте`];
+
+// Answer sample obj
+
 export const answersGame1 = {
   'game-1': {
     question: {
@@ -102,6 +88,7 @@ export const answersGame1 = {
   }
 };
 
+// Questions objects
 export const questionsGame1 = {
   'screen-0': {
     Option1: {

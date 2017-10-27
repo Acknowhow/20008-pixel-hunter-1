@@ -1,7 +1,4 @@
-const date = new Date();
-const year = date.getFullYear();
 
-const socialLinks = [`Твиттер`, `Инстаграм`, `Фэйсбук`, `Вконтакте`];
 
 export const footer = {
   credits: {

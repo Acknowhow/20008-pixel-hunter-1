@@ -1,9 +1,7 @@
-const date = new Date();
-const year = date.getFullYear();
+import {year} from './../data/hunt';
+import {socialLinks} from "../data/hunt";
 
-const socialLinks = [`Твиттер`, `Инстаграм`, `Фэйсбук`, `Вконтакте`];
-
-const footer = {
+const footerData = {
   credits: {
     author: `HTML Academy`,
     text: `Сделано в`,
@@ -30,15 +28,15 @@ const footer = {
   }
 };
 
-const socialData = Object.keys(footer.social);
-const socialLink = socialData.map((link, value) => ({value: socialData[value], link: footer.social[link]}));
+const socialData = Object.keys(footerData.social);
+const socialLink = socialData.map((link, value) => ({value: socialData[value], link: footerData.social[link]}));
 
-const FooterDefault = () => {
-  return `<a href="${footer.credits.src}" class="social-link social-link--academy">${footer.credits.author}</a>
-    <span class="footer__made-in">${footer.credits.text}<a href="${footer.credits.src}" class="footer__link">${footer.credits.author}</a> &copy; ${footer.credits.date}</span>
+const footer = () => {
+  return `<a href="${footerData.credits.src}" class="social-link social-link--academy">${footerData.credits.author}</a>
+    <span class="footer__made-in">${footerData.credits.text}<a href="${footerData.credits.src}" class="footer__link">${footerData.credits.author}</a> &copy; ${footerData.credits.date}</span>
        ${socialLink.map(({value, link}) => `<a href="${link.src}" class="social-link social-link--${link.modifier}>${value}</a>`).join(``)} 
     <div class="footer__social-links"> 
 </div>`.trim();
 };
 
-export default () => FooterDefault;
+export default () => footer;

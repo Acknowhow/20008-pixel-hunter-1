@@ -1,12 +1,6 @@
+import footerDefault from 'footer/footer';
 const centralContainer = document.querySelector(`.central`);
-const footerDefault = `<a href="https://htmlacademy.ru" class="social-link social-link--academy">HTML Academy</a>
-    <span class="footer__made-in">Сделано в <a href="https://htmlacademy.ru" class="footer__link">HTML Academy</a> &copy; 2017</span>
-    <div class="footer__social-links">
-      <a href="https://twitter.com/htmlacademy_ru" class="social-link  social-link--tw">Твиттер</a>
-      <a href="https://www.instagram.com/htmlacademy/" class="social-link  social-link--ins">Инстаграм</a>
-      <a href="https://www.facebook.com/htmlacademy" class="social-link  social-link--fb">Фэйсбук</a>
-      <a href="https://vk.com/htmlacademy" class="social-link  social-link--vk">Вконтакте</a>
-    </div>`.trim();
+
 const drawHeart = (full) => {
   return `<img src="img/heart__${full ? `full` : `empty`}.svg" class="game__heart" alt="Life" width="32" height="32">`;
 };
@@ -28,7 +22,7 @@ export const drawHeader = (data) => {
   </header>`;
 };
 
-export const createElement = (template, footer = footerDefault) =>{ // , templateFooter = templateFooterDefault
+export const createElement = (template, footer = footerDefault()) =>{
   const templateElement = document.createElement(`template`);
   const footerElement = document.createElement(`footer`);
 
