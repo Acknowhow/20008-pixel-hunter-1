@@ -1,9 +1,8 @@
 import footerDefault from 'footer/footer';
 const centralContainer = document.querySelector(`.central`);
 
-export const linkBack = ``
 
-export const createElement = (template, footer = footerDefault()) =>{
+export const createElement = (template, footer = footerDefault()) => {
   const templateElement = document.createElement(`template`);
   const footerElement = document.createElement(`footer`);
 

@@ -1,3 +1,5 @@
+// One to many data file
+
 export const initialWelcomeState = {
   screen: 0
 };
@@ -57,6 +59,14 @@ export const welcomeScreen = {
   'screen-2': `rules`
 };
 
+// Header static data
+
+// linkBack
+export const LINK_BACK = `<span class="back">
+  <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
+  <img src="img/logo_small.svg" width="101" height="44">
+  </span>`;
+
 // Footer data
 const date = new Date();
 const year = date.getFullYear();
@@ -88,13 +98,6 @@ export const footer = {
     }
   }
 };
-// linkBack
-
-export const LINK_BACK = `<span class="back">
-  <img src="img/arrow_left.svg" width="45" height="45" alt="Back">
-  <img src="img/logo_small.svg" width="101" height="44">
-  </span>`;
-
 
 // Answer sample obj
 
