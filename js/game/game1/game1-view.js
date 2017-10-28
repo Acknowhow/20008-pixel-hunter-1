@@ -1,4 +1,4 @@
-import introElement from './../../welcome/intro/intro';
+import {intro} from './../../welcome/intro/intro';
 import {initialGame, getGameScreen} from '../../data/hunt';
 import {LINK_BACK, createElement, showElement} from '../../utils';
 import {drawHeader} from '../header/header';
@@ -79,12 +79,11 @@ const game1 = (state) => {
 
     if (target.tagName.toLowerCase() === `input`) {
       const answer = checked ? screen.Option2.question[value] : null;
-      console.log(answer);
     }
   };
 
   LINK_BACK.onclick = () => {
-    showElement(introElement());
+    showElement(intro());
   };
 
   return el;

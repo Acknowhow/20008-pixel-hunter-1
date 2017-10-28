@@ -1,5 +1,5 @@
 import rulesData from './rules-data';
-import introElement from '../intro/intro';
+import {intro} from '../intro/intro';
 import game1Element from './../../game/game1/game1-view.js';
 import {LINK_BACK, createElement, showElement} from '../../utils';
 
@@ -20,7 +20,7 @@ const moduleRules = `<header class="header">${LINK_BACK}</header>
   
   <p class="rules__description">${pKeys[0]}
     <img src="${photoSrc}" width="${photoWidth}" height="${photoHeight}">${pKeys[1]}
-    <img src="${paintSrc}" width="${paintWidth}" height="${paintHeight}" alt="">${sliced.map((key) => `${pKeys.text.p[key]}<br>`).join(``)}<br>${pKeys[6]}
+    <img src="${paintSrc}" width="${paintWidth}" height="${paintHeight}" alt="">${sliced.map((key) => `${rulesData.text[key]}<br>`).join(``)}<br>${pKeys[6]}
   </p>
   
   <form class="rules__form">
@@ -36,7 +36,7 @@ const rules = () => {
   const rulesButton = el.querySelector(`.rules__button`);
 
   LINK_BACK.onclick = () => {
-    showElement(introElement());
+    showElement(intro());
   };
 
   rulesInput.oninput = () => {

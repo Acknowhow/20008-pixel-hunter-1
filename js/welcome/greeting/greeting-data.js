@@ -1,4 +1,4 @@
-const greeting = {
+export const greetingData = {
   img: {
     greeting: {
       src: `img/logo_big.png`,
@@ -27,4 +27,4 @@ const greeting = {
     }
   }
 };
-export default greeting;
+

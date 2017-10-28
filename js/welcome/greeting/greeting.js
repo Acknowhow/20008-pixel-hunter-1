@@ -1,4 +1,4 @@
-import greetingData from './greeting-data';
+import {greetingData} from './greeting-data';
 import rulesElement from '../rules/rules';
 import {createElement, showElement} from '../../utils';
 
@@ -17,7 +17,7 @@ const greetingPrint = `<div class="greeting central--blur">
     <h1 class="greeting__asterisk">${greetingData.text.h.h1}</h1>
     <div class="greeting__challenge">
       <h3>${greetingData.text.h.h3}</h3>
-      ${pKeys.map((key) => `<p>${pKeys.text.p[key]}</p></br>`).join(``)}
+      ${pKeys.map((key) => `<p>${greetingData.text[key]}</p></br>`).join(``)}
     </div>
     <div class="greeting__continue">
       <span>
@@ -26,7 +26,7 @@ const greetingPrint = `<div class="greeting central--blur">
     </div>
   </div>`;
 
-const greeting = () => {
+export const greeting = () => {
   const el = createElement(greetingPrint);
   const linkNext = el.querySelector(`img[alt='Next']`);
 
@@ -35,6 +35,4 @@ const greeting = () => {
   };
   return el;
 };
-
-export default () => greeting;
 
