@@ -3,6 +3,7 @@ import rulesElement from '../rules/rules';
 import {createElement, showElement} from '../../utils';
 
 const pKeys = Object.keys(greetingData.text.p);
+const sliced = pKeys.slice(0, 4);
 
 const [greetingSrc, greetingWidth, greetingHeight, greetingAlt] =
   Object.keys(greetingData.img.greeting).map((key) => greetingData.img.greeting[key]);
@@ -19,7 +20,7 @@ const greetingPrint = () => {
     <h1 class="greeting__asterisk">${greetingData.text.h.h1}</h1>
     <div class="greeting__challenge">
       <h3>${greetingData.text.h.h3}</h3>
-      ${pKeys.map((key) => `<p>${greetingData.text.p[key]}</br></p>`).join(``)}
+      <p>${sliced.map((key) => `${greetingData.text.p[key]}</br>`).join(``)}${greetingData.text.p.t5}</p>
     </div>
     
     <div class="greeting__continue">
