@@ -28,10 +28,10 @@ const rulesPrint = () => {
           <div class="rules">
             <h1 class="rules__title">${rulesData.text.h.h1}</h1>
         
-            <p class="rules__description">${pKeys[0]}
-              <img src="${photoSrc}" width="${photoWidth}" height="${photoHeight}">${pKeys[1]}
+            <p class="rules__description">${rulesData.text.p[pKeys[0]]}
+              <img src="${photoSrc}" width="${photoWidth}" height="${photoHeight}">${rulesData.text.p[pKeys[1]]}
               <img src="${paintSrc}" width="${paintWidth}" height="${paintHeight}" alt="">
-              ${sliced.map((key) => `${rulesData.text[key]}<br>`).join(``)}<br>${pKeys[6]}
+              ${sliced.map((key) => `${rulesData.text.p[key]}<br>`).join(``)}<br>${rulesData.text.p[pKeys[6]]}
             </p>
         
             <form class="rules__form">

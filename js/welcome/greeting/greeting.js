@@ -20,7 +20,7 @@ const greetingPrint = () => {
     <h1 class="greeting__asterisk">${greetingData.text.h.h1}</h1>
     <div class="greeting__challenge">
       <h3>${greetingData.text.h.h3}</h3>
-      <p>${sliced.map((key) => `${greetingData.text.p[key]}</br>`).join(``)}${greetingData.text.p.t5}</p>
+      <p>${sliced.map((key) => `${greetingData.text.p[key]}</br>`).join(``)}${greetingData.text.p[pKeys[4]]}</p>
     </div>
     
     <div class="greeting__continue">
