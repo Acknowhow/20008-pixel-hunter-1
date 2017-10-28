@@ -55,7 +55,11 @@ const rules = () => {
     return [...rulesDescription].filter((key) => key.nodeName === `#text`);
   };
 
-  console.log(filtered().map((key) => key.nodeValue.trim()));
+  const trimmed = (arr) => {
+    return arr.map((key) => key.textContent.trim());
+  };
+
+  trimmed(filtered());
 
   const rulesButton = el.querySelector(`.rules__button`);
 
