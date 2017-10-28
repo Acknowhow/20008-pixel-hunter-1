@@ -1,10 +1,10 @@
 import introElement from './../../welcome/intro/intro';
-import {initialGame, getGame1Screen} from '../../data/hunt';
-import {LINK_BACK, showElement} from '../../utils';
+import {initialGame, getGameScreen} from '../../data/hunt';
+import {LINK_BACK, createElement, showElement} from '../../utils';
 import {drawHeader} from '../header/header';
 
-
-const screenIndex = getGame1Screen(initialGame.type1.screen);
+// Getting current question index supplying question type and screen num
+const screenIndex = getGameScreen(initialGame.type, initialGame.screen);
 const options = Object.keys(screenIndex);
 
 const optionsParams = options.map((option) => (
@@ -47,8 +47,9 @@ const game1Print = (screen) => `${drawHeader(screen)}
     </div>
   </div>`;
 
-const game1Element = (state) => {
-  const form = Array.from(document.querySelectorAll(`.game__option`));
+const game1 = (state) => {
+  const el = createElement(game1Print);
+  const form = Array.from(el.querySelectorAll(`.game__option`));
 
   const formOptions1 = form[0];
   const formOptions2 = form[1];
@@ -58,7 +59,7 @@ const game1Element = (state) => {
     const value = evt.target.value;
 
     const checked = evt.target.checked;
-    const screen = getGame1Screen(state.screen);
+    const screen = getGameScreen(state.screen);
 
     if (target.tagName.toLowerCase() === `input`) {
       const answer = checked ? screen.Option1.question[value] : null;
@@ -74,21 +75,20 @@ const game1Element = (state) => {
     const value = evt.target.value;
 
     const checked = evt.target.checked;
-    const screen = getGame1Screen(this.state.screen);
+    const screen = getGameScreen(initialGame.type, initialGame.screen);
 
     if (target.tagName.toLowerCase() === `input`) {
       const answer = checked ? screen.Option2.question[value] : null;
-
-      if (answer) {
-        this.onAnswer2(answer);
-      }
+      console.log(answer);
     }
   };
 
   LINK_BACK.onclick = () => {
     showElement(introElement());
   };
+
+  return el;
 };
 
-export default () => game1Element(initialGame);
+export default () => game1(initialGame);
 

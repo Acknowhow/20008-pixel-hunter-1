@@ -1,6 +1,7 @@
 // One to many data file
 
 export const initialGame = {
+  type: 1, // Initial question type
   screen: 0,
   level: 0,
   lives: 3,
@@ -14,11 +15,7 @@ export const tick = (game) => {
   return game;
 };
 
-
-export const getGameScreen = (num) => gameQuestions[`screen-${num}`];
-export const getScore = () => {
-
-};
+export const getGameScreen = (typeNum, screenNum) => gameQuestions[`type${typeNum}`][`screen-${screenNum}`];
 
 export const nextScreen = (state) => {
   const next = state.screen + 1;
