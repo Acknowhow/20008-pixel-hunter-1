@@ -1,4 +1,4 @@
-import footerStamp from './footer/footer';
+import {footerStamp} from './footer/footer';
 const centralContainer = document.querySelector(`.central`);
 
 export const LINK_BACK = `<span class="back">
