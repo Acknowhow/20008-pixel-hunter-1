@@ -4,7 +4,7 @@ import {LINK_BACK, showElement} from '../../utils';
 import {drawHeader} from '../header/header';
 
 
-const screenIndex = getGame1Screen(initialGame.screen);
+const screenIndex = getGame1Screen(initialGame.type1.screen);
 const options = Object.keys(screenIndex);
 
 const optionsParams = options.map((option) => (

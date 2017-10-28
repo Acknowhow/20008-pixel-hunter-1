@@ -16,7 +16,6 @@ export const tick = (game) => {
 
 
 export const getGameScreen = (num) => gameQuestions[`screen-${num}`];
-
 export const getScore = () => {
 
 };
@@ -45,37 +44,6 @@ const PAINT_2 = `paint_2`;
 
 export const Action = {
   PAINT, PHOTO
-};
-
-export const welcomeScreen = {
-  'screen-0': `intro`,
-  'screen-1': `greeting`,
-  'screen-2': `rules`
-};
-
-// Answer sample obj
-
-export const gameAnswers = {
-  'game-1': {
-    question: {
-
-      'stats': {
-        elapsedTime: 11,
-        speedBonus: 50,
-        speedPenalty: 0,
-        lifeBonus: 50,
-        bonusAdded: -150,
-        bonusTotal: 300
-      },
-      'question-1': {
-        isWin: true
-      },
-      'question-2': {
-        isWin: false
-      }
-
-    }
-  }
 };
 
 export const gameQuestions = {
@@ -216,6 +184,53 @@ export const gameQuestions = {
             isWin: false
           }
         }
+      }
+    }
+  }
+};
+export const gameAnswers = {
+  type1: {
+    'screen-0': {
+      question: {
+        stats: {
+          isWin: null,
+          elapsedTime: 0,
+          speedBonus: 0,
+          speedPenalty: 0,
+          lifeBonus: 0,
+          bonusAdded: 0,
+          bonusTotal: 0
+        },
+      }
+    }
+  },
+  type2: {
+    'screen-0': {
+      question: {
+        stats: {
+          isWin: null,
+          elapsedTime: 0,
+          speedBonus: 0,
+          speedPenalty: 0,
+          lifeBonus: 0,
+          bonusAdded: 0,
+          bonusTotal: 0
+        },
+      }
+    }
+  },
+  type3: {
+    'screen-0': {
+      question: {
+        stats: {
+          isWin: null,
+          elapsedTime: 0,
+          speedBonus: 0,
+          speedPenalty: 0,
+          lifeBonus: 0,
+          bonusAdded: 0,
+          bonusTotal: 0
+        },
       }
     }
   }
