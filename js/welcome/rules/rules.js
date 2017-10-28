@@ -1,6 +1,6 @@
-import rulesData from './rules-data';
+import {rulesData} from './rules-data';
 import introElement from '../intro/intro';
-import game1Element from './../../game/game1/game1-view.js';
+// import game1Element from './../../game/game1/game1-view.js';
 import {LINK_BACK, createElement, showElement} from '../../utils';
 
 const pKeys = Object.keys(rulesData.text.p);
@@ -14,7 +14,8 @@ const [paintSrc, paintWidth, paintHeight] =
 
 const [formInput, formButton] = Object.keys(rulesData.form).map((key) => rulesData.form[key]);
 
-const rulesPrint = `<header class="header">${LINK_BACK}</header>
+const rulesPrint = () => {
+  return `<header class="header">${LINK_BACK}</header>
 <div class="rules">
   <h1 class="rules__title">${rulesData.text.h.h1}</h1>
   
@@ -27,10 +28,11 @@ const rulesPrint = `<header class="header">${LINK_BACK}</header>
     <input class="rules__input" type="${formInput.type}" placeholder="${formInput.placeholder}">
     <button class="rules__button  continue" type="${formButton.type}" disabled>${formButton.text}</button>
   </form>
-</div>`;
+</div>`.trim();
+};
 
 const rules = () => {
-  const el = createElement(rulesPrint);
+  const el = createElement(rulesPrint());
   const rulesInput = el.querySelector(`.rules__input`);
 
   const rulesButton = el.querySelector(`.rules__button`);
@@ -42,11 +44,11 @@ const rules = () => {
   rulesInput.oninput = () => {
     rulesButton.removeAttribute(`disabled`);
   };
-  rulesButton.onclick = () => {
-    showElement(game1Element());
-  };
+  // rulesButton.onclick = () => {
+  // showElement(game1Element());
+  // };
 
   return el;
 };
 
-export default () => rules;
+export default rules;

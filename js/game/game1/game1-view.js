@@ -10,7 +10,8 @@ const options = Object.keys(screenIndex);
 const optionsParams = options.map((option) => (
   {option, imageParams: screenIndex[option].image, questionParams: screenIndex[option].question}));
 
-const game1Print = (screen) => `${drawHeader(screen)}
+const game1Print = (screen) => {
+  return `${drawHeader(screen)}
   <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     
@@ -45,7 +46,8 @@ const game1Print = (screen) => `${drawHeader(screen)}
         <li class="stats__result stats__result--unknown"></li>
       </ul>
     </div>
-  </div>`;
+  </div>`.trim();
+};
 
 const game1 = (state) => {
   const el = createElement(game1Print);
