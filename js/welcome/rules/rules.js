@@ -13,6 +13,7 @@ const [paintSrc, paintWidth, paintHeight] =
 
 const [formInput, formButton] = Object.keys(rulesData.form).map((key) => rulesData.form[key]);
 
+
 const rulesPrint = () => {
   return `<header class="header">
             <div class="header__back">
@@ -46,7 +47,15 @@ const rulesPrint = () => {
 const rules = () => {
   const el = createElement(rulesPrint());
   const linkBack = el.querySelector(`.header__back`);
+
   const rulesInput = el.querySelector(`.rules__input`);
+  const rulesDescription = el.querySelector(`.rules__description`).childNodes;
+
+  const filtered = () => {
+    return [...rulesDescription].filter((key) => key.nodeName === `#text`);
+  };
+
+  console.log(filtered().map((key) => key.nodeValue.trim()));
 
   const rulesButton = el.querySelector(`.rules__button`);
 
