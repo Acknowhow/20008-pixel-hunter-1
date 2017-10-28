@@ -1,4 +1,4 @@
-import {LINK_BACK} from '../../data/hunt';
+import {LINK_BACK} from '../../utils';
 const drawHeart = (full) => {
   return `<img src="img/heart__${full ? `full` : `empty`}.svg" class="game__heart" alt="Life" width="32" height="32">`;
 };

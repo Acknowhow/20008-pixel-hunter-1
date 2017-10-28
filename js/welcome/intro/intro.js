@@ -15,8 +15,6 @@ const intro = () => {
 
   const next = () => {
     showElement(greetingElement());
-
-    asterisk.removeEventListener(`click`, next);
   };
 
   asterisk.addEventListener(`click`, next);

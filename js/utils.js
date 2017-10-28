@@ -1,4 +1,4 @@
-import footerDefault from 'footer/footer';
+import {footerStamp} from 'footer/footer';
 const centralContainer = document.querySelector(`.central`);
 
 export const LINK_BACK = `<span class="back">
@@ -6,17 +6,17 @@ export const LINK_BACK = `<span class="back">
   <img src="img/logo_small.svg" width="101" height="44">
   </span>`;
 
-export const createElement = (template, footer = footerDefault()) => {
-  const templateElement = document.createElement(`template`);
-  const footerElement = document.createElement(`footer`);
+export const createElement = (template, footer = footerStamp) => {
+  const templateEl = document.createElement(`template`);
+  const footerEl = document.createElement(`footer`);
 
-  footerElement.classList.add(`footer`);
-  templateElement.innerHTML = template;
+  footerEl.classList.add(`footer`);
+  templateEl.innerHTML = template;
 
-  footerElement.innerHTML = footer;
-  templateElement.content.appendChild(footerElement);
+  footerEl.innerHTML = footer;
+  templateEl.content.appendChild(footerEl);
 
-  return templateElement.content;
+  return templateEl.content;
 };
 
 export const showElement = (element, container = centralContainer) => {

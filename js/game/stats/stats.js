@@ -1,16 +1,16 @@
-import {changeView} from "../../utils";
-import {initialGame} from "../../data/hunt";
-import StatsView from './stats-view';
-import showIntro from '../../welcome/welcome';
+// import {changeView} from "../../utils";
+// import {initialGame} from "../../data/hunt";
+// import StatsView from './stats-view';
+// import showIntro from '../../welcome/welcome';
 
-const changeLevel = (state) => {
-  const stats = new StatsView(state);
+// const changeLevel = (state) => {
+//   const stats = new StatsView(state);
+//
+//   stats.onReturn = () => {
+//     changeView(showIntro());
+//   };
+//
+//   return stats;
+// };
 
-  stats.onReturn = () => {
-    changeView(showIntro());
-  };
-
-  return stats;
-};
-
-export default () => changeLevel(initialGame);
+// export default () => changeLevel(initialGame);

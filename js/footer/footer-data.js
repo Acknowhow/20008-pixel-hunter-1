@@ -3,28 +3,30 @@ const year = date.getFullYear();
 
 const socialLinks = [`Твиттер`, `Инстаграм`, `Фэйсбук`, `Вконтакте`];
 
-export const footer = {
+export const footerData = {
   credits: {
-    author: `HTML Academy`,
     text: `Сделано в`,
-    data: [year]
+    src: `https://htmlacademy.ru/`,
+    prefix: `academy`,
+    author: `HTML Academy`,
+    date: [year]
   },
   social: {
     [socialLinks[0]]: {
       src: `https://twitter.com/htmlacademy_ru`,
-      prefix: `--tw`
+      prefix: `tw`
     },
     [socialLinks[1]]: {
       src: `https://www.instagram.com/htmlacademy/`,
-      prefix: `--ins`
+      prefix: `ins`
     },
     [socialLinks[2]]: {
       src: `https://www.facebook.com/htmlacademy`,
-      prefix: `--fb`
+      prefix: `fb`
     },
     [socialLinks[3]]: {
       src: `https://vk.com/htmlacademy`,
-      prefix: `--vk`
+      prefix: `vk`
     }
   }
 };
