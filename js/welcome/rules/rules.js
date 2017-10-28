@@ -14,7 +14,7 @@ const [paintSrc, paintWidth, paintHeight] =
 
 const [formInput, formButton] = Object.keys(rulesData.form).map((key) => rulesData.form[key]);
 
-const moduleRules = `<header class="header">${LINK_BACK}</header>
+const rulesPrint = `<header class="header">${LINK_BACK}</header>
 <div class="rules">
   <h1 class="rules__title">${rulesData.text.h.h1}</h1>
   
@@ -30,7 +30,7 @@ const moduleRules = `<header class="header">${LINK_BACK}</header>
 </div>`;
 
 const rules = () => {
-  const el = createElement(moduleRules);
+  const el = createElement(rulesPrint);
   const rulesInput = el.querySelector(`.rules__input`);
 
   const rulesButton = el.querySelector(`.rules__button`);
