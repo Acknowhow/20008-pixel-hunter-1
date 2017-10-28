@@ -1,4 +1,4 @@
 import {showElement} from './utils';
-import {intro} from './welcome/intro/intro';
+import introElement from './welcome/intro/intro';
 
-showElement(intro());
+showElement(introElement());

@@ -1,5 +1,5 @@
 import rulesData from './rules-data';
-import {intro} from '../intro/intro';
+import introElement from '../intro/intro';
 import game1Element from './../../game/game1/game1-view.js';
 import {LINK_BACK, createElement, showElement} from '../../utils';
 
@@ -36,7 +36,7 @@ const rules = () => {
   const rulesButton = el.querySelector(`.rules__button`);
 
   LINK_BACK.onclick = () => {
-    showElement(intro());
+    showElement(introElement());
   };
 
   rulesInput.oninput = () => {

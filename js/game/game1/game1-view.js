@@ -1,4 +1,4 @@
-import {intro} from './../../welcome/intro/intro';
+import introElement from './../../welcome/intro/intro';
 import {initialGame, getGameScreen} from '../../data/hunt';
 import {LINK_BACK, createElement, showElement} from '../../utils';
 import {drawHeader} from '../header/header';
@@ -83,7 +83,7 @@ const game1 = (state) => {
   };
 
   LINK_BACK.onclick = () => {
-    showElement(intro());
+    showElement(introElement());
   };
 
   return el;
