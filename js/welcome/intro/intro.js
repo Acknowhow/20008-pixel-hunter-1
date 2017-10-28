@@ -1,5 +1,5 @@
 import {introData} from './intro-data';
-import {greeting} from '../greeting/greeting';
+import greetingElement from '../greeting/greeting';
 import {createElement, showElement} from '../../utils';
 
 const introPrint = `<div id="main" class="central__content">
@@ -9,13 +9,12 @@ const introPrint = `<div id="main" class="central__content">
     </div>
   </div>`;
 
-
 export const intro = () => {
   const el = createElement(introPrint);
   const asterisk = el.querySelector(`.intro__asterisk`);
 
   const next = () => {
-    showElement(greeting());
+    showElement(greetingElement());
   };
 
   asterisk.addEventListener(`click`, next);

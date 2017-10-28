@@ -10,29 +10,37 @@ const [greetingSrc, greetingWidth, greetingHeight, greetingAlt] =
 const [nextSrc, nextWidth, nextHeight, nextAlt] =
   Object.keys(greetingData.img.next).map((key) => greetingData.img.next[key]);
 
-const greetingPrint = `<div class="greeting central--blur">
+const greetingPrint = () => {
+  return `<div class="greeting central--blur">
     <div class="greeting__logo">
       <img src="${greetingSrc}" width="${greetingWidth}" height="${greetingHeight}" alt="${greetingAlt}">
     </div>
+    
     <h1 class="greeting__asterisk">${greetingData.text.h.h1}</h1>
     <div class="greeting__challenge">
       <h3>${greetingData.text.h.h3}</h3>
-      ${pKeys.map((key) => `<p>${greetingData.text[key]}</p></br>`).join(``)}
+      ${pKeys.map((key) => `<p>${greetingData.text.p[key]}</br></p>`).join(``)}
     </div>
+    
     <div class="greeting__continue">
       <span>
         <img src="${nextSrc}" width="${nextWidth}" height="${nextHeight}" alt="${nextAlt}">
       </span>
     </div>
-  </div>`;
+    
+  </div>`.trim();
+};
 
-export const greeting = () => {
-  const el = createElement(greetingPrint);
+const greeting = () => {
+  const el = createElement(greetingPrint());
   const linkNext = el.querySelector(`img[alt='Next']`);
 
   linkNext.onclick = () => {
     showElement(rulesElement());
   };
+
   return el;
 };
+
+export default greeting;
 
