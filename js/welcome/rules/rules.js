@@ -36,6 +36,7 @@ const rulesPrint = () => {
             </p>
         
             <form class="rules__form">
+            <form class="rules__form">
             
               <input class="rules__input" type="${formInput.type}" placeholder="${formInput.placeholder}">
               <button class="rules__button  continue" type="${formButton.type}" disabled>${formButton.text}</button>
@@ -49,32 +50,14 @@ const rules = () => {
   const linkBack = el.querySelector(`.header__back`);
 
   const rulesInput = el.querySelector(`.rules__input`);
-  const rulesDescription = el.querySelector(`.rules__description`).childNodes;
 
-  const filter = () => {
-    return [...rulesDescription].filter((key) => key.nodeName === `#text`);
-  };
+  for (let key of el.querySelector(`.rules__description`).childNodes) {
+    if (!key.nodeValue) {
+      continue;
+    }
 
-  // const filterKeys = Object.keys(filter);
-
-  // const mapped = filterKeys.map((key) => ({textNodeParams: filter[key]}));
-
-  // const edited = () => {
-  //   for (let key of mapped) {
-  //     key[`textNodeParams`].nodeValue.trim();
-  //   }
-  // };
-  // edited();
-
-  const edited = () => {
-    return filter().map();
-  };
-
-
-  // const filteredAndTrimmed = () => {
-  //   filter.map((key) => Array.from(el.querySelector(`.rules__description`).childNodes)[key].textContent.trim());
-  // };
-  // console.log(filteredAndTrimmed());
+    key.nodeValue = key.nodeValue.trim();
+  }
 
   const rulesButton = el.querySelector(`.rules__button`);
 
