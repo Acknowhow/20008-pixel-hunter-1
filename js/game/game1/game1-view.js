@@ -73,21 +73,21 @@ const game1 = (state) => {
         switch (ans.isWin) {
           case true:
 
+
             currentAnswers.push(`ans1`);
             if (currentAnswers.find((key) => key === `ans2`)) {
 
-              // Add method for assigning answers
-              ans = Object.assign({}, ans);
-              ans.isWin = true;
-              console.log(ans);
+              // // Add method for assigning answers
+              // ans = Object.assign({}, ans);
+              // ans.isWin = true;
             }
             break;
 
           case false:
-            currentAnswers = [];
-            ans = Object.assign({}, ans);
-            ans.lives = ans.lives - 1;
-            console.log(ans);
+
+            // currentAnswers = [];
+            // ans = Object.assign({}, ans);
+            // ans.lives = ans.lives - 1;
             break;
         }
       };
@@ -110,20 +110,25 @@ const game1 = (state) => {
         switch (ans.isWin) {
           case true:
 
-            currentAnswers.push(`ans1`);
-            if (currentAnswers.find((key) => key === `ans2`)) {
+            // currentAnswers.push(`ans2`);
+            // if (currentAnswers.find((key) => key === `ans1`)) {
 
               // Add method for assigning answers
               ans = Object.assign({}, ans);
-              ans.isWin = true;
+              currentAnswers.push(ans);
+              console.log(currentAnswers[currentAnswers.length - 1]); // Pushing copy object of answer into array
 
-            }
+            // }
             break;
 
           case false:
-            currentAnswers = [];
+
+            // currentAnswers = [];
             ans = Object.assign({}, ans);
-            ans.lives = ans.lives - 1;
+            currentAnswers.push(ans);
+            console.log(currentAnswers[currentAnswers.length - 1]);
+
+
 
         }
       };
