@@ -51,15 +51,30 @@ const rules = () => {
   const rulesInput = el.querySelector(`.rules__input`);
   const rulesDescription = el.querySelector(`.rules__description`).childNodes;
 
-  const filtered = () => {
+  const filter = () => {
     return [...rulesDescription].filter((key) => key.nodeName === `#text`);
   };
 
-  const trimmed = (arr) => {
-    return arr.map((key) => key.textContent.trim());
+  // const filterKeys = Object.keys(filter);
+
+  // const mapped = filterKeys.map((key) => ({textNodeParams: filter[key]}));
+
+  // const edited = () => {
+  //   for (let key of mapped) {
+  //     key[`textNodeParams`].nodeValue.trim();
+  //   }
+  // };
+  // edited();
+
+  const edited = () => {
+    return filter().map();
   };
 
-  trimmed(filtered());
+
+  // const filteredAndTrimmed = () => {
+  //   filter.map((key) => Array.from(el.querySelector(`.rules__description`).childNodes)[key].textContent.trim());
+  // };
+  // console.log(filteredAndTrimmed());
 
   const rulesButton = el.querySelector(`.rules__button`);
 
