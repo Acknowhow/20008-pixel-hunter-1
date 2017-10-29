@@ -56,6 +56,9 @@ const game1 = (state) => {
   const formOptions1 = form[0];
   const formOptions2 = form[1];
 
+  let currentAnswers = [];
+
+
   formOptions1.onclick = (evt) => {
     const target = evt.target;
     const value = evt.target.value;
@@ -64,7 +67,32 @@ const game1 = (state) => {
 
     if (target.tagName.toLowerCase() === `input`) {
       const answer = checked ? screen.Option1.question[value] : null;
-      console.log(answer);
+
+      const assignAnswer1 = (ans) => {
+
+        switch (ans.isWin) {
+          case true:
+
+            currentAnswers.push(`ans1`);
+            if (currentAnswers.find((key) => key === `ans2`)) {
+
+              // Add method for assigning answers
+              ans = Object.assign({}, ans);
+              ans.isWin = true;
+              console.log(ans);
+            }
+            break;
+
+          case false:
+            currentAnswers = [];
+            ans = Object.assign({}, ans);
+            ans.lives = ans.lives - 1;
+            console.log(ans);
+            break;
+        }
+      };
+
+      assignAnswer1(answer);
     }
   };
 
@@ -76,7 +104,31 @@ const game1 = (state) => {
 
     if (target.tagName.toLowerCase() === `input`) {
       const answer = checked ? screen.Option2.question[value] : null;
-      console.log(answer);
+
+      const assignAnswer2 = (ans) => {
+
+        switch (ans.isWin) {
+          case true:
+
+            currentAnswers.push(`ans1`);
+            if (currentAnswers.find((key) => key === `ans2`)) {
+
+              // Add method for assigning answers
+              ans = Object.assign({}, ans);
+              ans.isWin = true;
+
+            }
+            break;
+
+          case false:
+            currentAnswers = [];
+            ans = Object.assign({}, ans);
+            ans.lives = ans.lives - 1;
+
+        }
+      };
+
+      assignAnswer2(answer);
     }
   };
 

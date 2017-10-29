@@ -17,6 +17,16 @@ export const tick = (game) => {
 
 export const getGameScreen = (typeNum, screenNum) => gameQuestions[`type${typeNum}`][`screen-${screenNum}`];
 
+export const setLives = (game, lives) => {
+  if (lives < 0) {
+    throw new RangeError(`Can't set negative lives`);
+  }
+  game = Object.assign({}, game);
+
+  game.lives = lives;
+  return game;
+};
+
 export const nextScreen = (state) => {
   const next = state.screen + 1;
 
