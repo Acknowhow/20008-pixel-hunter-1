@@ -1,17 +1,17 @@
 import introElement from './../../welcome/intro/intro';
 import {initialGame, getGameScreen} from '../../data/hunt';
-import {LINK_BACK, createElement, showElement} from '../../utils';
+import {createElement, showElement} from '../../utils';
 import {drawHeader} from '../header/header';
 
 // Getting current question index supplying question type and screen num
-const screenIndex = getGameScreen(initialGame.type, initialGame.screen);
-const options = Object.keys(screenIndex);
+const screen = getGameScreen(initialGame.type, initialGame.screen);
+const options = Object.keys(screen);
 
 const optionsParams = options.map((option) => (
-  {option, imageParams: screenIndex[option].image, questionParams: screenIndex[option].question}));
+  {option, imageParams: screen[option].image, questionParams: screen[option].question}));
 
-const game1Print = (screen) => {
-  return `${drawHeader(screen)}
+const game1Print = (state) => {
+  return `${drawHeader(state)}
   <div class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
     
@@ -50,7 +50,7 @@ const game1Print = (screen) => {
 };
 
 const game1 = (state) => {
-  const el = createElement(game1Print);
+  const el = createElement(game1Print(state));
   const form = Array.from(el.querySelectorAll(`.game__option`));
 
   const formOptions1 = form[0];
@@ -61,14 +61,9 @@ const game1 = (state) => {
     const value = evt.target.value;
 
     const checked = evt.target.checked;
-    const screen = getGameScreen(state.screen);
 
     if (target.tagName.toLowerCase() === `input`) {
       const answer = checked ? screen.Option1.question[value] : null;
-      if (answer) {
-
-        // this.onAnswer1(answer);
-      }
     }
   };
 
@@ -77,14 +72,13 @@ const game1 = (state) => {
     const value = evt.target.value;
 
     const checked = evt.target.checked;
-    const screen = getGameScreen(initialGame.type, initialGame.screen);
 
     if (target.tagName.toLowerCase() === `input`) {
       const answer = checked ? screen.Option2.question[value] : null;
     }
   };
 
-  LINK_BACK.onclick = () => {
+  el.querySelector(`.header__back`).onclick = () => {
     showElement(introElement());
   };
 

@@ -1,6 +1,7 @@
 import {rulesData} from './rules-data';
 import introElement from '../intro/intro';
 import {createElement, showElement} from '../../utils';
+import game1Element from '../../game/game1/game1-view';
 
 const pKeys = Object.keys(rulesData.text.p);
 const sliced = pKeys.slice(2, 6);
@@ -68,9 +69,10 @@ const rules = () => {
   rulesInput.oninput = () => {
     rulesButton.removeAttribute(`disabled`);
   };
-  // rulesButton.onclick = () => {
-  // showElement(game1Element());
-  // };
+
+  rulesButton.onclick = () => {
+    showElement(game1Element());
+  };
 
   return el;
 };
