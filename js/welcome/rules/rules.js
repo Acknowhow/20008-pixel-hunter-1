@@ -14,7 +14,6 @@ const [paintSrc, paintWidth, paintHeight] =
 
 const [formInput, formButton] = Object.keys(rulesData.form).map((key) => rulesData.form[key]);
 
-
 const rulesPrint = () => {
   return `<header class="header">
             <div class="header__back">

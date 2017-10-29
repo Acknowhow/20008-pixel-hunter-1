@@ -39,9 +39,6 @@ const PHOTO_2 = `photo_2`;
 const PAINT_1 = `paint_1`;
 const PAINT_2 = `paint_2`;
 
-export const Action = {
-  PAINT, PHOTO
-};
 
 export const gameQuestions = {
   type1: {

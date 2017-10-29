@@ -64,6 +64,7 @@ const game1 = (state) => {
 
     if (target.tagName.toLowerCase() === `input`) {
       const answer = checked ? screen.Option1.question[value] : null;
+      console.log(answer);
     }
   };
 
@@ -75,6 +76,7 @@ const game1 = (state) => {
 
     if (target.tagName.toLowerCase() === `input`) {
       const answer = checked ? screen.Option2.question[value] : null;
+      console.log(answer);
     }
   };
 
