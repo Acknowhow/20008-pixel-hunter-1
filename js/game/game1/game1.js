@@ -73,37 +73,11 @@ const game1 = (state) => {
     if (target.tagName.toLowerCase() === `input`) {
       const answer = checked ? screen.Option1.question[value] : null;
 
-      if(answer) {
         const assignAnswer1 = (ans) => {
 
-          switch (switchAnswers.find((key) => key === `ans_1`)) {
+          switch (ans.isWin) {
             case true:
 
-              if (switchAnswers.find((key) => key === `ans_2`)) {
-
-                ansPush(switchAnswers, ansSwitchAssign(ans, `ans_1`));
-                const [Win1, Win2] = switchAnswers;
-
-                const win = getResult([Win1.isWin, Win2.isWin]);
-
-                const typeMapped = mapAnsType(getAnsKeys(answers), typeNum, screenNum);
-                const getAns = typeMapped(typeNum, screenNum);
-
-                const [currentAnswer] = getAns;
-
-                const ansAssigned = ansCurrAssign(currentAnswer, screenNum, win);
-                ansPush(gameAnswers, ansAssigned);
-
-                console.log(gameAnswers);
-
-                switchAnswers = [];
-                break;
-
-              } else {
-                break;
-              }
-
-            case false:
               switchAnswers.push(`ans_1`);
 
               if (switchAnswers.find((key) => key === `ans_2`)) {
@@ -124,11 +98,17 @@ const game1 = (state) => {
                 console.log(gameAnswers);
 
                 switchAnswers = [];
+
                 break;
 
               } else {
+
                 break;
               }
+
+            default:
+
+              throw new RangeError(`Unknown result`);
 
           }
 
@@ -137,8 +117,8 @@ const game1 = (state) => {
         assignAnswer1(answer);
 
       }
-    }
-  };
+
+    };
 
   formOptions2.onclick = (evt) => {
 
@@ -150,69 +130,51 @@ const game1 = (state) => {
     if (target.tagName.toLowerCase() === `input`) {
       const answer = checked ? screen.Option2.question[value] : null;
 
-      if(answer) {
-        const assignAnswer2 = (ans) => {
+      const assignAnswer2 = (ans) => {
 
-          switch (switchAnswers.find((key) => key === `ans_2`)) {
-            case true:
+        switch (ans.isWin) {
+          case true:
 
-              if (switchAnswers.find((key) => key === `ans_1`)) {
+            switchAnswers.push(`ans_2`);
 
-                ansPush(switchAnswers, ansSwitchAssign(ans, `ans_2`));
-                const [Win1, Win2] = switchAnswers;
+            if (switchAnswers.find((key) => key === `ans_1`)) {
 
-                const win = getResult([Win1.isWin, Win2.isWin]);
+              ansPush(switchAnswers, ansSwitchAssign(ans, `ans_2`));
+              const [Win1, Win2] = switchAnswers;
 
-                const typeMapped = mapAnsType(getAnsKeys(answers), typeNum, screenNum);
-                const getAns = typeMapped(typeNum, screenNum);
+              const win = getResult([Win1.isWin, Win2.isWin]);
 
-                const [currentAnswer] = getAns;
+              const typeMapped = mapAnsType(getAnsKeys(answers), typeNum, screenNum);
+              const getAns = typeMapped(typeNum, screenNum);
 
-                const ansAssigned = ansCurrAssign(currentAnswer, screenNum, win);
-                ansPush(gameAnswers, ansAssigned);
+              const [currentAnswer] = getAns;
 
-                console.log(gameAnswers);
+              const ansAssigned = ansCurrAssign(currentAnswer, screenNum, win);
+              ansPush(gameAnswers, ansAssigned);
 
-                switchAnswers = [];
-                break;
+              console.log(gameAnswers);
 
-              } else {
-                break;
-              }
+              switchAnswers = [];
 
-            case false:
-              switchAnswers.push(`ans_2`);
+              break;
 
-              if (switchAnswers.find((key) => key === `ans_1`)) {
+            } else {
 
-                ansPush(switchAnswers, ansSwitchAssign(ans, `ans_2`));
-                const [Win1, Win2] = switchAnswers;
+              break;
+            }
 
-                const win = getResult([Win1.isWin, Win2.isWin]);
+          default:
 
-                const typeMapped = mapAnsType(getAnsKeys(answers), typeNum, screenNum);
-                const getAns = typeMapped(typeNum, screenNum);
+            throw new RangeError(`Unknown result`);
 
-                const [currentAnswer] = getAns;
+        }
 
-                const ansAssigned = ansCurrAssign(currentAnswer, screenNum, win);
-                ansPush(gameAnswers, ansAssigned);
+      };
 
-                console.log(gameAnswers);
+      assignAnswer2(answer);
 
-                switchAnswers = [];
-                break;
-
-              } else {
-                break;
-              }
-          }
-        };
-
-        assignAnswer2(answer);
       }
-    }
-  };
+    };
 
   el.querySelector(`.header__back`).onclick = () => {
     showElement(introElement());
