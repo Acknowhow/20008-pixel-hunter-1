@@ -1,10 +1,11 @@
 import introElement from './../../welcome/intro/intro';
-import {initialGame, getGameScreen} from '../../data/hunt';
+import {initialGame, answers, getAnsKeys, mapAnsType, getScreenState, getScreenNum, getTypeNum, ansPush, ansCurrAssign} from '../../data/hunt';
 import {createElement, showElement} from '../../utils';
 import {drawHeader} from '../header/header';
+import {ansSwitchAssign, getResult} from "./game1-utils";
 
-// Getting current question index supplying question type and screen num
-const screen = getGameScreen(initialGame.type, initialGame.screen);
+
+const screen = getScreenState(initialGame);
 const options = Object.keys(screen);
 
 const optionsParams = options.map((option) => (
@@ -56,7 +57,11 @@ const game1 = (state) => {
   const formOptions1 = form[0];
   const formOptions2 = form[1];
 
-  let currentAnswers = [];
+  let switchAnswers = [];
+  const gameAnswers = [];
+
+  const typeNum = getTypeNum(initialGame.type);
+  const screenNum = getScreenNum(initialGame.screen);
 
 
   formOptions1.onclick = (evt) => {
@@ -70,26 +75,26 @@ const game1 = (state) => {
 
       const assignAnswer1 = (ans) => {
 
-        switch (ans.isWin) {
-          case true:
+            switchAnswers.push(`ans_1`);
+            if (switchAnswers.find((key) => key === `ans_2`)) {
 
+              ansPush(switchAnswers, ansSwitchAssign(ans, `ans_1`));
+              const [Win1, Win2] = switchAnswers;
 
-            currentAnswers.push(`ans1`);
-            if (currentAnswers.find((key) => key === `ans2`)) {
+              const win = getResult([Win1.isWin, Win2.isWin]);
 
-              // // Add method for assigning answers
-              // ans = Object.assign({}, ans);
-              // ans.isWin = true;
+              const typeMapped = mapAnsType(getAnsKeys(answers), typeNum, screenNum);
+              const getAns = typeMapped(typeNum, screenNum);
+
+              const [currentAnswer] = getAns;
+
+              const ansAssigned = ansCurrAssign(currentAnswer, screenNum, win);
+              ansPush(gameAnswers, ansAssigned);
+
             }
-            break;
-
-          case false:
-
-            // currentAnswers = [];
-            // ans = Object.assign({}, ans);
-            // ans.lives = ans.lives - 1;
-            break;
-        }
+            else {
+              switchAnswers = [];
+            }
       };
 
       assignAnswer1(answer);
@@ -107,30 +112,27 @@ const game1 = (state) => {
 
       const assignAnswer2 = (ans) => {
 
-        switch (ans.isWin) {
-          case true:
+        switchAnswers.push(`ans_2`);
+        if (switchAnswers.find((key) => key === `ans_1`)) {
 
-            // currentAnswers.push(`ans2`);
-            // if (currentAnswers.find((key) => key === `ans1`)) {
+          ansPush(switchAnswers, ansSwitchAssign(ans, `ans_2`));
+          const [Win1, Win2] = switchAnswers;
 
-              // Add method for assigning answers
-              ans = Object.assign({}, ans);
-              currentAnswers.push(ans);
-              console.log(currentAnswers[currentAnswers.length - 1]); // Pushing copy object of answer into array
+          const win = getResult([Win1.isWin, Win2.isWin]);
 
-            // }
-            break;
+          const typeMapped = mapAnsType(getAnsKeys(answers), typeNum, screenNum);
+          const getAns = typeMapped(typeNum, screenNum);
 
-          case false:
+          const [currentAnswer] = getAns;
 
-            // currentAnswers = [];
-            ans = Object.assign({}, ans);
-            currentAnswers.push(ans);
-            console.log(currentAnswers[currentAnswers.length - 1]);
-
-
+          const ansAssigned = ansCurrAssign(currentAnswer, screenNum, win);
+          ansPush(gameAnswers, ansAssigned);
 
         }
+        else {
+          switchAnswers = [];
+        }
+
       };
 
       assignAnswer2(answer);

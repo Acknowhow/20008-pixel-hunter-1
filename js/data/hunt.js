@@ -1,43 +1,41 @@
 // One to many data file
 
 export const initialGame = {
-  type: 1, // Initial question type
+  type: 1,
   screen: 0,
   level: 0,
   lives: 3,
   time: 0,
   score: 0
 };
-
-export const tick = (game) => {
-  game = Object.assign({}, game);
-  game.time++;
-  return game;
+export const getScreenState = (state) => {
+  return questions[state.type][state.screen];
 };
 
-export const getGameScreen = (typeNum, screenNum) => gameQuestions[`type${typeNum}`][`screen-${screenNum}`];
-
-export const setLives = (game, lives) => {
-  if (lives < 0) {
-    throw new RangeError(`Can't set negative lives`);
-  }
-  game = Object.assign({}, game);
-
-  game.lives = lives;
-  return game;
+export const getTypeNum = (num) => {
+  return `type_${num}`;
 };
 
-export const nextScreen = (state) => {
-  const next = state.screen + 1;
+export const getScreenNum = (num) => {
+  return `screen_${num}`;
+};
 
-  if (!getGameScreen(next)) {
-    throw new RangeError(`Can't find screen ${next}`);
-  }
+export const ansPush = (arr, obj) => {
+  arr.push(obj);
+};
 
-  state = Object.assign({}, state);
-  state.screen = next;
-
-  return state;
+export const ansCurrAssign = (ans, scr, win) => {
+  ans = Object.assign({}, ans);
+  ans[scr].isWin = win;
+  return ans;
+};
+export const getAnsKeys = (Answers) => {
+  Object.keys(Answers);
+};
+export const mapAnsType = (tKeys, tNum, sNum) => {
+  return tKeys.map((type) => ({ type, [sNum]: tKeys[type][sNum] })).filter((key) => {
+    return key.type === `${tNum}`;
+  });
 };
 
 const PAINT = `paint`;
@@ -50,7 +48,7 @@ const PAINT_1 = `paint_1`;
 const PAINT_2 = `paint_2`;
 
 
-export const gameQuestions = {
+export const questions = {
   type1: {
     'screen-0': {
       Option1: {
@@ -192,50 +190,47 @@ export const gameQuestions = {
     }
   }
 };
-export const gameAnswers = {
-  type1: {
-    'screen-0': {
-      question: {
-        stats: {
-          isWin: null,
-          elapsedTime: 0,
-          speedBonus: 0,
-          speedPenalty: 0,
-          lifeBonus: 0,
-          bonusAdded: 0,
-          bonusTotal: 0
-        },
-      }
+export const answers = {
+  'type_1': {
+    'screen_0': {
+      isWin: null,
+      elapsedTime: 0,
+      speedBonus: 0,
+      speedPenalty: 0,
+      lifeBonus: 0,
+      bonusAdded: 0,
+      bonusTotal: 0
     }
   },
-  type2: {
-    'screen-0': {
-      question: {
-        stats: {
-          isWin: null,
-          elapsedTime: 0,
-          speedBonus: 0,
-          speedPenalty: 0,
-          lifeBonus: 0,
-          bonusAdded: 0,
-          bonusTotal: 0
-        },
-      }
+  'type_2': {
+    'screen_0': {
+      isWin: null,
+      elapsedTime: 0,
+      speedBonus: 0,
+      speedPenalty: 0,
+      lifeBonus: 0,
+      bonusAdded: 0,
+      bonusTotal: 0
     }
   },
-  type3: {
-    'screen-0': {
-      question: {
-        stats: {
-          isWin: null,
-          elapsedTime: 0,
-          speedBonus: 0,
-          speedPenalty: 0,
-          lifeBonus: 0,
-          bonusAdded: 0,
-          bonusTotal: 0
-        },
-      }
+  'type_3': {
+    'screen_0': {
+      isWin: null,
+      elapsedTime: 0,
+      speedBonus: 0,
+      speedPenalty: 0,
+      lifeBonus: 0,
+      bonusAdded: 0,
+      bonusTotal: 0
+    },
+    'screen_1': {
+      isWin: null,
+      elapsedTime: 0,
+      speedBonus: 0,
+      speedPenalty: 0,
+      lifeBonus: 0,
+      bonusAdded: 0,
+      bonusTotal: 0
     }
   }
 };
