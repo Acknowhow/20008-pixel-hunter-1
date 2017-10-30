@@ -26,13 +26,9 @@ export const ansCurrAssign = (ans, scr, win) => {
   ans[scr].isWin = win;
   return ans;
 };
+
 export const getAnsKeys = (Answers) => {
   return Object.keys(Answers);
-};
-export const mapAnsType = (tKeys, tNum, sNum) => {
-  return tKeys.map((type) => ({ type, [sNum]: tKeys[type][sNum] })).filter((key) => {
-    return key.type === `${tNum}`;
-  });
 };
 
 const PAINT = `paint`;

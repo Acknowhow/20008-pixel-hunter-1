@@ -14,5 +14,4 @@ export const getResult = (answers) => {
     case 1:
       return `Missing at least one argument`;
   }
-
 };

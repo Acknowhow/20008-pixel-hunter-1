@@ -1,5 +1,5 @@
 import introElement from './../../welcome/intro/intro';
-import {initialGame, answers, questions, getAnsKeys, mapAnsType, getScreenNum, getTypeNum, ansPush, ansCurrAssign} from '../../data/hunt';
+import {initialGame, answers, questions, getAnsKeys, getScreenNum, getTypeNum, ansPush, ansCurrAssign} from '../../data/hunt';
 import {createElement, showElement} from '../../utils';
 import {drawHeader} from '../header/header';
 import {ansSwitchAssign, getResult} from "./game1-utils";
@@ -87,15 +87,21 @@ const game1 = (state) => {
 
                 const win = getResult([Win1.isWin, Win2.isWin]);
 
-                const typeMapped = mapAnsType(getAnsKeys(answers), typeNum, screenNum);
-                const getAns = typeMapped(typeNum, screenNum);
+                const ansKeys = getAnsKeys(answers);
+
+                const mapAnsType = (tNum, sNum) => {
+                  return ansKeys.map((type) => ({ type, [sNum]: answers[type][sNum] })).filter((key) => {
+                    return key.type === `${tNum}`;
+                  });
+                };
+
+                const getAns = mapAnsType(typeNum, screenNum);
 
                 const [currentAnswer] = getAns;
 
                 const ansAssigned = ansCurrAssign(currentAnswer, screenNum, win);
                 ansPush(gameAnswers, ansAssigned);
 
-                console.log(gameAnswers);
 
                 switchAnswers = [];
 
@@ -144,8 +150,15 @@ const game1 = (state) => {
 
               const win = getResult([Win1.isWin, Win2.isWin]);
 
-              const typeMapped = mapAnsType(getAnsKeys(answers), typeNum, screenNum);
-              const getAns = typeMapped(typeNum, screenNum);
+              const ansKeys = getAnsKeys(answers);
+
+              const mapAnsType = (tNum, sNum) => {
+                return ansKeys.map((type) => ({ type, [sNum]: answers[type][sNum] })).filter((key) => {
+                  return key.type === `${tNum}`;
+                });
+              };
+
+              const getAns = mapAnsType(typeNum, screenNum);
 
               const [currentAnswer] = getAns;
 
