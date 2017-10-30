@@ -1,5 +1,3 @@
-// One to many data file
-
 export const initialGame = {
   type: 1,
   screen: 0,
