@@ -11,9 +11,8 @@ export const getResult = (answers) => {
       // Looks Ok
       return answers[0] && answers[1] ? true : false;
 
-
     case 1:
       return `Missing at least one argument`;
   }
-  return getResult(answers);
+
 };

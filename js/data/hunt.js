@@ -8,9 +8,6 @@ export const initialGame = {
   time: 0,
   score: 0
 };
-export const getScreenState = (state) => {
-  return questions[state.type][state.screen];
-};
 
 export const getTypeNum = (num) => {
   return `type_${num}`;
@@ -30,7 +27,7 @@ export const ansCurrAssign = (ans, scr, win) => {
   return ans;
 };
 export const getAnsKeys = (Answers) => {
-  Object.keys(Answers);
+  return Object.keys(Answers);
 };
 export const mapAnsType = (tKeys, tNum, sNum) => {
   return tKeys.map((type) => ({ type, [sNum]: tKeys[type][sNum] })).filter((key) => {
@@ -49,8 +46,8 @@ const PAINT_2 = `paint_2`;
 
 
 export const questions = {
-  type1: {
-    'screen-0': {
+  'type_1': {
+    'screen_0': {
       Option1: {
         image: {
           src: `http://i.imgur.com/5kcp9i0.jpg`,
@@ -97,7 +94,7 @@ export const questions = {
       }
     }
   },
-  type2: {
+  'type_2': {
     'screen-0': {
       Option1: {
         image: {
@@ -123,7 +120,7 @@ export const questions = {
       }
     }
   },
-  type3: {
+  'type_3': {
     'screen-0': {
       Option1: {
         title: {

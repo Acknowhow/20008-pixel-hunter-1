@@ -1,7 +1,7 @@
 import {rulesData} from './rules-data';
 import introElement from '../intro/intro';
 import {createElement, showElement} from '../../utils';
-import game1Element from '../../game/game1/game1-view';
+import game1Element from '../../game/game1/game1';
 
 const pKeys = Object.keys(rulesData.text.p);
 const sliced = pKeys.slice(2, 6);
