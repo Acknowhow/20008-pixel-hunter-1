@@ -1,3 +1,4 @@
+// Sample test file
 import assert from 'assert';
 
 const sum = (left, right) => left + right;

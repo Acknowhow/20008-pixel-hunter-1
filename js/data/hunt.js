@@ -1,7 +1,5 @@
-export const initialWelcomeState = {
-  screen: 0
-};
 export const initialGame = {
+  type: 1,
   screen: 0,
   level: 0,
   lives: 3,
@@ -9,27 +7,26 @@ export const initialGame = {
   score: 0
 };
 
-export const getWelcomeScreen = (num) => welcomeScreen[`screen-${num}`];
-
-export const getGame1Screen = (num) => game1[`screen-${num}`];
-export const getGame2Screen = (num) => game2[`screen-${num}`];
-export const getGame3Screen = (num) => game3[`screen-${num}`];
-
-export const getScore = () => {
-
+export const getTypeNum = (num) => {
+  return `type_${num}`;
 };
 
-export const nextScreen = (state) => {
-  const next = state.screen + 1;
+export const getScreenNum = (num) => {
+  return `screen_${num}`;
+};
 
-  if (!getWelcomeScreen(next)) {
-    throw new RangeError(`Can't find screen ${next}`);
-  }
+export const ansPush = (arr, obj) => {
+  arr.push(obj);
+};
 
-  state = Object.assign({}, state);
-  state.screen = next;
+export const ansCurrAssign = (ans, scr, win) => {
+  ans = Object.assign({}, ans);
+  ans[scr].isWin = win;
+  return ans;
+};
 
-  return state;
+export const getAnsKeys = (Answers) => {
+  return Object.keys(Answers);
 };
 
 const PAINT = `paint`;
@@ -41,202 +38,192 @@ const PHOTO_2 = `photo_2`;
 const PAINT_1 = `paint_1`;
 const PAINT_2 = `paint_2`;
 
-export const Action = {
-  PAINT, PHOTO
-};
 
-export const welcomeScreen = {
-  'screen-0': `intro`,
-  'screen-1': `greeting`,
-  'screen-2': `rules`
+export const questions = {
+  'type_1': {
+    'screen_0': {
+      Option1: {
+        image: {
+          src: `http://i.imgur.com/5kcp9i0.jpg`,
+          name: `Man bearded`,
+          width: 468,
+          height: 458
+        },
+        question: {
+          [PHOTO]: {
+            name: `question1`,
+            value: `photo`,
+            isWin: false,
+            text: `Фото`
+          },
+          [PAINT]: {
+            name: `question1`,
+            value: `paint`,
+            isWin: true,
+            text: `Рисунок`
+          }
+        }
+      },
+      Option2: {
+        image: {
+          src: `http://i.imgur.com/8aNXpLk.jpg`,
+          name: `Morgan Freeman`,
+          width: 468,
+          height: 458
+        },
+        question: {
+          [PHOTO]: {
+            name: `question2`,
+            value: `photo`,
+            isWin: true,
+            text: `Фото`
+          },
+          [PAINT]: {
+            name: `question2`,
+            value: `paint`,
+            isWin: false,
+            text: `Рисунок`
+          }
+        }
+      }
+    }
+  },
+  'type_2': {
+    'screen-0': {
+      Option1: {
+        image: {
+          src: `http://i.imgur.com/PKtMBLt.jpg`,
+          name: `Grandma Indian`,
+          width: 705,
+          height: 455
+        },
+        question: {
+          [PHOTO]: {
+            name: `question1`,
+            value: `photo`,
+            isWin: true,
+            text: `Фото`
+          },
+          [PAINT]: {
+            name: `question1`,
+            value: `paint`,
+            isWin: false,
+            text: `Рисунок`
+          }
+        }
+      }
+    }
+  },
+  'type_3': {
+    'screen-0': {
+      Option1: {
+        title: {
+          text: `Найдите рисунок среди изображений`
+        },
+        question: {
+          [PHOTO_1]: {
+            src: `http://i.imgur.com/LWFCQSK.jpg`,
+            name: `Cheetah`,
+            alt: `Option 1`,
+            width: 304,
+            height: 455,
+            isWin: false
+          },
+          [PAINT_1]: {
+            src: `http://i.imgur.com/FA4D3kO.jpg`,
+            name: `Lizard`,
+            alt: `Option 1`,
+            width: 304,
+            height: 455,
+            isWin: true
+          },
+          [PHOTO_2]: {
+            src: `http://i.imgur.com/y9cN0UD.jpg`,
+            name: `Figs`,
+            alt: `Option 1`,
+            width: 304,
+            height: 455,
+            isWin: false
+          }
+        }
+      },
+      Option2: {
+        title: {
+          text: `Найдите изображение среди рисунков`
+        },
+        question: {
+          [PHOTO_1]: {
+            src: `http://i.imgur.com/OI49pzH.jpg`,
+            name: `Bumble bee`,
+            alt: `Option 2`,
+            width: 304,
+            height: 455,
+            isWin: true
+          },
+          [PAINT_1]: {
+            src: `http://i.imgur.com/Sjjnuyi.jpg`,
+            name: `Metal spheres`,
+            alt: `Option 2`,
+            width: 304,
+            height: 455,
+            isWin: false
+          },
+          [PAINT_2]: {
+            src: `http://i.imgur.com/rvDgwaA.jpg`,
+            name: `Watermelon`,
+            alt: `Option 2`,
+            width: 304,
+            height: 455,
+            isWin: false
+          }
+        }
+      }
+    }
+  }
 };
-
 export const answers = {
-  'game-1': {
-    question: {
-
-      'stats': {
-        elapsedTime: 11,
-        speedBonus: 50,
-        speeePenalty: 0,
-        lifeBonus: 50,
-        bonusAdded: -150,
-        bonusTotal: 300
-      },
-      'question-1': {
-        isWin: true
-      },
-      'question-2': {
-        isWin: false
-      }
-
+  'type_1': {
+    'screen_0': {
+      isWin: null,
+      elapsedTime: 0,
+      speedBonus: 0,
+      speedPenalty: 0,
+      lifeBonus: 0,
+      bonusAdded: 0,
+      bonusTotal: 0
     }
-  }
-};
-
-export const game1 = {
-  'screen-0': {
-    Option1: {
-      image: {
-        src: `http://i.imgur.com/5kcp9i0.jpg`,
-        name: `Man bearded`,
-        width: 468,
-        height: 458
-      },
-      question: {
-        [PHOTO]: {
-          name: `question1`,
-          value: `photo`,
-          isWin: false,
-          text: `Фото`
-        },
-        [PAINT]: {
-          name: `question1`,
-          value: `paint`,
-          isWin: true,
-          text: `Рисунок`
-        }
-      }
+  },
+  'type_2': {
+    'screen_0': {
+      isWin: null,
+      elapsedTime: 0,
+      speedBonus: 0,
+      speedPenalty: 0,
+      lifeBonus: 0,
+      bonusAdded: 0,
+      bonusTotal: 0
+    }
+  },
+  'type_3': {
+    'screen_0': {
+      isWin: null,
+      elapsedTime: 0,
+      speedBonus: 0,
+      speedPenalty: 0,
+      lifeBonus: 0,
+      bonusAdded: 0,
+      bonusTotal: 0
     },
-    Option2: {
-      image: {
-        src: `http://i.imgur.com/8aNXpLk.jpg`,
-        name: `Morgan Freeman`,
-        width: 468,
-        height: 458
-      },
-      question: {
-        [PHOTO]: {
-          name: `question2`,
-          value: `photo`,
-          isWin: true,
-          text: `Фото`
-        },
-        [PAINT]: {
-          name: `question2`,
-          value: `paint`,
-          isWin: false,
-          text: `Рисунок`
-        }
-      }
-    }
-  }
-};
-
-export const game2 = {
-  'screen-0': {
-    Option1: {
-      image: {
-        src: `http://i.imgur.com/PKtMBLt.jpg`,
-        name: `Grandma Indian`,
-        width: 705,
-        height: 455
-      },
-      question: {
-        [PHOTO]: {
-          name: `question1`,
-          value: `photo`,
-          isWin: true,
-          text: `Фото`
-        },
-        [PAINT]: {
-          name: `question1`,
-          value: `paint`,
-          isWin: false,
-          text: `Рисунок`
-        }
-      }
+    'screen_1': {
+      isWin: null,
+      elapsedTime: 0,
+      speedBonus: 0,
+      speedPenalty: 0,
+      lifeBonus: 0,
+      bonusAdded: 0,
+      bonusTotal: 0
     }
   }
 };
 
 
-export const game3 = {
-  'screen-0': {
-    Option1: {
-      title: {
-        text: `Найдите рисунок среди изображений`
-      },
-      question: {
-        [PHOTO_1]: {
-          src: `http://i.imgur.com/LWFCQSK.jpg`,
-          name: `Cheetah`,
-          alt: `Option 1`,
-          width: 304,
-          height: 455,
-          isWin: false
-        },
-        [PAINT_1]: {
-          src: `http://i.imgur.com/FA4D3kO.jpg`,
-          name: `Lizard`,
-          alt: `Option 1`,
-          width: 304,
-          height: 455,
-          isWin: true
-        },
-        [PHOTO_2]: {
-          src: `http://i.imgur.com/y9cN0UD.jpg`,
-          name: `Figs`,
-          alt: `Option 1`,
-          width: 304,
-          height: 455,
-          isWin: false
-        }
-      }
-    },
-    Option2: {
-      title: {
-        text: `Найдите изображение среди рисунков`
-      },
-      question: {
-        [PHOTO_1]: {
-          src: `http://i.imgur.com/OI49pzH.jpg`,
-          name: `Bumble bee`,
-          alt: `Option 2`,
-          width: 304,
-          height: 455,
-          isWin: true
-        },
-        [PAINT_1]: {
-          src: `http://i.imgur.com/Sjjnuyi.jpg`,
-          name: `Metal spheres`,
-          alt: `Option 2`,
-          width: 304,
-          height: 455,
-          isWin: false
-        },
-        [PAINT_2]: {
-          src: `http://i.imgur.com/rvDgwaA.jpg`,
-          name: `Watermelon`,
-          alt: `Option 2`,
-          width: 304,
-          height: 455,
-          isWin: false
-        }
-      }
-    }
-  }
-};
-
-
-// const CHECKED = `checked`;
-// const UNCHECKED = ``;
-
-// export const game1 = {
-//   'level-0': {
-//   }
-// }
-// export const setLives = (game, lives) => {
-//   if (lives < 0) {
-//     throw new RangeError(`Can't set negative lives`);
-//   }
-//   game = Object.assign({}, game);
-//   game.lives = lives;
-//   return game;
-// };
-//
-export const tick = (game) => {
-  game = Object.assign({}, game);
-  game.time++;
-  return game;
-};
