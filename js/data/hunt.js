@@ -15,11 +15,15 @@ export const getScreenNum = (num) => {
   return `screen_${num}`;
 };
 
+export const getNextScreen = (state) => {
+
+}
+
 export const ansPush = (arr, obj) => {
   arr.push(obj);
 };
 
-export const ansCurrAssign = (ans, scr, win) => {
+export const assignCurrentAnswer = (ans, scr, win) => {
   ans = Object.assign({}, ans);
   ans[scr].isWin = win;
   return ans;
@@ -38,6 +42,7 @@ const PHOTO_2 = `photo_2`;
 const PAINT_1 = `paint_1`;
 const PAINT_2 = `paint_2`;
 
+export const gameAnswers = [];
 
 export const questions = {
   'type_1': {

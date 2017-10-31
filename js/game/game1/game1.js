@@ -7,12 +7,12 @@ import {
   getScreenNum,
   getTypeNum,
   ansPush,
-  ansCurrAssign
+  assignCurrentAnswer,
+  gameAnswers
 } from '../../data/hunt';
 import {createElement, showElement} from '../../utils';
 import {drawHeader} from '../header/header';
 import {getResult} from "./game1-utils";
-
 
 const screen = questions[getTypeNum(initialGame.type)][getScreenNum(initialGame.screen)];
 const options = Object.keys(screen);
@@ -70,8 +70,6 @@ const game1 = (state) => {
   const typeNum = getTypeNum(initialGame.type);
   const screenNum = getScreenNum(initialGame.screen);
 
-  const gameAnswers = [];
-
 
   form.onclick = () => {
 
@@ -83,6 +81,8 @@ const game1 = (state) => {
     };
 
     if (answered()) {
+
+      // Selecting both answers from database
       const answer1 = answers1Checked[0].value ? screen.Option1.question[answers1Checked[0].value] : null;
       const answer2 = answers2Checked[0].value ? screen.Option2.question[answers2Checked[0].value] : null;
 
@@ -91,6 +91,7 @@ const game1 = (state) => {
         const win1 = ans1.isWin;
         const win2 = ans2.isWin;
 
+        // Checking if both answers are correct
         const win = getResult(win1, win2);
 
         // Getting answer keys from data file
@@ -108,7 +109,7 @@ const game1 = (state) => {
         const [currentAnswer] = getAns;
 
         // Assigning new Object and pushing answer into array
-        ansPush(gameAnswers, ansCurrAssign(currentAnswer, screenNum, win));
+        ansPush(gameAnswers, assignCurrentAnswer(currentAnswer, screenNum, win));
 
       };
 
