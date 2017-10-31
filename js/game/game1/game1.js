@@ -60,140 +60,85 @@ const game1Print = (state) => {
 };
 
 const game1 = (state) => {
+
   const el = createElement(game1Print(state));
-  const form = Array.from(el.querySelectorAll(`.game__option`));
+  const form = el.querySelector(`.game__content`);
 
-  const formOptions1 = form[0];
-  const formOptions2 = form[1];
-
-  let switchAnswers = [];
-  const gameAnswers = [];
+  const answers1 = Array.from(form.querySelectorAll(`input[name='question1']`));
+  const answers2 = Array.from(form.querySelectorAll(`input[name='question2']`));
 
   const typeNum = getTypeNum(initialGame.type);
   const screenNum = getScreenNum(initialGame.screen);
 
+  const gameAnswers = [];
 
-  formOptions1.onclick = (evt) => {
-    const target = evt.target;
-    const value = evt.target.value;
 
-    const checked = evt.target.checked;
+  form.onclick = () => {
 
-    if (target.tagName.toLowerCase() === `input`) {
-      const answer = checked ? screen.Option1.question[value] : null;
+    const answers1Checked = answers1.filter((ans) => ans.checked);
+    const answers2Checked = answers2.filter((ans) => ans.checked);
 
-      const assignAnswer1 = (ans) => {
+    const answered = () => {
+      return answers1Checked.length && answers2Checked.length;
+    };
 
-        switch (ans.isWin) {
-          case true:
+    if (answered()) {
+      const answer1 = answers1Checked[0].value ? screen.Option1.question[answers1Checked[0].value] : null;
+      const answer2 = answers2Checked[0].value ? screen.Option2.question[answers2Checked[0].value] : null;
 
-            switchAnswers.push(`ans_1`);
-
-            if (switchAnswers.find((key) => key === `ans_2`)) {
-
-              ansPush(switchAnswers, ansSwitchAssign(ans, `ans_1`));
-              const [Win1, Win2] = switchAnswers;
-
-              const win = getResult([Win1.isWin, Win2.isWin]);
-
-              const ansKeys = getAnsKeys(answers);
-
-              const mapAnsType = (tNum, sNum) => {
-                return ansKeys.map((type) => ({type, [sNum]: answers[type][sNum]})).filter((key) => {
-                  return key.type === `${tNum}`;
-                });
-              };
-
-              const getAns = mapAnsType(typeNum, screenNum);
-
-              const [currentAnswer] = getAns;
-
-              ansPush(gameAnswers, ansCurrAssign(currentAnswer, screenNum, win));
-
-              switchAnswers = [];
-
-              break;
-
-            } else {
-
-              break;
-            }
-
-          default:
-
-            throw new RangeError(`Unknown result`);
-
-        }
-
-      };
-
-      assignAnswer1(answer);
 
     }
 
+
+    // const assignAnswer1 = (ans) => {
+    //
+    //   switch (ans.isWin) {
+    //     case true:
+    //
+    //       switchAnswers.push(`ans_1`);
+    //
+    //       if (switchAnswers.find((key) => key === `ans_2`)) {
+    //
+    //         ansPush(switchAnswers, ansSwitchAssign(ans, `ans_1`));
+    //         const [Win1, Win2] = switchAnswers;
+    //
+    //         const win = getResult([Win1.isWin, Win2.isWin]);
+    //
+    //         const ansKeys = getAnsKeys(answers);
+    //
+    //         const mapAnsType = (tNum, sNum) => {
+    //           return ansKeys.map((type) => ({type, [sNum]: answers[type][sNum]})).filter((key) => {
+    //             return key.type === `${tNum}`;
+    //           });
+    //         };
+    //
+    //         const getAns = mapAnsType(typeNum, screenNum);
+    //
+    //         const [currentAnswer] = getAns;
+    //
+    //         ansPush(gameAnswers, ansCurrAssign(currentAnswer, screenNum, win));
+    //
+    //         switchAnswers = [];
+    //
+    //         break;
+    //
+    //       } else {
+    //
+    //         break;
+    //       }
+    //
+    //     default:
+    //
+    //       throw new RangeError(`Unknown result`);
+    //
+    //   }
+    //
+    // };
+    //
+    // assignAnswer1(answer);
+
   };
 
-  formOptions2.onclick = (evt) => {
-
-    const target = evt.target;
-    const value = evt.target.value;
-
-    const checked = evt.target.checked;
-
-    if (target.tagName.toLowerCase() === `input`) {
-      const answer = checked ? screen.Option2.question[value] : null;
-
-      const assignAnswer2 = (ans) => {
-
-        switch (ans.isWin) {
-          case true:
-
-            switchAnswers.push(`ans_2`);
-
-            if (switchAnswers.find((key) => key === `ans_1`)) {
-
-              ansPush(switchAnswers, ansSwitchAssign(ans, `ans_2`));
-              const [Win1, Win2] = switchAnswers;
-
-              const win = getResult([Win1.isWin, Win2.isWin]);
-
-              const ansKeys = getAnsKeys(answers);
-
-              const mapAnsType = (tNum, sNum) => {
-                return ansKeys.map((type) => ({type, [sNum]: answers[type][sNum]})).filter((key) => {
-                  return key.type === `${tNum}`;
-                });
-              };
-
-              const getAns = mapAnsType(typeNum, screenNum);
-
-              const [currentAnswer] = getAns;
-
-              const ansAssigned = ansCurrAssign(currentAnswer, screenNum, win);
-              ansPush(gameAnswers, ansAssigned);
-
-
-              switchAnswers = [];
-
-              break;
-
-            } else {
-
-              break;
-            }
-
-          default:
-
-            throw new RangeError(`Unknown result`);
-
-        }
-
-      };
-
-      assignAnswer2(answer);
-
-    }
-  };
 
   el.querySelector(`.header__back`).onclick = () => {
     showElement(introElement());
