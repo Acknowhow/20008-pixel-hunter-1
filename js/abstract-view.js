@@ -5,7 +5,9 @@ export default class AbstractView {
   get template() {
     throw new Error(`You have to define template for view`);
   }
+  get footer() {
 
+  }
   get markUp() {
     return this.template;
   }

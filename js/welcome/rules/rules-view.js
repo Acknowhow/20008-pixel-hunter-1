@@ -1,7 +1,7 @@
 import {rulesData} from './rules-data';
-import {createElement, showElement} from '../../utils';
+import footer from '../../footer/footer';
 
-import game1Element from '../../game/game1/game1';
+import AbstractView from "../../abstract-view";
 
 const pKeys = Object.keys(rulesData.text.p);
 const sliced = pKeys.slice(2, 6);
@@ -14,8 +14,14 @@ const [paintSrc, paintWidth, paintHeight] =
 
 const [formInput, formButton] = Object.keys(rulesData.form).map((key) => rulesData.form[key]);
 
-const rulesPrint = () => {
-  return `<header class="header">
+export default class RulesView extends AbstractView {
+  constructor() {
+    super();
+  }
+
+  get template() {
+
+    return `<header class="header">
             <div class="header__back">
             
               <span class="back">
@@ -42,29 +48,32 @@ const rulesPrint = () => {
               <button class="rules__button  continue" type="${formButton.type}" disabled>${formButton.text}</button>
               
             </form>      
-          </div>`.trim();
-};
+          </div>${footer()}`.trim();
+  }
 
-const rules = () => {
-  const el = createElement(rulesPrint());
-  const linkBack = el.querySelector(`.header__back`);
+  bind() {
+    const linkBack = this.element.querySelector(`.header__back`);
 
-  const rulesInput = el.querySelector(`.rules__input`);
-  const rulesButton = el.querySelector(`.rules__button`);
+    // const rulesInput = el.querySelector(`.rules__input`);
+    // const rulesButton = el.querySelector(`.rules__button`);
+    //
+    linkBack.onclick = () => {
+      this.onReturn();
+    };
 
-  linkBack.onclick = () => {
-    showElement(introElement());
-  };
+    // rulesInput.oninput = () => {
+    //   rulesButton.removeAttribute(`disabled`);
+    // };
+    //
+    // rulesButton.onclick = () => {
+    //   showElement(game1Element());
+    // };
 
-  rulesInput.oninput = () => {
-    rulesButton.removeAttribute(`disabled`);
-  };
+  }
 
-  rulesButton.onclick = () => {
-    showElement(game1Element());
-  };
+  onReturn() {
 
-  return el;
-};
+  }
 
-export default rules;
+
+}

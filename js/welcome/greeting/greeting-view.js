@@ -40,16 +40,16 @@ export default class GreetingView extends AbstractView {
   }
 
   bind() {
-    //   const greeting = () => {
-    //     // const el = createElement(greetingPrint());
-    //     // const linkNext = el.querySelector(`img[alt='Next']`);
-    //
-    //     // linkNext.onclick = () => {
-    //     //   showElement(rulesElement());
-    //     // };
-    //
-    //     // return el;
-    //   };
+    const linkNext = this.element.querySelector(`img[alt='Next']`);
+
+    linkNext.onclick = () => {
+      this.onNext();
+    };
+
+  }
+
+  onNext() {
+
   }
 }
 
