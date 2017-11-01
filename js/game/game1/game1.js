@@ -1,128 +1,57 @@
-import introElement from './../../welcome/intro/intro';
 import {
   initialGame,
   answers,
-  questions,
-  getAnsKeys,
-  getScreenNum,
   getTypeNum,
+  getScreenNum,
+  getAnsKeys,
   ansPush,
   assignCurrentAnswer,
   gameAnswers
 } from '../../data/hunt';
-import {createElement, showElement} from '../../utils';
-import {drawHeader} from '../header/header';
+import GreetingView from '../../welcome/greeting/greeting-view';
 import {getResult} from "./game1-utils";
+import Game1View from './game1-view';
+import {showElement} from "../../utils";
 
-const screen = questions[getTypeNum(initialGame.type)][getScreenNum(initialGame.screen)];
-const options = Object.keys(screen);
-
-const optionsParams = options.map((option) => (
-  {option, imageParams: screen[option].image, questionParams: screen[option].question}));
-
-const game1Print = (state) => {
-  return `${drawHeader(state)}
-  <div class="game">
-    <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
-    
-    <form class="game__content">
-       ${optionsParams.map(({option, imageParams, questionParams}) => `<div class="game__option">
-        <img src="${imageParams.src}" alt="${option}" width="${imageParams.width}" height="${imageParams.height}">
-        
-        <label class="game__answer game__answer--${questionParams.photo.value}">
-          <input name="${questionParams.photo.name}" type="radio" value="${questionParams.photo.value}">
-          <span>${questionParams.photo.text}</span>
-        </label>
-        
-        <label class="game__answer game__answer--${questionParams.paint.value}">
-          <input name="${questionParams.paint.name}" type="radio" value="${questionParams.paint.value}">
-          <span>${questionParams.paint.text}</span>
-        </label>
-        
-      </div>`).join(``)}
-    </form>
-    
-    <div class="stats">
-      <ul class="stats">
-        <li class="stats__result stats__result--wrong"></li>
-        <li class="stats__result stats__result--slow"></li>
-        <li class="stats__result stats__result--fast"></li>
-        <li class="stats__result stats__result--correct"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-        <li class="stats__result stats__result--unknown"></li>
-      </ul>
-    </div>
-  </div>`.trim();
-};
-
-const game1 = (state) => {
-
-  const el = createElement(game1Print(state));
-  const form = el.querySelector(`.game__content`);
-
-  const answers1 = Array.from(form.querySelectorAll(`input[name='question1']`));
-  const answers2 = Array.from(form.querySelectorAll(`input[name='question2']`));
+const changeScreen = (state) => {
+  const screen = new Game1View(state);
+  const greeting = new GreetingView();
 
   const typeNum = getTypeNum(initialGame.type);
   const screenNum = getScreenNum(initialGame.screen);
 
+  screen.onAnswer = (ans1, ans2) => {
 
-  form.onclick = () => {
+    const win1 = ans1.isWin;
+    const win2 = ans2.isWin;
 
-    const answers1Checked = answers1.filter((ans) => ans.checked);
-    const answers2Checked = answers2.filter((ans) => ans.checked);
+    // Checking if both answers are correct
+    const win = getResult(win1, win2);
 
-    const answered = () => {
-      return answers1Checked.length && answers2Checked.length;
+    // Getting answer keys from data file
+    const ansKeys = getAnsKeys(answers);
+
+    // Mapping answer by type and current screen number
+    const mapAnsType = (tNum, sNum) => {
+      return ansKeys.map((type) => ({type, [sNum]: answers[type][sNum]})).filter((key) => {
+        return key.type === `${tNum}`;
+      });
     };
 
-    if (answered()) {
+    const getAns = mapAnsType(typeNum, screenNum);
 
-      // Selecting both answers from database
-      const answer1 = answers1Checked[0].value ? screen.Option1.question[answers1Checked[0].value] : null;
-      const answer2 = answers2Checked[0].value ? screen.Option2.question[answers2Checked[0].value] : null;
+    const [currentAnswer] = getAns;
 
-      const assignAnswer = (ans1, ans2) => {
+    // Assigning new Object and pushing answer into array
+    ansPush(gameAnswers, assignCurrentAnswer(currentAnswer, screenNum, win));
 
-        const win1 = ans1.isWin;
-        const win2 = ans2.isWin;
-
-        // Checking if both answers are correct
-        const win = getResult(win1, win2);
-
-        // Getting answer keys from data file
-        const ansKeys = getAnsKeys(answers);
-
-        // Mapping answer by type and current screen number
-        const mapAnsType = (tNum, sNum) => {
-          return ansKeys.map((type) => ({type, [sNum]: answers[type][sNum]})).filter((key) => {
-            return key.type === `${tNum}`;
-          });
-        };
-
-        const getAns = mapAnsType(typeNum, screenNum);
-
-        const [currentAnswer] = getAns;
-
-        // Assigning new Object and pushing answer into array
-        ansPush(gameAnswers, assignCurrentAnswer(currentAnswer, screenNum, win));
-
-      };
-
-      assignAnswer(answer1, answer2);
-    }
   };
 
-  el.querySelector(`.header__back`).onclick = () => {
-    showElement(introElement());
+  screen.onReturn = () => {
+    showElement(greeting);
   };
-
-  return el;
 };
 
-export default () => game1(initialGame);
+export default () => changeScreen(initialGame);
+
 

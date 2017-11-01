@@ -1,10 +1,8 @@
 export const initialGame = {
   type: 1,
   screen: 0,
-  level: 0,
   lives: 3,
-  time: 0,
-  score: 0
+  time: 0
 };
 
 export const getTypeNum = (num) => {
