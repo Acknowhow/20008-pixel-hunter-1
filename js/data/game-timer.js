@@ -6,14 +6,19 @@ export default class Clock {
   }
 
   start() {
-    this.interval = setTimeout(() => {
-      this.state = this.tick(this.state); // decreased by 1s, assigned into obj
-      this.screen.updateTime(this.state.time);
-    }, 1000);
+    this.timer = () => {
+      setTimeout(() => {
+        this.state = this.tick(this.state); // decreased by 1s, assigned into obj
+        this.screen.updateTime(this.state.time);
+        this.timer();
+      }, 1000);
+    };
+    this.timer();
   }
 
+
   reset() {
-    clearInterval(this.interval);
-    return this.interval;
+    clearInterval(this.timer);
+    return this.timer;
   }
 }

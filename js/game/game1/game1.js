@@ -20,6 +20,7 @@ const changeScreen = (state) => {
   const timer = new Clock({
     _state: state,
     // Current screen
+
     _screen: screen,
 
     // Object assign function
