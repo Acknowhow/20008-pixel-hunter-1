@@ -93,14 +93,14 @@ export default class Game1View extends AbstractView {
 
   }
 
-  onAnswer() {
+  onAnswer(...answers) {
+    return answers;
 
   }
 
   onReturn() {
 
   }
-
 }
 
 

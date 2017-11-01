@@ -22,8 +22,6 @@ const changeScreen = (state) => {
 
   screen.onAnswer = (ans1, ans2) => {
 
-    console.log(ans1);
-
     const win1 = ans1.isWin;
     const win2 = ans2.isWin;
 
@@ -47,15 +45,17 @@ const changeScreen = (state) => {
     // Assigning new Object and pushing answer into array
     ansPush(gameAnswers, assignCurrentAnswer(currentAnswer, screenNum, win));
 
-    showElement(screen[typeNum][screenNum].element);
+    console.log(gameAnswers);
 
   };
 
   screen.onReturn = () => {
     showElement(greeting.element);
   };
+
+  return screen;
 };
 
-export default () => changeScreen(initialGame);
+export default () => changeScreen(initialGame).element;
 
 
