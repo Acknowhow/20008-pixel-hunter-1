@@ -1,7 +1,5 @@
 import {introData} from './intro-data';
 import footer from '../../footer/footer';
-
-// import greetingElement from '../greeting/greeting';
 import AbstractView from '../../abstract-view';
 
 export default class IntroView extends AbstractView {
@@ -22,12 +20,12 @@ export default class IntroView extends AbstractView {
 
     const asterisk = this.element.querySelector(`.intro__asterisk`);
 
-    // const next = () => {
-    //   showElement(greetingElement());
-    // };
+    asterisk.onclick = () => {
+      this.onNext();
+    };
+  }
 
-    // asterisk.addEventListener(`click`, next);
-    // return el;
+  onNext() {
 
   }
 }
