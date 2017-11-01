@@ -62,12 +62,14 @@ export default class Game1View extends AbstractView {
 
   bind() {
     const form = this.element.querySelector(`.game__content`);
+    this.timeElement = this.element.querySelector(`.game__timer`);
 
     const answers1 = Array.from(form.querySelectorAll(`input[name='question1']`));
     const answers2 = Array.from(form.querySelectorAll(`input[name='question2']`));
 
 
     form.onclick = () => {
+      const timerElement = this.element.querySelector(`.game__timer`);
 
       const answers1Checked = answers1.filter((ans) => ans.checked);
       const answers2Checked = answers2.filter((ans) => ans.checked);
@@ -91,6 +93,9 @@ export default class Game1View extends AbstractView {
       this.onReturn();
     };
 
+  }
+  updateTime(time) {
+    this.timeElement.textContent = time;
   }
 
   onAnswer(...answers) {

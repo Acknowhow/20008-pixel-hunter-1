@@ -13,6 +13,12 @@ export const getScreenNum = (num) => {
   return `screen_${num}`;
 };
 
+export const tick = (game) => {
+  game = Object.assign({}, game);
+  game.time--;
+  return game;
+};
+
 export const ansPush = (arr, obj) => {
   arr.push(obj);
 };

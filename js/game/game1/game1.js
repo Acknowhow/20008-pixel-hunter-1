@@ -1,5 +1,6 @@
 import {
   initialGame,
+  tick,
   answers,
   getTypeNum,
   getScreenNum,
@@ -8,6 +9,7 @@ import {
   assignCurrentAnswer,
   gameAnswers
 } from '../../data/hunt';
+import Clock from '../../data/game-timer';
 import GreetingView from '../../welcome/greeting/greeting-view';
 import {getResult} from "./game1-utils";
 import Game1View from './game1-view';
@@ -15,6 +17,15 @@ import {showElement} from "../../utils";
 
 const changeScreen = (state) => {
   const screen = new Game1View(state);
+  const timer = new Clock({
+    _state: state,
+    // Current screen
+    _screen: screen,
+
+    // Object assign function
+    _tick: tick
+  });
+  timer.start();
   const greeting = new GreetingView();
 
   const typeNum = getTypeNum(initialGame.type);

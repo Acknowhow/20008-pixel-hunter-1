@@ -1,22 +1,19 @@
 export default class Clock {
   constructor(params) {
-    this.count = params.count;
-    this.secondsElem = params.el;
+    this.state = params._state;
+    this.screen = params._screen;
+    this.tick = params._tick;
   }
+
   start() {
-    this.interval = setInterval(() => this.render(), 1000);
+    this.interval = setTimeout(() => {
+      this.state = this.tick(this.state); // decreased by 1s, assigned into obj
+      this.screen.updateTime(this.state.time);
+    }, 1000);
   }
-  render() {
-    this.secondsElem.innerHTML = (() => {
-      if (this.count === 0) {
-        clearInterval(this.interval);
-      }
-      return this.count--;
-    })();
-  }
+
   reset() {
     clearInterval(this.interval);
-    this.count = 0;
-    this.secondsElem.innerHTML = `0` + this.count;
+    return this.interval;
   }
 }
