@@ -68,8 +68,12 @@ export default class RulesView extends AbstractView {
     };
 
     rulesButton.onclick = () => {
-      showElement(game1Element());
+      this.onStart();
     };
+
+  }
+
+  onStart() {
 
   }
 
