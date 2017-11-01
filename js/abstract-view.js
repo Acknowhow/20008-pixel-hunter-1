@@ -1,17 +1,4 @@
-import footerDefault from 'footer/footer';
-
-const createElement = (template, footer) => {
-  const templateEl = document.createElement(`template`);
-  const footerEl = document.createElement(`footer`);
-
-  footerEl.classList.add(`footer`);
-  templateEl.innerHTML = template;
-
-  footerEl.innerHTML = footer;
-  templateEl.content.appendChild(footerEl);
-
-  return templateEl.content;
-};
+import {createElement} from './utils';
 
 export default class AbstractView {
 
@@ -20,11 +7,11 @@ export default class AbstractView {
   }
 
   get markUp() {
-    this.template();
+    return this.template;
   }
 
   render() {
-    return createElement(this.markUp(), footerDefault());
+    return createElement(this.markUp);
   }
 
   bind() {
