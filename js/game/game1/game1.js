@@ -45,7 +45,6 @@ const changeScreen = (state) => {
     // Assigning new Object and pushing answer into array
     ansPush(gameAnswers, assignCurrentAnswer(currentAnswer, screenNum, win));
 
-    console.log(gameAnswers);
 
   };
 

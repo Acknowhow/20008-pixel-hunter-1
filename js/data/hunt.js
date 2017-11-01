@@ -13,10 +13,6 @@ export const getScreenNum = (num) => {
   return `screen_${num}`;
 };
 
-export const getNextScreen = (state) => {
-
-};
-
 export const ansPush = (arr, obj) => {
   arr.push(obj);
 };
