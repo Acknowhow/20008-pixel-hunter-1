@@ -7,7 +7,8 @@ export default class Clock {
 
   start() {
     this.timer = () => {
-      setTimeout(() => {
+      this.count = setTimeout(() => {
+
         this.state = this.tick(this.state); // decreased by 1s, assigned into obj
         this.screen.updateTime(this.state.time);
         this.timer();
@@ -18,7 +19,6 @@ export default class Clock {
 
 
   reset() {
-    clearInterval(this.timer);
-    return this.timer;
+    clearTimeout(this.count);
   }
 }

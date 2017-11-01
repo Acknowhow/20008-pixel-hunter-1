@@ -26,7 +26,9 @@ const changeScreen = (state) => {
     // Object assign function
     _tick: tick
   });
+
   timer.start();
+
   const greeting = new GreetingView();
 
   const typeNum = getTypeNum(initialGame.type);
@@ -34,6 +36,7 @@ const changeScreen = (state) => {
 
   screen.onAnswer = (ans1, ans2) => {
 
+    timer.reset();
     const win1 = ans1.isWin;
     const win2 = ans2.isWin;
 
