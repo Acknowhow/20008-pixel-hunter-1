@@ -8,8 +8,8 @@ export default class AbstractView {
 
   // Returns last template used
   getMarkUp() {
-    return this.render();
 
+    return this.render();
   }
 
   get template() {

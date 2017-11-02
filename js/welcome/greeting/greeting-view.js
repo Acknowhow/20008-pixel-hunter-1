@@ -1,32 +1,31 @@
-import {greetingData} from './greeting-data';
-// import rulesElement from '../rules/rules';
 import footer from '../../footer/footer';
 import AbstractView from "../../abstract-view";
 
 export default class GreetingView extends AbstractView {
-  constructor() {
+  constructor(data) {
     super();
+    this.data = data;
   }
 
   get template() {
-    const pKeys = Object.keys(greetingData.text.p);
+    const pKeys = Object.keys(this.data.text.p);
     const sliced = pKeys.slice(0, 4);
 
     const [greetingSrc, greetingWidth, greetingHeight, greetingAlt] =
-      Object.keys(greetingData.img.greeting).map((key) => greetingData.img.greeting[key]);
+      Object.keys(this.data.img.greeting).map((key) => this.data.img.greeting[key]);
 
     const [nextSrc, nextWidth, nextHeight, nextAlt] =
-      Object.keys(greetingData.img.next).map((key) => greetingData.img.next[key]);
+      Object.keys(this.data.img.next).map((key) => this.data.img.next[key]);
 
     return `<div class="greeting central--blur">
     <div class="greeting__logo">
       <img src="${greetingSrc}" width="${greetingWidth}" height="${greetingHeight}" alt="${greetingAlt}">
     </div>
     
-    <h1 class="greeting__asterisk">${greetingData.text.h.h1}</h1>
+    <h1 class="greeting__asterisk">${this.data.text.h.h1}</h1>
     <div class="greeting__challenge">
-      <h3>${greetingData.text.h.h3}</h3>
-      <p>${sliced.map((key) => `${greetingData.text.p[key]}</br>`).join(``)}${greetingData.text.p[pKeys[4]]}</p>
+      <h3>${this.data.text.h.h3}</h3>
+      <p>${sliced.map((key) => `${this.data.text.p[key]}</br>`).join(``)}${this.data.text.p[pKeys[4]]}</p>
     </div>
     
     <div class="greeting__continue">
