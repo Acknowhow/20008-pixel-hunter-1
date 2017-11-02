@@ -10,19 +10,21 @@ export default class Clock {
       this.count = setTimeout(() => {
 
         this.state = this.tick(this.state); // decreased by 1s, assigned into obj
-        if (this.state.time === -1) {
-          this.count.reset();
-        }
         this.screen.updateTime(this.state.time);
         this.timer();
+
+        if (this.state.time === 0) {
+          this.reset();
+        }
+
       }, 1000);
     };
+
     this.timer();
   }
 
-
   reset() {
     clearTimeout(this.count);
-    return this.count;
+    return this.state.time;
   }
 }

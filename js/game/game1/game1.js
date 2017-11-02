@@ -18,25 +18,30 @@ import {showElement} from "../../utils";
 const changeScreen = (state) => {
   const screen = new Game1View(state);
   const timer = new Clock({
+
     _state: state,
     // Current screen
-
     _screen: screen,
-
     // Object assign function
     _tick: tick
+
   });
 
   timer.start();
 
+  screen.overTime = () => {
+    console.log(true);
+  }
+
   const greeting = new GreetingView();
 
-  const typeNum = getTypeNum(initialGame.type);
-  const screenNum = getScreenNum(initialGame.screen);
+  const typeNum = getTypeNum(state.type);
+  const screenNum = getScreenNum(state.screen);
 
   screen.onAnswer = (ans1, ans2) => {
 
-    timer.reset();
+    const timeLeft = timer.reset();
+
     const win1 = ans1.isWin;
     const win2 = ans2.isWin;
 

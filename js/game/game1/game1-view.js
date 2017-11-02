@@ -94,8 +94,18 @@ export default class Game1View extends AbstractView {
     };
 
   }
+
+  // Timer updates existing time
   updateTime(time) {
+    if (time === 0) {
+      this.overTime();
+    }
+
     this.timeElement.textContent = time;
+  }
+
+  overTime() {
+
   }
 
   onAnswer(...answers) {
