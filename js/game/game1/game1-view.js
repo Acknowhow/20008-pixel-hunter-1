@@ -69,7 +69,6 @@ export default class Game1View extends AbstractView {
 
 
     form.onclick = () => {
-      const timerElement = this.element.querySelector(`.game__timer`);
 
       const answers1Checked = answers1.filter((ans) => ans.checked);
       const answers2Checked = answers2.filter((ans) => ans.checked);
