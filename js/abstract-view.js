@@ -6,15 +6,21 @@ export default class AbstractView {
   get footer() {
 
   }
+
+  // Returns last template used
   getMarkUp() {
+    return this.render();
 
   }
+
   get template() {
-    return this.getMarkUp();
+    throw new RangeError(`You have to define template first`);
+
   }
 
   render() {
     return createElement(this.template);
+
   }
 
   bind() {
@@ -26,13 +32,17 @@ export default class AbstractView {
   }
 
   get element() {
-    if (!this.getMarkUp) {
-      this.getMarkUp = this.render();
+    this._element = this.getMarkUp();
+    this.bind();
+
+    if (!this._element) {
+      this._element = this.render();
 
       this.bind();
-      this.bindHandlers();
+      return this._element;
     }
 
-    return this.getMarkUp;
+    this.bindHandlers();
+    return this._element;
   }
 }

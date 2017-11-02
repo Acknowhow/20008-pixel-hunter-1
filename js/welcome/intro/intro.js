@@ -5,7 +5,7 @@ import Intro from './intro-view';
 const intro = new Intro();
 
 intro.onNext = () => {
-  // showElement(greetingElement().element);
+  // showElement(greetingElement().element());
 };
 
 export default () => intro;
