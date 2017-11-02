@@ -2,7 +2,6 @@ import {createElement} from './utils';
 
 export default class AbstractView {
 
-
   get footer() {
 
   }
@@ -33,16 +32,16 @@ export default class AbstractView {
 
   get element() {
     this._element = this.getMarkUp();
-    this.bind();
 
     if (!this._element) {
       this._element = this.render();
 
-      this.bind();
+      // Because previous template has different handlers
+      this.bindHandlers();
       return this._element;
     }
 
-    this.bindHandlers();
+    this.bind();
     return this._element;
   }
 }

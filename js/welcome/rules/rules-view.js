@@ -1,7 +1,5 @@
 import {rulesData} from './rules-data';
 import footer from '../../footer/footer';
-import {showElement} from "../../utils";
-import game1Element from '../../game/game1/game1';
 
 import AbstractView from "../../abstract-view";
 
@@ -54,10 +52,10 @@ export default class RulesView extends AbstractView {
   }
 
   bind() {
-    const linkBack = this.element.querySelector(`.header__back`);
+    const linkBack = this._element.querySelector(`.header__back`);
 
-    const rulesInput = this.element.querySelector(`.rules__input`);
-    const rulesButton = this.element.querySelector(`.rules__button`);
+    const rulesInput = this._element.querySelector(`.rules__input`);
+    const rulesButton = this._element.querySelector(`.rules__button`);
 
     linkBack.onclick = () => {
       this.onReturn();

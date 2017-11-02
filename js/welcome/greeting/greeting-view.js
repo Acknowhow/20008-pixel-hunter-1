@@ -40,7 +40,7 @@ export default class GreetingView extends AbstractView {
   }
 
   bind() {
-    const linkNext = this.element.querySelector(`img[alt='Next']`);
+    const linkNext = this._element.querySelector(`img[alt='Next']`);
 
     linkNext.onclick = () => {
       this.onNext();

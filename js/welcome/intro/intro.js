@@ -1,11 +1,12 @@
 import Intro from './intro-view';
-// import {showElement} from "../../utils";
-// import greetingElement from '../greeting/greeting';
+import data from './intro-data';
+import {showElement} from "../../utils";
+import greetingElement from '../greeting/greeting';
 
-const intro = new Intro();
+const intro = new Intro(data);
 
 intro.onNext = () => {
-  // showElement(greetingElement().element());
+  showElement(greetingElement().element);
 };
 
 export default () => intro;
