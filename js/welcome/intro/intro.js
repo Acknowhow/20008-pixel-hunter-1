@@ -1,6 +1,7 @@
 import Intro from './intro-view';
 import data from './intro-data';
-import {showElement} from "../../utils";
+
+import {showElement} from '../../utils';
 import greetingElement from '../greeting/greeting';
 
 const intro = new Intro(data);

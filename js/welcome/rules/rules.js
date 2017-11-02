@@ -1,9 +1,10 @@
 import RulesView from './rules-view';
+import data from './rules-data';
+
 import greetingElement from './../greeting/greeting';
 import {showElement} from '../../utils';
 
-const rules = new RulesView();
-
+const rules = new RulesView(data);
 
 rules.onReturn = () => {
   showElement(greetingElement().element);

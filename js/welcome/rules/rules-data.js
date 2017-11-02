@@ -1,4 +1,4 @@
-export const rulesData = {
+const data = {
   icon: {
     photo: {
       src: `img/photo_icon.png`,
@@ -36,3 +36,5 @@ export const rulesData = {
     }
   }
 };
+
+export default data;
