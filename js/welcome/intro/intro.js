@@ -10,7 +10,6 @@ export const introElement = () => {
   intro.onNext = () => {
 
     showElement(greetingElement());
-
   };
 
   return intro;

@@ -5,6 +5,7 @@ import {
   answers,
   getTypeNum,
   getScreenNum,
+  getCurrentScreen,
   getAnsKeys,
   getAnsResultGame1,
   ansPush,
@@ -13,6 +14,7 @@ import {
   calculateScore,
   Result
 } from '../../data/hunt';
+
 import Clock from '../../data/game-timer';
 import greetingElement from '../../welcome/greeting/greeting';
 
@@ -27,6 +29,10 @@ const changeScreen = (state) => {
 
   const typeNum = getTypeNum(state.type);
   const screenNum = getScreenNum(state.screen);
+
+  const currentScreen = () => {
+    return getCurrentScreen(typeNum, screenNum);
+  };
 
   // Get current time from timer Object, assign to current state
   timer.currentTime = (_state) => {

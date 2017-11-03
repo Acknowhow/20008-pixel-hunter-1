@@ -12,23 +12,27 @@ export const Result = {
   LOST: `lost`
 };
 
-export const getTypeNum = (num) => {
-  return `type_${num}`;
+export const getTypeNum = (tNum) => {
+  return `type_${tNum}`;
 };
 
-export const getScreenNum = (num) => {
-  return `screen_${num}`;
+export const getScreenNum = (sNum) => {
+  return `screen_${sNum}`;
 };
 
-const getLevel = (num) => quest[`level-${num}`];
+export const getCurrentScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNum}`];
 
-export const nextLevel = (state) => {
-  const next = state.level + 1;
-  if (!getLevel(next)) {
-    throw new RangeError(`Can't find level ${next}`);
+export const nextScreen = (state) => {
+  const type = state.type;
+  const next = state.screen;
+
+  if (!getCurrentScreen(type, next)) {
+    throw new RangeError(`Can't find screen ${nextScreen}`);
   }
+
   state = Object.assign({}, state);
-  state.level = next;
+  state.screen = next;
+
   return state;
 };
 
