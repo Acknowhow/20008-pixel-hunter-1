@@ -20,8 +20,16 @@ export const getScreenNum = (num) => {
   return `screen_${num}`;
 };
 
-export const getCurrentScreen = () => {
+const getLevel = (num) => quest[`level-${num}`];
 
+export const nextLevel = (state) => {
+  const next = state.level + 1;
+  if (!getLevel(next)) {
+    throw new RangeError(`Can't find level ${next}`);
+  }
+  state = Object.assign({}, state);
+  state.level = next;
+  return state;
 };
 
 export const setLives = (game, lives) => {
@@ -48,11 +56,11 @@ export const ansPush = (arr, obj) => {
 
 export const getAnsResultGame1 = (...answers) => {
   return answers[0] && answers[1];
-
 };
 
 export const assignCurrentAnswer = (ans, scr, win) => {
   ans = Object.assign({}, ans);
+
   ans[scr].isWin = win;
   return ans;
 };

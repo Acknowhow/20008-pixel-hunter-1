@@ -15,6 +15,7 @@ import {
 } from '../../data/hunt';
 import Clock from '../../data/game-timer';
 import greetingElement from '../../welcome/greeting/greeting';
+
 import Game1View from './game1-view';
 import {showElement} from '../../utils';
 
@@ -22,23 +23,24 @@ const changeScreen = (state) => {
 
   const screen = new Game1View(state);
   const timer = new Clock(state, screen, tick);
+  timer.start();
 
   const typeNum = getTypeNum(state.type);
   const screenNum = getScreenNum(state.screen);
 
-  timer.start();
-
   // Get current time from timer Object, assign to current state
   timer.currentTime = (_state) => {
     state = Object.assign({}, _state);
+
     return state;
   };
 
   screen.overTime = () => {
     const livesLeft = () => {
+
+      // If returns -1 than game is over
       return setLives(state, state.lives - 1);
     };
-
   };
 
   screen.onAnswer = (ans1, ans2) => {
@@ -56,6 +58,7 @@ const changeScreen = (state) => {
     // Mapping answer by type and current screen number
     const mapAnsType = (tNum, sNum) => {
       return ansKeys.map((type) => ({type, [sNum]: answers[type][sNum]})).filter((key) => {
+
         return key.type === `${tNum}`;
       });
     };
@@ -71,7 +74,6 @@ const changeScreen = (state) => {
 
     // Assigning new Object and pushing answer into array
     ansPush(gameAnswers, assignCurrentAnswer(currentAnswer, screenNum, isWin));
-
   };
 
   // constants
@@ -90,7 +92,6 @@ const changeScreen = (state) => {
   // - push in answers array
 
   // - create switch: win, lose, none, lost
-  // -
 
 
   screen.onReturn = () => {
