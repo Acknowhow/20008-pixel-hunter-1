@@ -4,13 +4,15 @@ import data from './intro-data';
 import {showElement} from '../../utils';
 import greetingElement from '../greeting/greeting';
 
-const intro = new Intro(data);
+export const introElement = () => {
+  const intro = new Intro(data);
 
+  intro.onNext = () => {
 
-intro.onNext = () => {
+    showElement(greetingElement());
 
-  showElement(greetingElement());
+  };
 
+  return intro;
 };
 
-export default () => intro;

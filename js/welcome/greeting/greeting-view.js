@@ -1,31 +1,31 @@
 import footer from '../../footer/footer';
-import AbstractView from "../../abstract-view";
+import data from './greeting-data';
+import AbstractView from '../../abstract-view';
 
 export default class GreetingView extends AbstractView {
-  constructor(data) {
+  constructor() {
     super();
-    this.data = data;
   }
 
   get template() {
-    const pKeys = Object.keys(this.data.text.p);
+    const pKeys = Object.keys(data.text.p);
     const sliced = pKeys.slice(0, 4);
 
     const [greetingSrc, greetingWidth, greetingHeight, greetingAlt] =
-      Object.keys(this.data.img.greeting).map((key) => this.data.img.greeting[key]);
+      Object.keys(data.img.greeting).map((key) => data.img.greeting[key]);
 
     const [nextSrc, nextWidth, nextHeight, nextAlt] =
-      Object.keys(this.data.img.next).map((key) => this.data.img.next[key]);
+      Object.keys(data.img.next).map((key) => data.img.next[key]);
 
     return `<div class="greeting central--blur">
     <div class="greeting__logo">
       <img src="${greetingSrc}" width="${greetingWidth}" height="${greetingHeight}" alt="${greetingAlt}">
     </div>
     
-    <h1 class="greeting__asterisk">${this.data.text.h.h1}</h1>
+    <h1 class="greeting__asterisk">${data.text.h.h1}</h1>
     <div class="greeting__challenge">
-      <h3>${this.data.text.h.h3}</h3>
-      <p>${sliced.map((key) => `${this.data.text.p[key]}</br>`).join(``)}${this.data.text.p[pKeys[4]]}</p>
+      <h3>${data.text.h.h3}</h3>
+      <p>${sliced.map((key) => `${data.text.p[key]}</br>`).join(``)}${data.text.p[pKeys[4]]}</p>
     </div>
     
     <div class="greeting__continue">
@@ -38,8 +38,8 @@ export default class GreetingView extends AbstractView {
 
   }
 
-  bindHandlers() {
-    const linkNext = this.markup.querySelector(`img[alt='Next']`);
+  bind() {
+    const linkNext = this.element.querySelector(`img[alt='Next']`);
 
     linkNext.onclick = () => {
       this.onNext();
@@ -50,6 +50,7 @@ export default class GreetingView extends AbstractView {
   onNext() {
 
   }
+
 }
 
 

@@ -1,14 +1,16 @@
 import GreetingView from './greeting-view';
 import rulesElement from './../rules/rules';
 
-import data from './../greeting/greeting-data';
 import {showElement} from '../../utils';
 
-const greeting = new GreetingView(data);
+const greetingElement = () => {
+  const greeting = new GreetingView();
 
-greeting.onNext = () => {
+  greeting.onNext = () => {
 
-  showElement(rulesElement());
+    showElement(rulesElement());
+  };
+
+  return greeting;
 };
-
-export default () => greeting;
+export default greetingElement;

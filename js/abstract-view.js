@@ -10,9 +10,7 @@ export default class AbstractView {
   get markup() {
 
     if (!this._markup) {
-
       this._markup = this.render();
-      this.bindHandlers();
     }
 
     return this._markup;
@@ -32,24 +30,15 @@ export default class AbstractView {
 
   }
 
-  bindHandlers() {
-
-  }
-
   get element() {
 
     if (!this._element) {
       this._element = this.markup;
-
-      // Because previous template has different handlers
       this.bind();
+
     }
 
     return this._element;
 
-  }
-
-  set element(el) {
-    this._element = el;
   }
 }
