@@ -3,9 +3,10 @@ import {
   setLives,
   tick,
   answers,
+  nextScreen,
   getTypeNum,
   getScreenNum,
-  getCurrentScreen,
+  getCurrentQuestionsScreen,
   getAnsKeys,
   getAnsResultGame1,
   ansPush,
@@ -27,12 +28,29 @@ const changeScreen = (state) => {
   const timer = new Clock(state, screen, tick);
   timer.start();
 
+  // Get current type and screen value
   const typeNum = getTypeNum(state.type);
   const screenNum = getScreenNum(state.screen);
 
-  const currentScreen = () => {
-    return getCurrentScreen(typeNum, screenNum);
-  };
+  const currentQuestionsObj = getCurrentQuestionsScreen(state.type, state.screen);
+
+  // constants
+  // - get currentScreenNum
+  // - get currentTypeNum
+  // - get nextScreen
+
+  // - create view(state)
+  // - create timer
+
+  // - start timer
+
+  // - on overTime or onAnswer
+  // - assign time and lives
+  // - assign bonus
+  // - push in answers array
+
+  // - create switch: win, lose, none, lost
+
 
   // Get current time from timer Object, assign to current state
   timer.currentTime = (_state) => {
@@ -43,7 +61,6 @@ const changeScreen = (state) => {
 
   screen.overTime = () => {
     const livesLeft = () => {
-
       // If returns -1 than game is over
       return setLives(state, state.lives - 1);
     };
@@ -64,7 +81,6 @@ const changeScreen = (state) => {
     // Mapping answer by type and current screen number
     const mapAnsType = (tNum, sNum) => {
       return ansKeys.map((type) => ({type, [sNum]: answers[type][sNum]})).filter((key) => {
-
         return key.type === `${tNum}`;
       });
     };
@@ -76,28 +92,9 @@ const changeScreen = (state) => {
 
     // Updates answer object with score
     const getAnsScore = calculateScore(currentAnswer, state, screenNum);
-
-
     // Assigning new Object and pushing answer into array
     ansPush(gameAnswers, assignCurrentAnswer(currentAnswer, screenNum, isWin));
   };
-
-  // constants
-  // - get currentScreenNum
-  // - get currentTypeNum
-  // - get nextScreen
-
-  // - create view(state)
-  // - create timer
-
-  // - start timer
-
-  // - on overTime or onAnswer
-  // - assign time and lives
-  // - assign bonus
-  // - push in answers array
-
-  // - create switch: win, lose, none, lost
 
 
   screen.onReturn = () => {

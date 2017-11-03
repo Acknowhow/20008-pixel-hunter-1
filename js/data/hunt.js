@@ -20,13 +20,13 @@ export const getScreenNum = (sNum) => {
   return `screen_${sNum}`;
 };
 
-export const getCurrentScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNum}`];
+export const getCurrentQuestionsScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNum}`];
 
 export const nextScreen = (state) => {
   const type = state.type;
   const next = state.screen;
 
-  if (!getCurrentScreen(type, next)) {
+  if (!getCurrentQuestionsScreen(type, next)) {
     throw new RangeError(`Can't find screen ${nextScreen}`);
   }
 
@@ -35,7 +35,6 @@ export const nextScreen = (state) => {
 
   return state;
 };
-
 export const setLives = (game, lives) => {
   if (lives < 0) {
     throw new RangeError(`Can't set negative lives`);
@@ -69,8 +68,8 @@ export const assignCurrentAnswer = (ans, scr, win) => {
   return ans;
 };
 
-export const getAnsKeys = (Answers) => {
-  return Object.keys(Answers);
+export const getAnsKeys = (answers) => {
+  return Object.keys(answers);
 };
 
 const PAINT = `paint`;
