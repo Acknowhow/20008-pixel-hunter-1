@@ -5,9 +5,10 @@ import data from './../greeting/greeting-data';
 import {showElement} from '../../utils';
 
 const greeting = new GreetingView(data);
+
 greeting.onNext = () => {
 
-  showElement(rulesElement().element);
+  showElement(rulesElement());
 };
 
 export default () => greeting;

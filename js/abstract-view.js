@@ -9,7 +9,11 @@ export default class AbstractView {
   // Returns last template used
   get markup() {
 
-    return this.render();
+    if (!this._markup) {
+      this._markup = this.render();
+    }
+
+    return this._markup;
   }
 
   get template() {
@@ -26,22 +30,16 @@ export default class AbstractView {
 
   }
 
-  bindHandlers() {
-
-  }
-
   get element() {
-    this._element = this.getMarkUp();
 
     if (!this._element) {
-      this._element = this.render();
+      this._element = this.markup;
 
       // Because previous template has different handlers
-      this.bindHandlers();
-      return this._element;
+      this.bind();
     }
 
-    this.bind();
     return this._element;
+
   }
 }

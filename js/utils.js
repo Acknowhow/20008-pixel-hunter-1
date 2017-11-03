@@ -8,7 +8,7 @@ export const createElement = (template) => {
   return templateEl.content;
 };
 
-export const showElement = (elem, container = centralContainer) => {
+export const showElement = (view, container = centralContainer) => {
   container.innerHTML = ``;
-  container.appendChild(elem);
+  container.appendChild(view.element);
 };

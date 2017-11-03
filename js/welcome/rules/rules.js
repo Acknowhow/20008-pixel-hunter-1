@@ -7,7 +7,7 @@ import {showElement} from '../../utils';
 const rules = new RulesView(data);
 
 rules.onReturn = () => {
-  showElement(greetingElement().element);
+  showElement(greetingElement());
 };
 
 rules.onStart = () => {

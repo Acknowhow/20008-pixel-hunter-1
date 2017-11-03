@@ -10,7 +10,7 @@ import {
   gameAnswers
 } from '../../data/hunt';
 import Clock from '../../data/game-timer';
-import GreetingView from '../../welcome/greeting/greeting-view';
+import greetingElement from '../../welcome/greeting/greeting';
 import {getResult} from "./game1-utils";
 import Game1View from './game1-view';
 import {showElement} from "../../utils";
@@ -31,9 +31,8 @@ const changeScreen = (state) => {
 
   screen.overTime = () => {
     console.log(true);
-  }
+  };
 
-  const greeting = new GreetingView();
 
   const typeNum = getTypeNum(state.type);
   const screenNum = getScreenNum(state.screen);
@@ -69,12 +68,12 @@ const changeScreen = (state) => {
   };
 
   screen.onReturn = () => {
-    showElement(greeting.element);
+    showElement(greetingElement.element);
   };
 
   return screen;
 };
 
-export default () => changeScreen(initialGame).element;
+// export default () => changeScreen(initialGame).element;
 
 

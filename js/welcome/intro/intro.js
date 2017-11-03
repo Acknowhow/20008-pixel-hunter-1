@@ -7,7 +7,7 @@ import greetingElement from '../greeting/greeting';
 const intro = new Intro(data);
 
 intro.onNext = () => {
-  showElement(greetingElement().element);
+  showElement(greetingElement());
 };
 
 export default () => intro;
