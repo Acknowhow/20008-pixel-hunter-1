@@ -38,7 +38,8 @@ const changeScreen = (state) => {
   screen.onAnswer = (ans1, ans2) => {
 
     timer.reset();
-    console.log(state.time);
+    const currentTime = state.time;
+    console.log(currentTime);
 
     const win1 = ans1.isWin;
     const win2 = ans2.isWin;

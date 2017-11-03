@@ -8,9 +8,13 @@ export default class Clock {
   start() {
     this.timer = () => {
       this.count = setTimeout(() => {
-        this.state = this.tick(this.state); // decreased by 1s, assigned into obj
+        // decreased by 1s, assigned into obj
+        this.state = this.tick(this.state);
+
+        // This method is for answer assignment
         this.currentTime(this.state);
 
+        // This method updates markup
         this.screen.updateTime(this.state.time);
         this.timer();
 
@@ -20,7 +24,7 @@ export default class Clock {
 
       }, 1000);
     };
-
+    // Recursive call for max precision
     this.timer();
   }
 
