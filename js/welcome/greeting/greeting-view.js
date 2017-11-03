@@ -38,8 +38,8 @@ export default class GreetingView extends AbstractView {
 
   }
 
-  bind() {
-    const linkNext = this.element.querySelector(`img[alt='Next']`);
+  bindHandlers() {
+    const linkNext = this.markup.querySelector(`img[alt='Next']`);
 
     linkNext.onclick = () => {
       this.onNext();

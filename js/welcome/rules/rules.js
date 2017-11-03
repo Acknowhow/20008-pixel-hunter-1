@@ -6,6 +6,9 @@ import {showElement} from '../../utils';
 
 const rules = new RulesView(data);
 
+console.log(greetingElement);
+console.log(`rules`);
+
 rules.onReturn = () => {
   showElement(greetingElement());
 };
