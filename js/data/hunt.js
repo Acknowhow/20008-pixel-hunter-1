@@ -2,7 +2,7 @@ export const initialGame = {
   type: 1,
   screen: 0,
   lives: 3,
-  time: 5
+  time: 30
 };
 
 export const getTypeNum = (num) => {
@@ -17,6 +17,7 @@ export const getCurrentScreen = () => {
 
 };
 
+// Is used for inner timer method
 export const tick = (game) => {
   game = Object.assign({}, game);
   game.time--;
@@ -31,7 +32,6 @@ export const getAnsResult = (...answers) => {
   return answers[0] && answers[1];
 
 };
-
 
 export const assignCurrentAnswer = (ans, scr, win) => {
   ans = Object.assign({}, ans);
@@ -54,7 +54,7 @@ const PAINT_2 = `paint_2`;
 
 export const SCORE_BASE = 100;
 
-export const calculateLifeBonus = (livesNum) => {
+const calculateLifeBonus = (livesNum) => {
   if (livesNum > 2) {
     return 150;
 
@@ -69,12 +69,12 @@ export const calculateLifeBonus = (livesNum) => {
   }
 };
 
-export const calculateSpeedBonus = (timeElapsed) => {
+const calculateSpeedBonus = (timeElapsed) => {
   if (timeElapsed > 20) {
-    return -50;
-
-  } else if (timeElapsed < 20) {
     return 50;
+
+  } else if (timeElapsed < 10) {
+    return -50;
 
   } else {
     return 0;

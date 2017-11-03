@@ -9,8 +9,6 @@ import {
   ansPush,
   assignCurrentAnswer,
   gameAnswers,
-  calculateLifeBonus,
-  calculateSpeedBonus,
   calculateScore,
   Result
 } from '../../data/hunt';
@@ -21,6 +19,7 @@ import Game1View from './game1-view';
 import {showElement} from "../../utils";
 
 const changeScreen = (state) => {
+
   const screen = new Game1View(state);
   const timer = new Clock(state, screen, tick);
 
@@ -29,21 +28,21 @@ const changeScreen = (state) => {
 
   timer.start();
 
+  // Gets current time from timer, assigns to current state
   timer.currentTime = (_state) => {
     state = Object.assign({}, _state);
     return state;
   };
 
   screen.overTime = () => {
-    console.log(answers);
-  };
+    const timeZero = state.time;
+    console.log(timeZero);
 
+  };
 
   screen.onAnswer = (ans1, ans2) => {
 
     timer.reset();
-    const currentTime = state.time;
-    console.log(currentTime);
 
     const win1 = ans1.isWin;
     const win2 = ans2.isWin;
@@ -61,13 +60,19 @@ const changeScreen = (state) => {
       });
     };
 
+    // Gets answer with win result
     const getAns = mapAnsType(typeNum, screenNum);
     const [currentAnswer] = getAns;
 
 
+    // Updates answer object with score
+    const getAnsScore = calculateScore(currentAnswer, state, screenNum);
+
+    console.log(getAnsScore);
+
+
     // Assigning new Object and pushing answer into array
     ansPush(gameAnswers, assignCurrentAnswer(currentAnswer, screenNum, win));
-
 
   };
 

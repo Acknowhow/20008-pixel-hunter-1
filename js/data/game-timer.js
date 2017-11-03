@@ -22,6 +22,7 @@ export default class Clock {
           this.reset();
         }
 
+        return this.state.time;
       }, 1000);
     };
     // Recursive call for max precision
@@ -31,7 +32,6 @@ export default class Clock {
   currentTime() {
 
   }
-
 
   reset() {
     clearTimeout(this.count);
