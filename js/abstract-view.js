@@ -7,7 +7,7 @@ export default class AbstractView {
   }
 
   // Returns last template used
-  getMarkUp() {
+  get markup() {
 
     return this.render();
   }
