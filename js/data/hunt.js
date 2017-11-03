@@ -2,7 +2,14 @@ export const initialGame = {
   type: 1,
   screen: 0,
   lives: 3,
-  time: 30
+  time: 5
+};
+
+export const Result = {
+  WIN: `win`,
+  LOSE: `lose`,
+  NONE: `none`,
+  LOST: `lost`
 };
 
 export const getTypeNum = (num) => {
@@ -17,6 +24,17 @@ export const getCurrentScreen = () => {
 
 };
 
+export const setLives = (game, lives) => {
+  if (lives < 0) {
+    throw new RangeError(`Can't set negative lives`);
+  }
+
+  game = Object.assign({}, game);
+  game.lives = lives;
+
+  return game;
+};
+
 // Is used for inner timer method
 export const tick = (game) => {
   game = Object.assign({}, game);
@@ -28,7 +46,7 @@ export const ansPush = (arr, obj) => {
   arr.push(obj);
 };
 
-export const getAnsResult = (...answers) => {
+export const getAnsResultGame1 = (...answers) => {
   return answers[0] && answers[1];
 
 };
@@ -98,14 +116,6 @@ export const calculateScore = (ansObj, state, scrNum) => {
 
   return ansObj;
 };
-
-export const Result = {
-  WIN: `win`,
-  LOSE: `lose`,
-  NONE: `none`,
-  LOST: `lost`
-};
-
 
 export const gameAnswers = [];
 export const questions = {

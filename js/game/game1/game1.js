@@ -1,11 +1,12 @@
 import {
   initialGame,
+  setLives,
   tick,
   answers,
   getTypeNum,
   getScreenNum,
   getAnsKeys,
-  getAnsResult,
+  getAnsResultGame1,
   ansPush,
   assignCurrentAnswer,
   gameAnswers,
@@ -34,9 +35,10 @@ const changeScreen = (state) => {
   };
 
   screen.overTime = () => {
-    const timeZero = state.time;
+    const livesLeft = () => {
+      return setLives(state, state.lives - 1);
+    };
 
-    console.log(timeZero);
   };
 
   screen.onAnswer = (ans1, ans2) => {
@@ -45,8 +47,8 @@ const changeScreen = (state) => {
     const win1 = ans1.isWin;
     const win2 = ans2.isWin;
 
-    // Checking if both answers are correct
-    const win = getAnsResult(win1, win2);
+    // Checking both answers
+    const isWin = getAnsResultGame1(win1, win2);
 
     // Getting answer keys from data file
     const ansKeys = getAnsKeys(answers);
@@ -68,7 +70,7 @@ const changeScreen = (state) => {
 
 
     // Assigning new Object and pushing answer into array
-    ansPush(gameAnswers, assignCurrentAnswer(currentAnswer, screenNum, win));
+    ansPush(gameAnswers, assignCurrentAnswer(currentAnswer, screenNum, isWin));
 
   };
 
