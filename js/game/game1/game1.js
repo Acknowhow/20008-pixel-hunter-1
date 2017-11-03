@@ -13,10 +13,9 @@ import {
   Result
 } from '../../data/hunt';
 import Clock from '../../data/game-timer';
-
 import greetingElement from '../../welcome/greeting/greeting';
 import Game1View from './game1-view';
-import {showElement} from "../../utils";
+import {showElement} from '../../utils';
 
 const changeScreen = (state) => {
 
@@ -28,7 +27,7 @@ const changeScreen = (state) => {
 
   timer.start();
 
-  // Gets current time from timer, assigns to current state
+  // Get current time from timer Object, assign to current state
   timer.currentTime = (_state) => {
     state = Object.assign({}, _state);
     return state;
@@ -36,12 +35,11 @@ const changeScreen = (state) => {
 
   screen.overTime = () => {
     const timeZero = state.time;
-    console.log(timeZero);
 
+    console.log(timeZero);
   };
 
   screen.onAnswer = (ans1, ans2) => {
-
     timer.reset();
 
     const win1 = ans1.isWin;
@@ -67,8 +65,6 @@ const changeScreen = (state) => {
 
     // Updates answer object with score
     const getAnsScore = calculateScore(currentAnswer, state, screenNum);
-
-    console.log(getAnsScore);
 
 
     // Assigning new Object and pushing answer into array

@@ -1,5 +1,6 @@
 export default class Clock {
   constructor(state, screen, tick) {
+
     this.state = state;
     this.screen = screen;
     this.tick = tick;
@@ -7,6 +8,7 @@ export default class Clock {
 
   start() {
     this.timer = () => {
+
       this.count = setTimeout(() => {
         // decreased by 1s, assigned into obj
         this.state = this.tick(this.state);
@@ -25,6 +27,7 @@ export default class Clock {
         return this.state.time;
       }, 1000);
     };
+
     // Recursive call for max precision
     this.timer();
   }

@@ -4,8 +4,8 @@ import {
   getScreenNum,
   getTypeNum,
 } from '../../data/hunt';
-import {drawHeader} from '../header/header';
 
+import {drawHeader} from '../header/header';
 import AbstractView from "../../abstract-view";
 
 const screen = questions[getTypeNum(initialGame.type)][getScreenNum(initialGame.screen)];
