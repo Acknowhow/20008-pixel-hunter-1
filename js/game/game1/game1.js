@@ -26,21 +26,25 @@ const changeScreen = (state) => {
     _tick: tick
 
   });
+  const typeNum = getTypeNum(state.type);
+  const screenNum = getScreenNum(state.screen);
 
   timer.start();
 
+  // If time is over
+
   screen.overTime = () => {
+    console.log(answers);
+
+
 
   };
 
-
-  const typeNum = getTypeNum(state.type);
-  const screenNum = getScreenNum(state.screen);
+  // Question answered
 
   screen.onAnswer = (ans1, ans2) => {
 
     // const timeLeft = timer.reset();
-
     const win1 = ans1.isWin;
     const win2 = ans2.isWin;
 
@@ -58,7 +62,6 @@ const changeScreen = (state) => {
     };
 
     const getAns = mapAnsType(typeNum, screenNum);
-
     const [currentAnswer] = getAns;
 
     // Assigning new Object and pushing answer into array
@@ -66,6 +69,17 @@ const changeScreen = (state) => {
 
 
   };
+
+  // Phase1
+  // - get screenNum
+  // - get typeNum
+
+  // - on overTime or onAnswer
+  // - assign answer with result, lives, time, bonus
+
+  // Phase2
+  // Check results
+
 
   screen.onReturn = () => {
     showElement(greetingElement());

@@ -13,6 +13,10 @@ export const getScreenNum = (num) => {
   return `screen_${num}`;
 };
 
+export const getCurrentScreen = () => {
+
+};
+
 export const tick = (game) => {
   game = Object.assign({}, game);
   game.time--;
@@ -42,8 +46,54 @@ const PHOTO_2 = `photo_2`;
 const PAINT_1 = `paint_1`;
 const PAINT_2 = `paint_2`;
 
-export const gameAnswers = [];
+export const SCORE_BASE = 100;
 
+export const calculateLifeBonus = (livesNum) => {
+  if (livesNum > 2) {
+    return 150;
+
+  } else if (livesNum > 1) {
+    return 100;
+
+  } else if (livesNum > 0) {
+    return 50;
+
+  } else {
+    return 0;
+  }
+};
+
+export const calculateSpeedBonus = (timeElapsed) => {
+  if (timeElapsed > 20) {
+    return -50;
+
+  } else if (timeElapsed < 20) {
+    return 50;
+
+  } else {
+    return 0;
+  }
+};
+
+export const calculateScore = (ansObj, state, scrNum) => {
+  const lives = state.lives;
+  const time = state.time;
+
+  const lifeBonus = calculateLifeBonus(lives);
+  const speedBonus = calculateSpeedBonus(time);
+
+  const totalScore = SCORE_BASE + lifeBonus + speedBonus;
+  ansObj = Object.assign({}, ansObj);
+
+  ansObj[scrNum].lifeBonus = lifeBonus;
+
+  ansObj[scrNum].speedBonus = speedBonus;
+  ansObj[scrNum].totalScore = totalScore;
+
+  return ansObj;
+};
+
+export const gameAnswers = [];
 export const questions = {
   'type_1': {
     'screen_0': {
@@ -320,47 +370,48 @@ export const questions = {
     }
   }
 };
+
 export const answers = {
   'type_1': {
     'screen_0': {
       isWin: null,
-      lives: 0,
-      elapsedTime: 0,
-      lifeBonus: 0
+      lifeBonus: 0,
+      speedBonus: 0,
+      totalScore: 0
     },
     'screen_1': {
       isWin: null,
-      lives: 0,
-      elapsedTime: 0,
-      lifeBonus: 0
+      lifeBonus: 0,
+      speedBonus: 0,
+      totalScore: 0
     }
   },
   'type_2': {
     'screen_0': {
       isWin: null,
-      lives: 0,
-      elapsedTime: 0,
-      lifeBonus: 0
+      lifeBonus: 0,
+      speedBonus: 0,
+      totalScore: 0
     },
     'screen_1': {
       isWin: null,
-      lives: 0,
-      elapsedTime: 0,
-      lifeBonus: 0
+      lifeBonus: 0,
+      speedBonus: 0,
+      totalScore: 0
     }
   },
   'type_3': {
     'screen_0': {
       isWin: null,
-      lives: 0,
-      elapsedTime: 0,
-      lifeBonus: 0
+      lifeBonus: 0,
+      speedBonus: 0,
+      totalScore: 0
     },
     'screen_1': {
       isWin: null,
-      lives: 0,
-      elapsedTime: 0,
-      lifeBonus: 0
+      lifeBonus: 0,
+      speedBonus: 0,
+      totalScore: 0
     }
   },
 };
