@@ -5,13 +5,18 @@ import {
   getTypeNum,
   getScreenNum,
   getAnsKeys,
+  getAnsResult,
   ansPush,
   assignCurrentAnswer,
-  gameAnswers
+  gameAnswers,
+  calculateLifeBonus,
+  calculateSpeedBonus,
+  calculateScore,
+  Result
 } from '../../data/hunt';
 import Clock from '../../data/game-timer';
 import greetingElement from '../../welcome/greeting/greeting';
-import {getResult} from "./game1-utils";
+import {getAnsResult} from "./game1-utils";
 import Game1View from './game1-view';
 import {showElement} from "../../utils";
 
@@ -34,9 +39,6 @@ const changeScreen = (state) => {
   // If time is over
 
   screen.overTime = () => {
-    console.log(answers);
-
-
 
   };
 
@@ -49,7 +51,7 @@ const changeScreen = (state) => {
     const win2 = ans2.isWin;
 
     // Checking if both answers are correct
-    const win = getResult(win1, win2);
+    const win = getAnsResult(win1, win2);
 
     // Getting answer keys from data file
     const ansKeys = getAnsKeys(answers);
@@ -70,15 +72,23 @@ const changeScreen = (state) => {
 
   };
 
-  // Phase1
-  // - get screenNum
-  // - get typeNum
+  // constants
+  // - get currentScreenNum
+  // - get currentTypeNum
+  // - get nextScreen
+
+  // - create view(state)
+  // - create timer
+
+  // - start timer
 
   // - on overTime or onAnswer
-  // - assign answer with result, lives, time, bonus
+  // - assign time and lives
+  // - assign bonus
+  // - push in answers array
 
-  // Phase2
-  // Check results
+  // - create switch: win, lose, none, lost
+  // -
 
 
   screen.onReturn = () => {

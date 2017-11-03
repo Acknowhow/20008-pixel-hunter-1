@@ -27,6 +27,12 @@ export const ansPush = (arr, obj) => {
   arr.push(obj);
 };
 
+export const getAnsResult = (...answers) => {
+  return answers[0] && answers[1];
+
+};
+
+
 export const assignCurrentAnswer = (ans, scr, win) => {
   ans = Object.assign({}, ans);
   ans[scr].isWin = win;
@@ -92,6 +98,14 @@ export const calculateScore = (ansObj, state, scrNum) => {
 
   return ansObj;
 };
+
+export const Result = {
+  WIN: `win`,
+  LOSE: `lose`,
+  NONE: `none`,
+  LOST: `lost`
+};
+
 
 export const gameAnswers = [];
 export const questions = {
