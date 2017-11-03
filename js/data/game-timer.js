@@ -1,15 +1,16 @@
 export default class Clock {
-  constructor(params) {
-    this.state = params._state;
-    this.screen = params._screen;
-    this.tick = params._tick;
+  constructor(state, screen, tick) {
+    this.state = state;
+    this.screen = screen;
+    this.tick = tick;
   }
 
   start() {
     this.timer = () => {
       this.count = setTimeout(() => {
-
         this.state = this.tick(this.state); // decreased by 1s, assigned into obj
+        this.currentTime(this.state);
+
         this.screen.updateTime(this.state.time);
         this.timer();
 
@@ -22,6 +23,11 @@ export default class Clock {
 
     this.timer();
   }
+
+  currentTime() {
+
+  }
+
 
   reset() {
     clearTimeout(this.count);

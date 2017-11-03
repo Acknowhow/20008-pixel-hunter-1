@@ -15,38 +15,31 @@ import {
   Result
 } from '../../data/hunt';
 import Clock from '../../data/game-timer';
+
 import greetingElement from '../../welcome/greeting/greeting';
-import {getAnsResult} from "./game1-utils";
 import Game1View from './game1-view';
 import {showElement} from "../../utils";
 
 const changeScreen = (state) => {
   const screen = new Game1View(state);
-  const timer = new Clock({
+  const timer = new Clock(state, screen, tick);
 
-    _state: state,
-    // Current screen
-    _screen: screen,
-    // Object assign function
-    _tick: tick
-
-  });
   const typeNum = getTypeNum(state.type);
   const screenNum = getScreenNum(state.screen);
 
   timer.start();
 
-  // If time is over
-
-  screen.overTime = () => {
-
+  timer.currentTime = (_state) => {
+    state = Object.assign({}, _state);
+    return state;
   };
 
-  // Question answered
 
   screen.onAnswer = (ans1, ans2) => {
 
-    // const timeLeft = timer.reset();
+    timer.reset();
+    console.log(state.time);
+
     const win1 = ans1.isWin;
     const win2 = ans2.isWin;
 
@@ -65,6 +58,7 @@ const changeScreen = (state) => {
 
     const getAns = mapAnsType(typeNum, screenNum);
     const [currentAnswer] = getAns;
+
 
     // Assigning new Object and pushing answer into array
     ansPush(gameAnswers, assignCurrentAnswer(currentAnswer, screenNum, win));
