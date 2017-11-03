@@ -34,6 +34,10 @@ const changeScreen = (state) => {
     return state;
   };
 
+  screen.overTime = () => {
+    console.log(answers);
+  };
+
 
   screen.onAnswer = (ans1, ans2) => {
 
