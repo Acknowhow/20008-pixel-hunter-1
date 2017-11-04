@@ -408,10 +408,10 @@ export const getAnsResultGame1 = (ans1Wins, ans2Wins) => {
   if (ans1Wins === `none` && ans2Wins === `none`) {
     return `none`;
 
-  } else if (ans1Wins && ans2Wins) {
-    return true;
+  } else if (ans1Wins === true && ans2Wins === true) {
+    return `win`;
 
-  } return false;
+  } return `lose`;
 };
 
 export const assignCurrentAnswer = (ans, scr, win) => {

@@ -7,6 +7,7 @@ import {
   getAnsResultGame1,
   ansPush,
   assignCurrentAnswer,
+  Result,
   gameAnswers,
   calculateScore,
 } from '../../data/hunt';
@@ -75,15 +76,15 @@ const changeScreen = (state) => {
   //   switch (ans)
   //     }
 
-  // const result = (ansResult) => {
-  //   switch (ansResult) {
-  //     case Result.WIN:
-  //       return true;
-  //     default:
-  //       throw new Error(`Unknown result ${ansResult}`);
-  //
-  //   }
-  // };
+  const result = (ansResult) => {
+    switch (ansResult) {
+      case Result.WIN:
+        return true;
+      default:
+        throw new Error(`Unknown result ${ansResult}`);
+
+    }
+  };
 
   // Get current time from timer Object, assign to current state
   timer.currentTime = (_state) => {
@@ -106,11 +107,13 @@ const changeScreen = (state) => {
 
     if (!isWin) {
 
-      return ansPush(gameAnswers, assignCurrentAnswer(answer, screenNum, isWin));
-    } else {
-
-      return ansPush(gameAnswers, assignCurrentAnswer(calculateScore(answer, state, screenNum), screenNum, isWin));
+      result(assignCurrentAnswer(answer, screenNum, isWin));
+      ansPush(gameAnswers, assignCurrentAnswer(answer, screenNum, isWin));
     }
+
+      ansPush(gameAnswers, assignCurrentAnswer(calculateScore(answer, state, screenNum), screenNum, isWin));
+    console.log(gameAnswers);
+
   };
 
   // Make
