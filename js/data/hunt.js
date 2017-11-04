@@ -114,8 +114,8 @@ export const questions = {
     'screen_1': {
       Option1: {
         image: {
-          src: `http://i.imgur.com/5kcp9i0.jpg`,
-          name: `Man bearded`,
+          src: `http://i.imgur.com/PKtMBLt.jpg`,
+          name: `Grandma Indian`,
           width: 468,
           height: 458
         },
@@ -123,21 +123,21 @@ export const questions = {
           [PHOTO]: {
             name: `question1`,
             value: `photo`,
-            isWin: false,
+            isWin: true,
             text: `Фото`
           },
           [PAINT]: {
             name: `question1`,
             value: `paint`,
-            isWin: true,
+            isWin: false,
             text: `Рисунок`
           }
         }
       },
       Option2: {
         image: {
-          src: `http://i.imgur.com/8aNXpLk.jpg`,
-          name: `Morgan Freeman`,
+          src: `http://i.imgur.com/aA3KkAW.jpg`,
+          name: `Woman thoughtful`,
           width: 468,
           height: 458
         },
@@ -145,13 +145,13 @@ export const questions = {
           [PHOTO]: {
             name: `question2`,
             value: `photo`,
-            isWin: true,
+            isWin: false,
             text: `Фото`
           },
           [PAINT]: {
             name: `question2`,
             value: `paint`,
-            isWin: false,
+            isWin: true,
             text: `Рисунок`
           }
         }
@@ -162,8 +162,8 @@ export const questions = {
     'screen-0': {
       Option1: {
         image: {
-          src: `http://i.imgur.com/PKtMBLt.jpg`,
-          name: `Grandma Indian`,
+          src: `http://i.imgur.com/jX3HIry.jpg`,
+          name: `Ethiopian girl`,
           width: 705,
           height: 455
         },
@@ -186,8 +186,8 @@ export const questions = {
     'screen-1': {
       Option1: {
         image: {
-          src: `http://i.imgur.com/PKtMBLt.jpg`,
-          name: `Grandma Indian`,
+          src: `http://i.imgur.com/27nbLSA.jpg`,
+          name: `Girls sitting`,
           width: 705,
           height: 455
         },
@@ -195,13 +195,13 @@ export const questions = {
           [PHOTO]: {
             name: `question1`,
             value: `photo`,
-            isWin: true,
+            isWin: false,
             text: `Фото`
           },
           [PAINT]: {
             name: `question1`,
             value: `paint`,
-            isWin: false,
+            isWin: true,
             text: `Рисунок`
           }
         }
@@ -280,24 +280,24 @@ export const questions = {
         },
         question: {
           [PHOTO_1]: {
-            src: `http://i.imgur.com/LWFCQSK.jpg`,
-            name: `Cheetah`,
+            src: `http://i.imgur.com/Eb5bc8u.jpg`,
+            name: `Books abstract`,
             alt: `Option 1`,
             width: 304,
             height: 455,
             isWin: false
           },
           [PAINT_1]: {
-            src: `http://i.imgur.com/FA4D3kO.jpg`,
-            name: `Lizard`,
+            src: `http://i.imgur.com/Sjjnuyi.jpg`,
+            name: `Metal spheres`,
             alt: `Option 1`,
             width: 304,
             height: 455,
             isWin: true
           },
           [PHOTO_2]: {
-            src: `http://i.imgur.com/y9cN0UD.jpg`,
-            name: `Figs`,
+            src: `http://i.imgur.com/Spk7kTG.jpg`,
+            name: `Mug`,
             alt: `Option 1`,
             width: 304,
             height: 455,
@@ -319,16 +319,16 @@ export const questions = {
             isWin: true
           },
           [PAINT_1]: {
-            src: `http://i.imgur.com/Sjjnuyi.jpg`,
-            name: `Metal spheres`,
+            src: `http://i.imgur.com/l8J6vbh.jpg`,
+            name: `Woman showered`,
             alt: `Option 2`,
             width: 304,
             height: 455,
             isWin: false
           },
           [PAINT_2]: {
-            src: `http://i.imgur.com/rvDgwaA.jpg`,
-            name: `Watermelon`,
+            src: `http://i.imgur.com/mgbDqkB.jpg`,
+            name: `Pomegranate`,
             alt: `Option 2`,
             width: 304,
             height: 455,
