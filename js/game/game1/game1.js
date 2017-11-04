@@ -54,7 +54,7 @@ const changeScreen = (state) => {
   //
   // };
 
-  // constants
+
   // - get currentScreenNum
   // - get currentTypeNum
   // - get nextScreen
