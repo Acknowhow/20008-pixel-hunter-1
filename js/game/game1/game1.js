@@ -1,18 +1,14 @@
 import {
   initialGame,
-  setLives,
   tick,
-  nextScreen,
   getTypeNum,
   getScreenNum,
-  getCurrentQuestionsScreen,
   mapAnsType,
   getAnsResultGame1,
   ansPush,
   assignCurrentAnswer,
   gameAnswers,
   calculateScore,
-  Result
 } from '../../data/hunt';
 
 import Clock from '../../data/game-timer';
@@ -53,12 +49,11 @@ const changeScreen = (state) => {
   //   getCurrentQuestionsScreen(state.type, state.screen);
   // };
 
-  const next = () => {
-    return nextScreen(state);
+  // const next = () => {
+  //   return nextScreen(state);
+  //
+  // };
 
-  };
-
-  console.log(gameAnswers);
   // constants
   // - get currentScreenNum
   // - get currentTypeNum
@@ -80,31 +75,15 @@ const changeScreen = (state) => {
   //   switch (ans)
   //     }
 
-  const result = (ansResult) => {
-    switch (ansResult) {
-      case Result.GAME_OVER:
-        // – Check if next screen in current screen type.
-        //  - change screen
-        //
-        // – Check if next type exists
-        //  - change screen to next type screen
-        //
-        // – Else GAME_OVER
-        break;
-
-      case Result.LOSE:
-        //
-        break;
-
-      case Result.NONE:
-        //
-        break;
-
-      default:
-        throw new Error(`Unknown result ${ansResult}`);
-
-    }
-  };
+  // const result = (ansResult) => {
+  //   switch (ansResult) {
+  //     case Result.WIN:
+  //       return true;
+  //     default:
+  //       throw new Error(`Unknown result ${ansResult}`);
+  //
+  //   }
+  // };
 
   // Get current time from timer Object, assign to current state
   timer.currentTime = (_state) => {
