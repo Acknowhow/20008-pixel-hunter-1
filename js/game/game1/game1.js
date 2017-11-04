@@ -2,12 +2,11 @@ import {
   initialGame,
   setLives,
   tick,
-  answers,
   nextScreen,
   getTypeNum,
   getScreenNum,
   getCurrentQuestionsScreen,
-  getAnsKeys,
+  mapAnsType,
   getAnsResultGame1,
   ansPush,
   assignCurrentAnswer,
@@ -22,6 +21,16 @@ import greetingElement from '../../welcome/greeting/greeting';
 import Game1View from './game1-view';
 import {showElement} from '../../utils';
 
+// Returns boolean answer result
+const getWin = (w1, w2) => {
+  return getAnsResultGame1(w1, w2);
+};
+
+// // Function maps default answer object by type and current screen
+const getAns = (t, s) => {
+  return mapAnsType(t, s);
+};
+
 const changeScreen = (state) => {
 
   const screen = new Game1View(state);
@@ -32,8 +41,14 @@ const changeScreen = (state) => {
   const typeNum = getTypeNum(state.type);
   const screenNum = getScreenNum(state.screen);
 
-  const currentQuestionsObj = getCurrentQuestionsScreen(state.type, state.screen);
+  const currentQuestionsObj = () => {
+    getCurrentQuestionsScreen(state.type, state.screen);
+  };
 
+  const next = () => {
+    return nextScreen(state);
+
+  };
   // constants
   // - get currentScreenNum
   // - get currentTypeNum
@@ -51,6 +66,29 @@ const changeScreen = (state) => {
 
   // - create switch: win, lose, none, lost
 
+  const result = (screenResult) => {
+
+    switch (screenResult) {
+      case Result.LOST:
+        // sdf
+        break;
+      case Result.WIN:
+        // sdfsdf
+        break;
+
+      case Result.LOSE:
+        // sdfsdfdsf
+        break;
+
+      case Result.NONE:
+        // sdfsdfsdf
+        break;
+
+      default:
+        throw new Error(`Unknown result ${screenResult}`);
+
+    }
+  };
 
   // Get current time from timer Object, assign to current state
   timer.currentTime = (_state) => {
@@ -61,41 +99,43 @@ const changeScreen = (state) => {
 
   screen.overTime = () => {
     const livesLeft = () => {
-      // If returns -1 than game is over
+      // If returns -1 then game is over
       return setLives(state, state.lives - 1);
+
     };
+    // Estimate win value
+    // Push into answers array
+
+    // Call Result switch (result)
   };
 
   screen.onAnswer = (ans1, ans2) => {
     timer.reset();
 
-    const win1 = ans1.isWin;
-    const win2 = ans2.isWin;
-
-    // Checking both answers
-    const isWin = getAnsResultGame1(win1, win2);
-
-    // Getting answer keys from data file
-    const ansKeys = getAnsKeys(answers);
-
-    // Mapping answer by type and current screen number
-    const mapAnsType = (tNum, sNum) => {
-      return ansKeys.map((type) => ({type, [sNum]: answers[type][sNum]})).filter((key) => {
-        return key.type === `${tNum}`;
-      });
-    };
-
-    // Gets answer with win result
-    const getAns = mapAnsType(typeNum, screenNum);
-    const [currentAnswer] = getAns;
+    const isWin1 = ans1.isWin;
+    const isWin2 = ans2.isWin;
 
 
+    const isWin = getWin(isWin1, isWin2);
+
+    const mappedCurrentAnswer = getAns(typeNum, screenNum);
+
+
+    const [currentAnswer] = mappedCurrentAnswer;
+    console.log(currentAnswer);
+
+    // If result is winning, calculate score, if not, assign into answers array with win result
     // Updates answer object with score
     const getAnsScore = calculateScore(currentAnswer, state, screenNum);
-    // Assigning new Object and pushing answer into array
-    ansPush(gameAnswers, assignCurrentAnswer(currentAnswer, screenNum, isWin));
+
+    // Pushes game answer into array
+    ansPush(gameAnswers, assignCurrentAnswer(getAnsScore, screenNum, isWin));
+
+    // Calls result switch
+    // result(isWin);
   };
 
+  // Make
 
   screen.onReturn = () => {
     showElement(greetingElement());

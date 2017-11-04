@@ -104,13 +104,11 @@ export default class Game1View extends AbstractView {
     this.timeElement.textContent = time;
   }
 
-
   overTime() {
 
   }
 
-  onAnswer(...answers) {
-    return answers;
+  onAnswer() {
 
   }
 

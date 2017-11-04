@@ -2,7 +2,7 @@ export const initialGame = {
   type: 1,
   screen: 0,
   lives: 3,
-  time: 5
+  time: 30
 };
 
 export const Result = {
@@ -53,25 +53,6 @@ export const tick = (game) => {
   return game;
 };
 
-export const ansPush = (arr, obj) => {
-  arr.push(obj);
-};
-
-export const getAnsResultGame1 = (...answers) => {
-  return answers[0] && answers[1];
-};
-
-export const assignCurrentAnswer = (ans, scr, win) => {
-  ans = Object.assign({}, ans);
-
-  ans[scr].isWin = win;
-  return ans;
-};
-
-export const getAnsKeys = (answers) => {
-  return Object.keys(answers);
-};
-
 const PAINT = `paint`;
 const PHOTO = `photo`;
 
@@ -80,53 +61,6 @@ const PHOTO_2 = `photo_2`;
 
 const PAINT_1 = `paint_1`;
 const PAINT_2 = `paint_2`;
-
-export const SCORE_BASE = 100;
-
-const calculateLifeBonus = (livesNum) => {
-  if (livesNum > 2) {
-    return 150;
-
-  } else if (livesNum > 1) {
-    return 100;
-
-  } else if (livesNum > 0) {
-    return 50;
-
-  } else {
-    return 0;
-  }
-};
-
-const calculateSpeedBonus = (timeElapsed) => {
-  if (timeElapsed > 20) {
-    return 50;
-
-  } else if (timeElapsed < 10) {
-    return -50;
-
-  } else {
-    return 0;
-  }
-};
-
-export const calculateScore = (ansObj, state, scrNum) => {
-  const lives = state.lives;
-  const time = state.time;
-
-  const lifeBonus = calculateLifeBonus(lives);
-  const speedBonus = calculateSpeedBonus(time);
-
-  const totalScore = SCORE_BASE + lifeBonus + speedBonus;
-  ansObj = Object.assign({}, ansObj);
-
-  ansObj[scrNum].lifeBonus = lifeBonus;
-
-  ansObj[scrNum].speedBonus = speedBonus;
-  ansObj[scrNum].totalScore = totalScore;
-
-  return ansObj;
-};
 
 export const gameAnswers = [];
 export const questions = {
@@ -406,7 +340,8 @@ export const questions = {
   }
 };
 
-export const answers = {
+// GAME answers
+const Answers = {
   'type_1': {
     'screen_0': {
       isWin: null,
@@ -449,6 +384,84 @@ export const answers = {
       totalScore: 0
     }
   },
+};
+
+const getAnsKeys = (answers) => {
+  return Object.keys(answers);
+};
+
+const ansKeys = getAnsKeys(Answers);
+
+
+export const mapAnsType = (tNum, sNum) => {
+  return ansKeys.map((type) => ({type, [sNum]: Answers[type][sNum]})).filter((key) => {
+
+    return key.type === `${tNum}`;
+  });
+};
+
+export const ansPush = (arr, obj) => {
+  arr.push(obj);
+};
+
+export const getAnsResultGame1 = (...answers) => {
+  return answers[0] && answers[1];
+};
+
+export const assignCurrentAnswer = (ans, scr, win) => {
+  ans = Object.assign({}, ans);
+
+  ans[scr].isWin = win;
+  return ans;
+};
+
+// SCORE calculation
+
+export const SCORE_BASE = 100;
+
+const calculateLifeBonus = (livesNum) => {
+  if (livesNum > 2) {
+    return 150;
+
+  } else if (livesNum > 1) {
+    return 100;
+
+  } else if (livesNum > 0) {
+    return 50;
+
+  } else {
+    return 0;
+  }
+};
+
+const calculateSpeedBonus = (timeElapsed) => {
+  if (timeElapsed > 20) {
+    return 50;
+
+  } else if (timeElapsed < 10) {
+    return -50;
+
+  } else {
+    return 0;
+  }
+};
+
+export const calculateScore = (ansObj, state, scrNum) => {
+  const lives = state.lives;
+  const time = state.time;
+
+  const lifeBonus = calculateLifeBonus(lives);
+  const speedBonus = calculateSpeedBonus(time);
+
+  const totalScore = SCORE_BASE + lifeBonus + speedBonus;
+  ansObj = Object.assign({}, ansObj);
+
+  ansObj[scrNum].lifeBonus = lifeBonus;
+
+  ansObj[scrNum].speedBonus = speedBonus;
+  ansObj[scrNum].totalScore = totalScore;
+
+  return ansObj;
 };
 
 
