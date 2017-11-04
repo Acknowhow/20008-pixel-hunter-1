@@ -58,12 +58,7 @@ const changeScreen = (state) => {
 
   };
 
-  const livesLeft = () => {
-    // If returns -1 then game is over
-    return setLives(state, state.lives - 1);
-
-  };
-
+  console.log(gameAnswers);
   // constants
   // - get currentScreenNum
   // - get currentTypeNum
@@ -130,19 +125,13 @@ const changeScreen = (state) => {
 
     const isWin = getWin(ans1, ans2);
 
+    if (!isWin) {
 
-    // If result is winning, calculate score, if not, assign into answers array with win result
-    // Updates answer object with score
-    const getAnsScore = calculateScore(answer, state, screenNum);
+      return ansPush(gameAnswers, assignCurrentAnswer(answer, screenNum, isWin));
+    } else {
 
-    console.log(answer);
-
-    // Pushes game answer into array
-    ansPush(gameAnswers, assignCurrentAnswer(getAnsScore, screenNum, isWin));
-
-
-    // Calls result switch
-    // result(currentAnswer[screenNum].isWin);
+      return ansPush(gameAnswers, assignCurrentAnswer(calculateScore(answer, state, screenNum), screenNum, isWin));
+    }
   };
 
   // Make

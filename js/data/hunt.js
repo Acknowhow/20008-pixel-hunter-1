@@ -409,9 +409,9 @@ export const getAnsResultGame1 = (ans1Wins, ans2Wins) => {
     return `none`;
 
   } else if (ans1Wins && ans2Wins) {
-    return false;
+    return true;
 
-  } return true;
+  } return false;
 };
 
 export const assignCurrentAnswer = (ans, scr, win) => {
