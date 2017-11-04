@@ -9,7 +9,7 @@ export const Result = {
   WIN: `win`,
   LOSE: `lose`,
   NONE: `none`,
-  LOST: `lost`
+  GAME_OVER: `game_over`
 };
 
 export const getTypeNum = (tNum) => {

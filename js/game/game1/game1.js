@@ -25,8 +25,7 @@ import {showElement} from '../../utils';
 const getWin = (w1, w2) => {
   return getAnsResultGame1(w1, w2);
 };
-
-// // Function maps default answer object by type and current screen
+// Function maps default answer object by type and current screen
 const getAns = (t, s) => {
   return mapAnsType(t, s);
 };
@@ -41,6 +40,14 @@ const changeScreen = (state) => {
   const typeNum = getTypeNum(state.type);
   const screenNum = getScreenNum(state.screen);
 
+  const extractDefaultCurrentAnswer = () => {
+    return getAns(typeNum, screenNum);
+
+  };
+
+  // Current answer object from db with default properties
+  const [currentAnswer] = extractDefaultCurrentAnswer();
+
   const currentQuestionsObj = () => {
     getCurrentQuestionsScreen(state.type, state.screen);
   };
@@ -49,6 +56,13 @@ const changeScreen = (state) => {
     return nextScreen(state);
 
   };
+
+  const livesLeft = () => {
+    // If returns -1 then game is over
+    return setLives(state, state.lives - 1);
+
+  };
+
   // constants
   // - get currentScreenNum
   // - get currentTypeNum
@@ -66,26 +80,32 @@ const changeScreen = (state) => {
 
   // - create switch: win, lose, none, lost
 
-  const result = (screenResult) => {
+  // const estimateResult = (ans, scr) => {
+  //   switch (ans)
+  //     }
 
-    switch (screenResult) {
-      case Result.LOST:
-        // sdf
-        break;
-      case Result.WIN:
-        // sdfsdf
+  const result = (ansResult) => {
+    switch (ansResult) {
+      case Result.GAME_OVER:
+        // – Check if next screen in current screen type.
+        //  - change screen
+        //
+        // – Check if next type exists
+        //  - change screen to next type screen
+        //
+        // – Else GAME_OVER
         break;
 
       case Result.LOSE:
-        // sdfsdfdsf
+        //
         break;
 
       case Result.NONE:
-        // sdfsdfsdf
+        //
         break;
 
       default:
-        throw new Error(`Unknown result ${screenResult}`);
+        throw new Error(`Unknown result ${ansResult}`);
 
     }
   };
@@ -98,11 +118,6 @@ const changeScreen = (state) => {
   };
 
   screen.overTime = () => {
-    const livesLeft = () => {
-      // If returns -1 then game is over
-      return setLives(state, state.lives - 1);
-
-    };
     // Estimate win value
     // Push into answers array
 
@@ -115,14 +130,8 @@ const changeScreen = (state) => {
     const isWin1 = ans1.isWin;
     const isWin2 = ans2.isWin;
 
-
     const isWin = getWin(isWin1, isWin2);
 
-    const mappedCurrentAnswer = getAns(typeNum, screenNum);
-
-
-    const [currentAnswer] = mappedCurrentAnswer;
-    console.log(currentAnswer);
 
     // If result is winning, calculate score, if not, assign into answers array with win result
     // Updates answer object with score
@@ -131,8 +140,9 @@ const changeScreen = (state) => {
     // Pushes game answer into array
     ansPush(gameAnswers, assignCurrentAnswer(getAnsScore, screenNum, isWin));
 
+
     // Calls result switch
-    // result(isWin);
+    // result(currentAnswer[screenNum].isWin);
   };
 
   // Make
