@@ -40,17 +40,18 @@ const changeScreen = (state) => {
   const typeNum = getTypeNum(state.type);
   const screenNum = getScreenNum(state.screen);
 
-  const extractDefaultCurrentAnswer = () => {
+  // Current answer object from db with default properties
+  // by type and screen number
+  const extractCurrentAnswerDefault = () => {
     return getAns(typeNum, screenNum);
 
   };
 
-  // Current answer object from db with default properties
-  const [currentAnswer] = extractDefaultCurrentAnswer();
+  const [answer] = extractCurrentAnswerDefault();
 
-  const currentQuestionsObj = () => {
-    getCurrentQuestionsScreen(state.type, state.screen);
-  };
+  // const currentQuestionsObj = () => {
+  //   getCurrentQuestionsScreen(state.type, state.screen);
+  // };
 
   const next = () => {
     return nextScreen(state);
@@ -117,25 +118,24 @@ const changeScreen = (state) => {
     return state;
   };
 
-  screen.overTime = () => {
-    // Estimate win value
-    // Push into answers array
-
-    // Call Result switch (result)
-  };
+  // screen.overTime = () => {
+  //   // Estimate win value
+  //   // Push into answers array
+  //
+  //   // Call Result switch (result)
+  // };
 
   screen.onAnswer = (ans1, ans2) => {
     timer.reset();
 
-    const isWin1 = ans1.isWin;
-    const isWin2 = ans2.isWin;
-
-    const isWin = getWin(isWin1, isWin2);
+    const isWin = getWin(ans1, ans2);
 
 
     // If result is winning, calculate score, if not, assign into answers array with win result
     // Updates answer object with score
-    const getAnsScore = calculateScore(currentAnswer, state, screenNum);
+    const getAnsScore = calculateScore(answer, state, screenNum);
+
+    console.log(answer);
 
     // Pushes game answer into array
     ansPush(gameAnswers, assignCurrentAnswer(getAnsScore, screenNum, isWin));
@@ -146,7 +146,6 @@ const changeScreen = (state) => {
   };
 
   // Make
-
   screen.onReturn = () => {
     showElement(greetingElement());
   };

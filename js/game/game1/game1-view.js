@@ -84,7 +84,7 @@ export default class Game1View extends AbstractView {
         const answer2 = answers2Checked[0].value ? screen.Option2.question[answers2Checked[0].value] : null;
 
 
-        this.onAnswer(answer1, answer2);
+        this.onAnswer(answer1.isWin, answer2.isWin);
       }
     };
 
@@ -98,15 +98,12 @@ export default class Game1View extends AbstractView {
   updateTime(time) {
     if (time === 0) {
 
-      this.overTime();
+      this.onAnswer(`none`, `none`);
     }
 
     this.timeElement.textContent = time;
   }
 
-  overTime() {
-
-  }
 
   onAnswer() {
 

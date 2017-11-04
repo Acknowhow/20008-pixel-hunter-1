@@ -2,7 +2,7 @@ export const initialGame = {
   type: 1,
   screen: 0,
   lives: 3,
-  time: 30
+  time: 5
 };
 
 export const Result = {
@@ -404,8 +404,14 @@ export const ansPush = (arr, obj) => {
   arr.push(obj);
 };
 
-export const getAnsResultGame1 = (...answers) => {
-  return answers[0] && answers[1];
+export const getAnsResultGame1 = (ans1Wins, ans2Wins) => {
+  if (ans1Wins === `none` && ans2Wins === `none`) {
+    return `none`;
+
+  } else if (ans1Wins && ans2Wins) {
+    return false;
+
+  } return true;
 };
 
 export const assignCurrentAnswer = (ans, scr, win) => {
