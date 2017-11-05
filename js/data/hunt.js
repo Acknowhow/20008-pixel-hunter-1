@@ -404,16 +404,6 @@ export const ansPush = (arr, obj) => {
   arr.push(obj);
 };
 
-export const getAnsResultGame1 = (ans1Wins, ans2Wins) => {
-  if (ans1Wins === `none` && ans2Wins === `none`) {
-    return `none`;
-
-  } else if (ans1Wins === true && ans2Wins === true) {
-    return `win`;
-
-  } return `lose`;
-};
-
 export const assignCurrentAnswer = (ans, scr, win) => {
   ans = Object.assign({}, ans);
 

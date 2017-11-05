@@ -70,6 +70,7 @@ export default class Game1View extends AbstractView {
 
     this.timeElement = this.element.querySelector(`.game__timer`);
 
+
     form.onclick = (evt) => {
       if (evt.target.tagName.toUpperCase() !== `INPUT`) {
         return;
@@ -87,14 +88,14 @@ export default class Game1View extends AbstractView {
 
   }
 
-  // Timer updates existing time
+  // Timer updates current view
   updateTime(time) {
-    if (time === 0) {
-
-      this.onAnswer(`none`, `none`);
-    }
-
     this.timeElement.textContent = time;
+
+    if (time === 0) {
+      this.onAnswer({isWin: `none`}, {isWin: `none`});
+
+    }
   }
 
 

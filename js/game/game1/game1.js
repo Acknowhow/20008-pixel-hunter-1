@@ -4,7 +4,6 @@ import {
   getTypeNum,
   getScreenNum,
   mapAnsType,
-  getAnsResultGame1,
   ansPush,
   assignCurrentAnswer,
   Result,
@@ -16,12 +15,10 @@ import Clock from '../../data/game-timer';
 import greetingElement from '../../welcome/greeting/greeting';
 
 import Game1View from './game1-view';
+import {getWin} from './../game-utils';
 import {showElement} from '../../utils';
 
-// Returns boolean answer result
-const getWin = (w1, w2) => {
-  return getAnsResultGame1(w1, w2);
-};
+
 // Function maps default answer object by type and current screen
 const getAns = (t, s) => {
   return mapAnsType(t, s);
@@ -103,10 +100,11 @@ const changeScreen = (state) => {
   screen.onAnswer = (ans1, ans2) => {
     timer.reset();
 
-    console.log(state);
-    console.log(ans1, ans2);
-    // const isWin = getWin(ans1, ans2);
-    //
+    const isWin = getWin(ans1.isWin, ans2.isWin);
+
+    console.log(isWin);
+
+
     // if (!isWin) {
     //
     //   result(assignCurrentAnswer(answer, screenNum, isWin));
