@@ -49,36 +49,6 @@ const changeScreen = (state) => {
 
   const [answer] = answerDefault();
 
-  // const currentQuestionsObj = () => {
-  //   getCurrentQuestionsScreen(state.type, state.screen);
-  // };
-
-  // const next = () => {
-  //   return nextScreen(state);
-  //
-  // };
-
-
-  // - get currentScreenNum
-  // - get currentTypeNum
-  // - get nextScreen
-
-  // - create view(state)
-  // - create timer
-
-  // - start timer
-
-  // - on overTime or onAnswer
-  // - assign time and lives
-  // - assign bonus
-  // - push in answers array
-
-  // - create switch: win, lose, none, lost
-
-  // const estimateResult = (ans, scr) => {
-  //   switch (ans)
-  //     }
-
   const result = (ansResult) => {
     switch (ansResult) {
       case Result.WIN:
@@ -89,16 +59,18 @@ const changeScreen = (state) => {
     }
   };
 
+  const getNextScreen = () => {
 
-  // Assigns only into current state
+  };
+
+  // Only assigns lives into currentState
   // Uses response result from answerFunction
-
-  const updateLives = (ansResponse, gameState, livesLeft) => {
+  const updateLives = (ansWins, gameState, livesLeft) => {
     if (livesLeft < 0) {
       throw new RangeError(`Can't set negative lives`);
     }
 
-    switch (ansResponse) {
+    switch (ansWins) {
       case Result.WIN:
 
         gameState = Object.assign({}, gameState);
@@ -126,22 +98,17 @@ const changeScreen = (state) => {
     timer.reset();
 
     const isWin = getWin(ans1.isWin, ans2.isWin);
-
-
+    updateLives(isWin, state, state.lives);
 
     // Need to define which function assigns last
     // But calls calc or next funcion
+
     const answerResponse = assignAnswer(answer, screenNum, isWin);
 
-    updateLives(answerResponse[screenNum].isWin, state, state.lives);
-
-
     // ansPush(gameAnswers, assignAnswer(answer, screenNum, isWin));
-
-
   };
 
-  // Make
+  // on Return to greeting screen
   screen.onReturn = () => {
     showElement(greetingElement());
   };
