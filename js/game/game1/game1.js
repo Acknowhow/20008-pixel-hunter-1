@@ -104,6 +104,8 @@ const changeScreen = (state) => {
 
     console.log(isWin);
 
+    console.log(state);
+
 
     // if (!isWin) {
     //
