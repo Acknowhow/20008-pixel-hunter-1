@@ -9,7 +9,6 @@ export const Result = {
   WIN: `win`,
   LOSE: `lose`,
   NONE: `none`,
-  LIFE_LOST: `life_lost`,
   NEXT_TYPE: `next_type`,
   NEXT_SCREEN: `next_screen`,
   GAME_OVER: `game_over`

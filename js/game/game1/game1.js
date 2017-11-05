@@ -15,7 +15,6 @@ import {
 
 import Clock from '../../data/game-timer';
 import greetingElement from '../../welcome/greeting/greeting';
-
 import Game1View from './game1-view';
 import {getWin} from './../game-utils';
 import {showElement} from '../../utils';
@@ -51,22 +50,9 @@ const changeScreen = (state) => {
 
   const [answer] = answerDefault();
 
-  // const result = (ansResult) => {
-  //   switch (ansResult) {
-  //     case Result.WIN:
-  //       return true;
-  //     default:
-  //       throw new Error(`Unknown result ${ansResult}`);
-  //
-  //   }
-  // };
-  //
-  // const getNextScreen = () => {
-  //
-  // };
+  const Results = [];
 
-  // For each screen and type function use current
-  // type and screen values
+
   const isNextType = () => {
     return nextType(state, state.type);
   };
@@ -75,31 +61,39 @@ const changeScreen = (state) => {
     return nextScreen(state, state.screen);
   };
 
-  // Only assigns lives into currentState
-  // Uses response result from answerFunction
+
+  // Updates type if there is one in current answer type
+  const nextGameType = () => {
+    return isNextType() ? Results.push(Result.NEXT_TYPE) : Results.push(Result.GAME_OVER);
+  };
+
   const updateLives = (ansWins, gameState, livesLeft) => {
-    if (livesLeft < 0) {
-      throw new RangeError(`Can't set negative lives`);
+    if (livesLeft - 1 < 0) {
+
+      Results.push(Result.GAME_OVER);
+      return Results;
     }
 
     switch (ansWins) {
       case Result.WIN:
 
+        Results.push(Result.WIN);
         gameState = Object.assign({}, gameState);
         gameState.lives = livesLeft;
         return gameState;
 
       case Result.LOSE:
 
+        Results.push(Result.LOSE);
         gameState = Object.assign({}, gameState);
         gameState.lives = livesLeft - 1;
         return gameState;
 
       case Result.NONE:
 
+        Results.push(Result.NONE);
         gameState = Object.assign({}, gameState);
         gameState.lives = livesLeft - 1;
-        return gameState;
     }
 
     return gameState;
@@ -112,12 +106,10 @@ const changeScreen = (state) => {
     const isWin = getWin(ans1.isWin, ans2.isWin);
     updateLives(isWin, state, state.lives);
 
-    // Need to define which function assigns last
-    // But calls calc or next function
+    Result.NEXT_SCREEN = isNextScreen() ? Results.push(Result.NEXT_SCREEN) : nextGameType;
 
-    // const answerResponse = assignAnswer(answer, screenNum, isWin);
-    //
-    // ansPush(gameAnswers, assignAnswer(answer, screenNum, isWin));
+
+    console.log(Results);
   };
 
   // on Return to greeting screen
