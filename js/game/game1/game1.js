@@ -5,7 +5,7 @@ import {
   getScreenNum,
   mapAnsType,
   ansPush,
-  assignCurrentAnswer,
+  assignAnswer,
   Result,
   gameAnswers,
   calculateScore,
@@ -30,18 +30,24 @@ const changeScreen = (state) => {
   const timer = new Clock(state, screen, tick);
   timer.start();
 
-  // Get current type and screen value
+  // Gets current time from timer Object, assign to current state
+  timer.currentTime = (_state) => {
+    state = Object.assign({}, _state);
+
+    return state;
+  };
+
+  // Get currents type and screen
   const typeNum = getTypeNum(state.type);
   const screenNum = getScreenNum(state.screen);
 
-  // Current answer object from db with default properties
-  // by type and screen number
-  const extractCurrentAnswerDefault = () => {
+  // Current answer object from db
+  const answerDefault = () => {
     return getAns(typeNum, screenNum);
 
   };
 
-  const [answer] = extractCurrentAnswerDefault();
+  const [answer] = answerDefault();
 
   // const currentQuestionsObj = () => {
   //   getCurrentQuestionsScreen(state.type, state.screen);
@@ -83,38 +89,56 @@ const changeScreen = (state) => {
     }
   };
 
-  // Get current time from timer Object, assign to current state
-  timer.currentTime = (_state) => {
-    state = Object.assign({}, _state);
 
-    return state;
+  // Assigns only into current state
+  // Uses response result from answerFunction
+
+  const updateLives = (ansResponse, gameState, livesLeft) => {
+    if (livesLeft < 0) {
+      throw new RangeError(`Can't set negative lives`);
+    }
+
+    switch (ansResponse) {
+      case Result.WIN:
+
+        gameState = Object.assign({}, gameState);
+        gameState.lives = livesLeft;
+        return gameState;
+
+      case Result.LOSE:
+
+        gameState = Object.assign({}, gameState);
+        gameState.lives = livesLeft - 1;
+        return gameState;
+
+      case Result.NONE:
+
+        gameState = Object.assign({}, gameState);
+        gameState.lives = livesLeft - 1;
+        return gameState;
+    }
+
+    return gameState;
   };
 
-  // screen.overTime = () => {
-  //   // Estimate win value
-  //   // Push into answers array
-  //
-  //   // Call Result switch (result)
-  // };
 
   screen.onAnswer = (ans1, ans2) => {
     timer.reset();
 
     const isWin = getWin(ans1.isWin, ans2.isWin);
 
-    console.log(isWin);
-
-    console.log(state);
 
 
-    // if (!isWin) {
-    //
-    //   result(assignCurrentAnswer(answer, screenNum, isWin));
-    //   ansPush(gameAnswers, assignCurrentAnswer(answer, screenNum, isWin));
-    // }
-    //
-    //
-    //   ansPush(gameAnswers, assignCurrentAnswer(calculateScore(answer, state, screenNum), screenNum, isWin));
+    // Need to define which function assigns last
+    // But calls calc or next funcion
+    const answerResponse = assignAnswer(answer, screenNum, isWin);
+
+    updateLives(answerResponse[screenNum].isWin, state, state.lives);
+
+
+    // ansPush(gameAnswers, assignAnswer(answer, screenNum, isWin));
+
+
   };
 
   // Make

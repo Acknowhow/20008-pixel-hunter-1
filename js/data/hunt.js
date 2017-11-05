@@ -9,6 +9,9 @@ export const Result = {
   WIN: `win`,
   LOSE: `lose`,
   NONE: `none`,
+  LIFE_LOST: `life_lost`,
+  NEXT_TYPE: `next_type`,
+  NEXT_SCREEN: `next_screen`,
   GAME_OVER: `game_over`
 };
 
@@ -354,7 +357,7 @@ const Answers = {
       lifeBonus: 0,
       speedBonus: 0,
       totalScore: 0
-    }
+    },
   },
   'type_2': {
     'screen_0': {
@@ -368,7 +371,7 @@ const Answers = {
       lifeBonus: 0,
       speedBonus: 0,
       totalScore: 0
-    }
+    },
   },
   'type_3': {
     'screen_0': {
@@ -383,7 +386,7 @@ const Answers = {
       speedBonus: 0,
       totalScore: 0
     }
-  },
+  }
 };
 
 const getAnsKeys = (answers) => {
@@ -404,7 +407,7 @@ export const ansPush = (arr, obj) => {
   arr.push(obj);
 };
 
-export const assignCurrentAnswer = (ans, scr, win) => {
+export const assignAnswer = (ans, scr, win) => {
   ans = Object.assign({}, ans);
 
   ans[scr].isWin = win;
