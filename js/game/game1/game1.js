@@ -3,6 +3,8 @@ import {
   tick,
   getTypeNum,
   getScreenNum,
+  nextType,
+  nextScreen,
   mapAnsType,
   ansPush,
   assignAnswer,
@@ -37,13 +39,13 @@ const changeScreen = (state) => {
     return state;
   };
 
-  // Get currents type and screen
-  const typeNum = getTypeNum(state.type);
-  const screenNum = getScreenNum(state.screen);
+  // Get current type and screen
+  const typeKey = getTypeNum(state.type);
+  const screenKey = getScreenNum(state.screen);
 
   // Current answer object from db
   const answerDefault = () => {
-    return getAns(typeNum, screenNum);
+    return getAns(typeKey, screenKey);
 
   };
 
@@ -62,6 +64,16 @@ const changeScreen = (state) => {
   // const getNextScreen = () => {
   //
   // };
+
+  // For each screen and type function use current
+  // type and screen values
+  const isNextType = () => {
+    return nextType(state, state.type);
+  };
+
+  const isNextScreen = () => {
+    return nextScreen(state, state.screen);
+  };
 
   // Only assigns lives into currentState
   // Uses response result from answerFunction
@@ -103,9 +115,9 @@ const changeScreen = (state) => {
     // Need to define which function assigns last
     // But calls calc or next function
 
-    // /**/const answerResponse = assignAnswer(answer, screenNum, isWin);
-
-    ansPush(gameAnswers, assignAnswer(answer, screenNum, isWin));
+    // const answerResponse = assignAnswer(answer, screenNum, isWin);
+    //
+    // ansPush(gameAnswers, assignAnswer(answer, screenNum, isWin));
   };
 
   // on Return to greeting screen
