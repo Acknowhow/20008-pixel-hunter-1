@@ -103,17 +103,16 @@ const changeScreen = (state) => {
   screen.onAnswer = (ans1, ans2) => {
     timer.reset();
 
-    const isWin = getWin(ans1, ans2);
-
-    if (!isWin) {
-
-      result(assignCurrentAnswer(answer, screenNum, isWin));
-      ansPush(gameAnswers, assignCurrentAnswer(answer, screenNum, isWin));
-    }
-
-      ansPush(gameAnswers, assignCurrentAnswer(calculateScore(answer, state, screenNum), screenNum, isWin));
-    console.log(gameAnswers);
-
+    // const isWin = getWin(ans1, ans2);
+    //
+    // if (!isWin) {
+    //
+    //   result(assignCurrentAnswer(answer, screenNum, isWin));
+    //   ansPush(gameAnswers, assignCurrentAnswer(answer, screenNum, isWin));
+    // }
+    //
+    //
+    //   ansPush(gameAnswers, assignCurrentAnswer(calculateScore(answer, state, screenNum), screenNum, isWin));
   };
 
   // Make

@@ -13,7 +13,6 @@ export default class Clock {
         // decreased by 1s, assigned into obj
         this.state = this.tick(this.state);
 
-        // This method is for answer assignment
         this.currentTime(this.state);
 
         // This method updates markup
@@ -38,6 +37,7 @@ export default class Clock {
 
   reset() {
     clearTimeout(this.count);
+    return this.state.time;
 
   }
 }
