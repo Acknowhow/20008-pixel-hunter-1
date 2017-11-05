@@ -8,7 +8,7 @@ import {
   assignAnswer,
   Result,
   gameAnswers,
-  calculateScore,
+  // calculateScore,
 } from '../../data/hunt';
 
 import Clock from '../../data/game-timer';
@@ -49,19 +49,19 @@ const changeScreen = (state) => {
 
   const [answer] = answerDefault();
 
-  const result = (ansResult) => {
-    switch (ansResult) {
-      case Result.WIN:
-        return true;
-      default:
-        throw new Error(`Unknown result ${ansResult}`);
-
-    }
-  };
-
-  const getNextScreen = () => {
-
-  };
+  // const result = (ansResult) => {
+  //   switch (ansResult) {
+  //     case Result.WIN:
+  //       return true;
+  //     default:
+  //       throw new Error(`Unknown result ${ansResult}`);
+  //
+  //   }
+  // };
+  //
+  // const getNextScreen = () => {
+  //
+  // };
 
   // Only assigns lives into currentState
   // Uses response result from answerFunction
@@ -101,11 +101,11 @@ const changeScreen = (state) => {
     updateLives(isWin, state, state.lives);
 
     // Need to define which function assigns last
-    // But calls calc or next funcion
+    // But calls calc or next function
 
-    const answerResponse = assignAnswer(answer, screenNum, isWin);
+    // /**/const answerResponse = assignAnswer(answer, screenNum, isWin);
 
-    // ansPush(gameAnswers, assignAnswer(answer, screenNum, isWin));
+    ansPush(gameAnswers, assignAnswer(answer, screenNum, isWin));
   };
 
   // on Return to greeting screen
