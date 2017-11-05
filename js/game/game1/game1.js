@@ -103,6 +103,7 @@ const changeScreen = (state) => {
   screen.onAnswer = (ans1, ans2) => {
     timer.reset();
 
+    console.log(ans1, ans2);
     // const isWin = getWin(ans1, ans2);
     //
     // if (!isWin) {

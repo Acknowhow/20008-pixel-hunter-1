@@ -70,39 +70,15 @@ export default class Game1View extends AbstractView {
 
     this.timeElement = this.element.querySelector(`.game__timer`);
 
-
     form.onclick = (evt) => {
       if (evt.target.tagName.toUpperCase() !== `INPUT`) {
         return;
       }
 
-      const ansVal1 = answers1()[0].value;
-      const ansVal2 = answers2()[0].value;
+      if (answers1().length && answers2().length) {
+        this.onAnswer(this.screen.Option1.question[answers1()[0].value], this.screen.Option2.question[answers2()[0].value]);
 
-      const answer1 = answers1() ? this.screen.Option1.question[answers1()[0].value] : null;
-      const answer2 = answers2() ? this.screen.Option2.question[answers2()[0].value] : null;
-
-      console.log(ansVal1, ansVal2);
-
-1
-
-      // evt.target.name === `question1` && evt.target.checked ? screen.Option1.question[evt.target.value] : null;
-
-
-      // const answers1Checked = answers1().filter((ans) => ans.checked);
-      // const answers2Checked = answers2().filter((ans) => ans.checked);
-      //
-      // const answered = () => {
-      //   return answers1Checked.length && answers2Checked.length;
-      // };
-      //
-      // if (answered()) {
-      //
-      //   // Selecting both answers from database
-      //   const answer1 = answers1Checked[0].value ? screen.Option1.question[answers1Checked[0].value] : null;
-      //   const answer2 = answers2Checked[0].value ? screen.Option2.question[answers2Checked[0].value] : null;
-
-        // this.onAnswer(answer1.isWin, answer2.isWin);
+      }
     };
 
     this.element.querySelector(`.header__back`).onclick = () => {
