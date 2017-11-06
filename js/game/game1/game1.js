@@ -9,6 +9,7 @@ import {
   ansPush,
   assignAnswer,
   Result,
+  Results,
   gameAnswers,
   // calculateScore,
 } from '../../data/hunt';
@@ -29,7 +30,7 @@ const getAns = (t, s) => {
 const changeScreen = (state) => {
 
   const screen = new Game1View(state);
-  const timer = new Clock(state, screen, tick);
+  const timer = new Clock(state, state.time, screen, tick);
   timer.start();
 
   // Gets current time from timer Object, assign to current state
@@ -50,8 +51,6 @@ const changeScreen = (state) => {
   };
 
   const [answer] = answerDefault();
-
-  const Results = [];
 
 
   const isNextType = () => {
@@ -82,17 +81,15 @@ const changeScreen = (state) => {
 
   screen.onAnswer = (ans1, ans2) => {
     timer.reset();
+    switch (getWin(ans1.isWin, ans2.isWin)) {
 
-    const isWin = getWin(ans1.isWin, ans2.isWin);
-
-    switch (isWin) {
       case `win`:
         Results.push(Result.WIN);
-        changeView(changeScreen(updateLives(isWin, state, state.lives)));
+        changeView(changeScreen(updateLives(`win`, state, state.lives)));
         break;
       case `lose`:
         Results.push(Result.LOSE);
-        changeView(changeScreen(updateLives(isWin, state, state.lives - 1)));
+        changeView(changeScreen(updateLives(`lose`, state, state.lives - 1)));
         break;
     }
 
