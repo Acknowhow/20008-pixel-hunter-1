@@ -27,7 +27,7 @@ export const getScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNu
 export const nextType = (game, gameType) => {
   const nxtType = gameType + 1;
 
-  if (!getScreen(nxtType, game.screen)) {
+  if (!getScreen(nxtType, initialGame.screen)) {
 
     return Result.GAME_OVER;
   }
@@ -38,24 +38,19 @@ export const nextType = (game, gameType) => {
 };
 
 export const nextScreen = (game, gameScreen) => {
-  const nxt = gameScreen + 1;
+  const nxtScr = gameScreen + 1;
 
-  const getNxt = () => {
-    return getScreen(game.type, nxt);
+  // const getNxt = () => {
+  //   return getScreen(game.type, nxtScr);
+  // };
 
-  };
-
-  if (!getNxt()) {
+  if (!getScreen(game.type, nxtScr)) {
     // Here must launch calculate bonus function
-    nextType(game, game.type);
-    game = Object.assign({}, game);
-
-    game.screen = 0;
-    return game;
+    return nextType(game, game.type);
   }
 
   game = Object.assign({}, game);
-  game.screen = nxt;
+  game.screen = nxtScr;
 
   return game;
 };
