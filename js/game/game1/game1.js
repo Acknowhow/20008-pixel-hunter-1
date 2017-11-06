@@ -80,29 +80,26 @@ const changeScreen = (state) => {
   };
 
 
-  const isWin = (ans1, ans2) => {
-    return updateLives(getWin(ans1.isWin, ans2.isWin));
-  };
-
-
   screen.onAnswer = (answer1, answer2) => {
     timer.reset();
 
-    switch (isWin(answer1, answer2)) {
+    const isWin = getWin(answer1.isWin, answer2.isWin);
+
+    switch (isWin) {
 
       case `win`:
         Results.push(Result.WIN);
-        changeView(changeScreen(`win`, state, state.lives));
+        changeView(changeScreen(updateLives(`win`, state, state.lives)));
         break;
 
       case `lose`:
         Results.push(Result.LOSE);
-        changeView(changeScreen(`lose`, state, state.lives - 1));
+        changeView(changeScreen(updateLives(`lose`, state, state.lives - 1)));
         break;
 
       case `none`:
         Results.push(Result.NONE);
-        changeView(changeScreen(`lose`, state, state.lives - 1));
+        changeView(changeScreen(updateLives(`none`, state, state.lives - 1)));
         break;
     }
 
