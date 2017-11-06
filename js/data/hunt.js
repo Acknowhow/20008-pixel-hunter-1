@@ -27,7 +27,7 @@ export const getScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNu
 export const nextType = (game, gameType) => {
   const nxtType = gameType + 1;
 
-  if (!getScreen(nxtType, initialGame.screen)) {
+  if (!getScreen(nxtType, game.screen)) {
 
     return Result.GAME_OVER;
   }
@@ -38,15 +38,24 @@ export const nextType = (game, gameType) => {
 };
 
 export const nextScreen = (game, gameScreen) => {
-  const nxtScreen = gameScreen + 1;
+  const nxt = gameScreen + 1;
 
-  if (!getScreen(game.type, nxtScreen)) {
+  const getNxt = () => {
+    return getScreen(game.type, nxt);
+
+  };
+
+  if (!getNxt()) {
     // Here must launch calculate bonus function
     nextType(game, game.type);
+    game = Object.assign({}, game);
 
+    game.screen = 0;
+    return game;
   }
+
   game = Object.assign({}, game);
-  game.screen = nxtScreen;
+  game.screen = nxt;
 
   return game;
 };
@@ -157,7 +166,7 @@ export const questions = {
     }
   },
   'type_2': {
-    'screen-0': {
+    'screen_0': {
       Option1: {
         image: {
           src: `http://i.imgur.com/jX3HIry.jpg`,
@@ -181,7 +190,7 @@ export const questions = {
         }
       }
     },
-    'screen-1': {
+    'screen_1': {
       Option1: {
         image: {
           src: `http://i.imgur.com/27nbLSA.jpg`,
@@ -207,7 +216,7 @@ export const questions = {
     }
   },
   'type_3': {
-    'screen-0': {
+    'screen_0': {
       Option1: {
         title: {
           text: `Найдите рисунок среди изображений`
@@ -271,7 +280,7 @@ export const questions = {
         }
       }
     },
-    'screen-1': {
+    'screen_1': {
       Option1: {
         title: {
           text: `Найдите рисунок среди изображений`
