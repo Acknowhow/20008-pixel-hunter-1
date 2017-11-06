@@ -24,13 +24,10 @@ export const getScreenNum = (sNum) => {
 
 export const getScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNum}`];
 
+
 export const nextType = (game, gameType) => {
   const nxtType = gameType + 1;
 
-  if (!getScreen(nxtType, initialGame.screen)) {
-
-    return Result.GAME_OVER;
-  }
   game = Object.assign({}, game);
   game.type = nxtType;
 
@@ -40,13 +37,13 @@ export const nextType = (game, gameType) => {
 export const nextScreen = (game, gameScreen) => {
   const nxtScr = gameScreen + 1;
 
-  // const getNxt = () => {
-  //   return getScreen(game.type, nxtScr);
-  // };
 
   if (!getScreen(game.type, nxtScr)) {
+    // First must check if there is next type
     // Here must launch calculate bonus function
-    return nextType(game, game.type);
+    game = questions[`type_${game.type + 1}`] ? nextType(game, game.type) : nextType(initialGame, initialGame.type);
+
+    return game;
   }
 
   game = Object.assign({}, game);
@@ -210,136 +207,136 @@ export const questions = {
       }
     }
   },
-  'type_3': {
-    'screen_0': {
-      Option1: {
-        title: {
-          text: `Найдите рисунок среди изображений`
-        },
-        question: {
-          [PHOTO_1]: {
-            src: `http://i.imgur.com/LWFCQSK.jpg`,
-            name: `Cheetah`,
-            alt: `Option 1`,
-            width: 304,
-            height: 455,
-            isWin: false
-          },
-          [PAINT_1]: {
-            src: `http://i.imgur.com/FA4D3kO.jpg`,
-            name: `Lizard`,
-            alt: `Option 1`,
-            width: 304,
-            height: 455,
-            isWin: true
-          },
-          [PHOTO_2]: {
-            src: `http://i.imgur.com/y9cN0UD.jpg`,
-            name: `Figs`,
-            alt: `Option 1`,
-            width: 304,
-            height: 455,
-            isWin: false
-          }
-        }
-      },
-      Option2: {
-        title: {
-          text: `Найдите изображение среди рисунков`
-        },
-        question: {
-          [PHOTO_1]: {
-            src: `http://i.imgur.com/OI49pzH.jpg`,
-            name: `Bumble bee`,
-            alt: `Option 2`,
-            width: 304,
-            height: 455,
-            isWin: true
-          },
-          [PAINT_1]: {
-            src: `http://i.imgur.com/Sjjnuyi.jpg`,
-            name: `Metal spheres`,
-            alt: `Option 2`,
-            width: 304,
-            height: 455,
-            isWin: false
-          },
-          [PAINT_2]: {
-            src: `http://i.imgur.com/rvDgwaA.jpg`,
-            name: `Watermelon`,
-            alt: `Option 2`,
-            width: 304,
-            height: 455,
-            isWin: false
-          }
-        }
-      }
-    },
-    'screen_1': {
-      Option1: {
-        title: {
-          text: `Найдите рисунок среди изображений`
-        },
-        question: {
-          [PHOTO_1]: {
-            src: `http://i.imgur.com/Eb5bc8u.jpg`,
-            name: `Books abstract`,
-            alt: `Option 1`,
-            width: 304,
-            height: 455,
-            isWin: false
-          },
-          [PAINT_1]: {
-            src: `http://i.imgur.com/Sjjnuyi.jpg`,
-            name: `Metal spheres`,
-            alt: `Option 1`,
-            width: 304,
-            height: 455,
-            isWin: true
-          },
-          [PHOTO_2]: {
-            src: `http://i.imgur.com/Spk7kTG.jpg`,
-            name: `Mug`,
-            alt: `Option 1`,
-            width: 304,
-            height: 455,
-            isWin: false
-          }
-        }
-      },
-      Option2: {
-        title: {
-          text: `Найдите изображение среди рисунков`
-        },
-        question: {
-          [PHOTO_1]: {
-            src: `http://i.imgur.com/OI49pzH.jpg`,
-            name: `Bumble bee`,
-            alt: `Option 2`,
-            width: 304,
-            height: 455,
-            isWin: true
-          },
-          [PAINT_1]: {
-            src: `http://i.imgur.com/l8J6vbh.jpg`,
-            name: `Woman showered`,
-            alt: `Option 2`,
-            width: 304,
-            height: 455,
-            isWin: false
-          },
-          [PAINT_2]: {
-            src: `http://i.imgur.com/mgbDqkB.jpg`,
-            name: `Pomegranate`,
-            alt: `Option 2`,
-            width: 304,
-            height: 455,
-            isWin: false
-          }
-        }
-      }
-    }
-  }
+  // 'type_3': {
+  //   'screen_0': {
+  //     Option1: {
+  //       title: {
+  //         text: `Найдите рисунок среди изображений`
+  //       },
+  //       question: {
+  //         [PHOTO_1]: {
+  //           src: `http://i.imgur.com/LWFCQSK.jpg`,
+  //           name: `Cheetah`,
+  //           alt: `Option 1`,
+  //           width: 304,
+  //           height: 455,
+  //           isWin: false
+  //         },
+  //         [PAINT_1]: {
+  //           src: `http://i.imgur.com/FA4D3kO.jpg`,
+  //           name: `Lizard`,
+  //           alt: `Option 1`,
+  //           width: 304,
+  //           height: 455,
+  //           isWin: true
+  //         },
+  //         [PHOTO_2]: {
+  //           src: `http://i.imgur.com/y9cN0UD.jpg`,
+  //           name: `Figs`,
+  //           alt: `Option 1`,
+  //           width: 304,
+  //           height: 455,
+  //           isWin: false
+  //         }
+  //       }
+  //     },
+  //     Option2: {
+  //       title: {
+  //         text: `Найдите изображение среди рисунков`
+  //       },
+  //       question: {
+  //         [PHOTO_1]: {
+  //           src: `http://i.imgur.com/OI49pzH.jpg`,
+  //           name: `Bumble bee`,
+  //           alt: `Option 2`,
+  //           width: 304,
+  //           height: 455,
+  //           isWin: true
+  //         },
+  //         [PAINT_1]: {
+  //           src: `http://i.imgur.com/Sjjnuyi.jpg`,
+  //           name: `Metal spheres`,
+  //           alt: `Option 2`,
+  //           width: 304,
+  //           height: 455,
+  //           isWin: false
+  //         },
+  //         [PAINT_2]: {
+  //           src: `http://i.imgur.com/rvDgwaA.jpg`,
+  //           name: `Watermelon`,
+  //           alt: `Option 2`,
+  //           width: 304,
+  //           height: 455,
+  //           isWin: false
+  //         }
+  //       }
+  //     }
+  //   },
+  //   'screen_1': {
+  //     Option1: {
+  //       title: {
+  //         text: `Найдите рисунок среди изображений`
+  //       },
+  //       question: {
+  //         [PHOTO_1]: {
+  //           src: `http://i.imgur.com/Eb5bc8u.jpg`,
+  //           name: `Books abstract`,
+  //           alt: `Option 1`,
+  //           width: 304,
+  //           height: 455,
+  //           isWin: false
+  //         },
+  //         [PAINT_1]: {
+  //           src: `http://i.imgur.com/Sjjnuyi.jpg`,
+  //           name: `Metal spheres`,
+  //           alt: `Option 1`,
+  //           width: 304,
+  //           height: 455,
+  //           isWin: true
+  //         },
+  //         [PHOTO_2]: {
+  //           src: `http://i.imgur.com/Spk7kTG.jpg`,
+  //           name: `Mug`,
+  //           alt: `Option 1`,
+  //           width: 304,
+  //           height: 455,
+  //           isWin: false
+  //         }
+  //       }
+  //     },
+  //     Option2: {
+  //       title: {
+  //         text: `Найдите изображение среди рисунков`
+  //       },
+  //       question: {
+  //         [PHOTO_1]: {
+  //           src: `http://i.imgur.com/OI49pzH.jpg`,
+  //           name: `Bumble bee`,
+  //           alt: `Option 2`,
+  //           width: 304,
+  //           height: 455,
+  //           isWin: true
+  //         },
+  //         [PAINT_1]: {
+  //           src: `http://i.imgur.com/l8J6vbh.jpg`,
+  //           name: `Woman showered`,
+  //           alt: `Option 2`,
+  //           width: 304,
+  //           height: 455,
+  //           isWin: false
+  //         },
+  //         [PAINT_2]: {
+  //           src: `http://i.imgur.com/mgbDqkB.jpg`,
+  //           name: `Pomegranate`,
+  //           alt: `Option 2`,
+  //           width: 304,
+  //           height: 455,
+  //           isWin: false
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 };
 
 // GAME answers
