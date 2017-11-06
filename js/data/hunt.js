@@ -9,7 +9,6 @@ export const Result = {
   WIN: `win`,
   LOSE: `lose`,
   NONE: `none`,
-  NEXT_TYPE: `next_type`,
   NEXT_SCREEN: `next_screen`,
   GAME_OVER: `game_over`
 };
@@ -26,7 +25,7 @@ export const getScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNu
 
 
 export const nextType = (game, gameType) => {
-  const nxtType = gameType + 1;
+  const nxtType = gameType;
 
   game = Object.assign({}, game);
   game.type = nxtType;
@@ -38,12 +37,12 @@ export const nextScreen = (game, gameScreen) => {
   const nxtScr = gameScreen + 1;
 
 
-  if (!getScreen(game.type, nxtScr)) {
+  if (!getScreen(nxtScr)) {
     // First must check if there is next type
-    // Here must launch calculate bonus function
-    game = questions[`type_${game.type + 1}`] ? nextType(game, game.type) : nextType(initialGame, initialGame.type);
+    // Here must launch calculate bonus function !!! Just a sample call, must return GAME_OVER (assigned)
+    // game = questions[`type_${game.type + 1}`] ? nextType(game, game.type + 1) : Result.GAME_OVER;
+    throw new RangeError(`Can't find level ${nxtScr}`);
 
-    return game;
   }
 
   game = Object.assign({}, game);

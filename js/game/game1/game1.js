@@ -52,22 +52,10 @@ const changeScreen = (state) => {
 
   const Results = [];
 
-
-  const isNextType = () => {
-    return nextType(state, state.type);
-  };
-
-  const isNextScreen = () => {
-    nextScreen(state, state.screen);
-  };
-
-
-  // Updates type if there is one in current answer type
-  const nextGameType = () => {
-    return isNextType() ? Results.push(Result.NEXT_TYPE) : Results.push(Result.GAME_OVER);
-  };
-
-  const updateLives = (ansWins, gameState, livesLeft) => {
+  const setLives = (gameState, livesLeft) => {
+    if (livesLeft < 0) {
+      throw new RangeError(`Can't set negative lives`);
+    }
 
     gameState = Object.assign({}, gameState);
     gameState.lives = livesLeft;
@@ -75,8 +63,38 @@ const changeScreen = (state) => {
     return gameState;
   };
 
+  const updateLives = (win) => {
+    switch (win) {
+
+      case Result.WIN:
+        setLives(state, state.lives);
+        break;
+
+      case Result.LOSE || Result.NONE:
+        try {
+          setLives(state, state.lives - 1);
+
+        } catch (life) {
+          if (life instanceof RangeError) {
+            Results.push(Result.GAME_OVER);
+
+            setLives(initialGame, initialGame.lives);
+          }
+          Results.push(Result.NEXT_SCREEN);
+        }
+
+        break;
+    }
+  };
+
   const isWin = (ans1, ans2) => {
     return getWin(ans1.isWin, ans2.isWin);
+
+  };
+
+  // Updates lives based on result
+  const result = (a1, a2) => {
+    return updateLives(isWin(a1, a2));
 
   };
 
@@ -86,18 +104,19 @@ const changeScreen = (state) => {
     switch (isWin(answer1, answer2)) {
 
       case Result.WIN:
-        // Results.push(Result.WIN);
         changeView(changeScreen(nextScreen(updateLives(Result.WIN, state, state.lives), state.screen)));
         break;
 
       case Result.LOSE:
-        // Results.push(Result.LOSE);
         changeView(changeScreen(nextScreen(updateLives(Result.LOSE, state, state.lives - 1), state.screen)));
         break;
 
       case Result.NONE:
-        // Results.push(Result.NONE);
-        changeView(changeScreen(nextScreen(updateLives(Result.LOSE, state, state.lives - 1), state.screen)));
+        changeView(changeScreen(nextScreen(updateLives(Result.NONE, state, state.lives - 1), state.screen)));
+        break;
+
+      case Result.GAME_OVER:
+        screen.onReturn();
         break;
     }
 
