@@ -18,6 +18,7 @@ import greetingElement from '../../welcome/greeting/greeting';
 import Game1View from './game1-view';
 import {getWin} from './../game-utils';
 import {showElement} from '../../utils';
+import {changeView} from "../../../materials/toComponentsTransition_01.10/utils";
 
 
 // Function maps default answer object by type and current screen
@@ -68,34 +69,13 @@ const changeScreen = (state) => {
   };
 
   const updateLives = (ansWins, gameState, livesLeft) => {
-    if (livesLeft - 1 < 0) {
-
-      Results.push(Result.GAME_OVER);
-      return Results;
-    }
-
-    switch (ansWins) {
-      case Result.WIN:
-
-        Results.push(Result.WIN);
-        gameState = Object.assign({}, gameState);
-        gameState.lives = livesLeft;
-        return gameState;
-
-      case Result.LOSE:
-
-        Results.push(Result.LOSE);
-        gameState = Object.assign({}, gameState);
-        gameState.lives = livesLeft - 1;
-        return gameState;
-
-      case Result.NONE:
-
-        Results.push(Result.NONE);
-        gameState = Object.assign({}, gameState);
-        gameState.lives = livesLeft - 1;
-    }
-
+    // if (livesLeft - 1 < 0) {
+    //
+    //   Results.push(Result.GAME_OVER);
+    //   return Results;
+    // }
+    gameState = Object.assign({}, gameState);
+    gameState.lives = livesLeft;
     return gameState;
   };
 
@@ -104,12 +84,28 @@ const changeScreen = (state) => {
     timer.reset();
 
     const isWin = getWin(ans1.isWin, ans2.isWin);
-    updateLives(isWin, state, state.lives);
 
-    Result.NEXT_SCREEN = isNextScreen() ? Results.push(Result.NEXT_SCREEN) : nextGameType;
+    switch (isWin) {
+      case `win`:
+        Results.push(Result.WIN);
+        changeView(changeScreen(updateLives(isWin, state, state.lives)));
+        break;
+      case `lose`:
+        Results.push(Result.LOSE);
+        changeView(changeScreen(updateLives(isWin, state, state.lives - 1)));
+        break;
+    }
+
+    // Result.NEXT_SCREEN = isNextScreen() ? Results.push(Result.NEXT_SCREEN) : nextGameType;
 
 
-    console.log(Results);
+    // If result is winning, calculate score, if not, assign into answers array with win result
+    // Updates answer object with score
+    // const getAnsScore = calculateScore(currentAnswer, state, screenNum);
+    //
+    //
+    // // Pushes game answer into array
+    // ansPush(gameAnswers, assignCurrentAnswer(getAnsScore, screenNum, isWin));
   };
 
   // on Return to greeting screen
