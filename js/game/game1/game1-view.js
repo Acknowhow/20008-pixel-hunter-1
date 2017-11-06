@@ -94,8 +94,8 @@ export default class Game1View extends AbstractView {
 
     if (time === 0) {
       this.onAnswer({isWin: `none`}, {isWin: `none`});
-
     }
+
   }
 
 

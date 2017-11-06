@@ -1,4 +1,5 @@
-const getAnsResultGame1 = (a1Wins, a2Wins) => {
+
+export const getWin = (a1Wins, a2Wins) => {
   if (a1Wins === `none` && a2Wins === `none`) {
     return `none`;
 
@@ -7,10 +8,3 @@ const getAnsResultGame1 = (a1Wins, a2Wins) => {
 
   } return `lose`;
 };
-
-
-// Returns boolean answer result
-export const getWin = (w1, w2) => {
-  return getAnsResultGame1(w1, w2);
-};
-

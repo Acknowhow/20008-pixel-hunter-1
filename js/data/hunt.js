@@ -14,8 +14,6 @@ export const Result = {
   GAME_OVER: `game_over`
 };
 
-export const Results = [];
-
 export const getTypeNum = (tNum) => {
   return `type_${tNum}`;
 };

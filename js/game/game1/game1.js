@@ -9,7 +9,6 @@ import {
   ansPush,
   assignAnswer,
   Result,
-  Results,
   gameAnswers,
   // calculateScore,
 } from '../../data/hunt';
@@ -52,6 +51,8 @@ const changeScreen = (state) => {
 
   const [answer] = answerDefault();
 
+  const Results = [];
+
 
   const isNextType = () => {
     return nextType(state, state.type);
@@ -79,22 +80,33 @@ const changeScreen = (state) => {
   };
 
 
-  screen.onAnswer = (ans1, ans2) => {
+  const isWin = (ans1, ans2) => {
+    return updateLives(getWin(ans1.isWin, ans2.isWin));
+  };
+
+
+  screen.onAnswer = (answer1, answer2) => {
     timer.reset();
-    switch (getWin(ans1.isWin, ans2.isWin)) {
+
+    switch (isWin(answer1, answer2)) {
 
       case `win`:
         Results.push(Result.WIN);
-        changeView(changeScreen(updateLives(`win`, state, state.lives)));
+        changeView(changeScreen(`win`, state, state.lives));
         break;
+
       case `lose`:
         Results.push(Result.LOSE);
-        changeView(changeScreen(updateLives(`lose`, state, state.lives - 1)));
+        changeView(changeScreen(`lose`, state, state.lives - 1));
+        break;
+
+      case `none`:
+        Results.push(Result.NONE);
+        changeView(changeScreen(`lose`, state, state.lives - 1));
         break;
     }
 
     // Result.NEXT_SCREEN = isNextScreen() ? Results.push(Result.NEXT_SCREEN) : nextGameType;
-
 
     // If result is winning, calculate score, if not, assign into answers array with win result
     // Updates answer object with score
