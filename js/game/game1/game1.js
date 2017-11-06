@@ -79,13 +79,14 @@ const changeScreen = (state) => {
     return gameState;
   };
 
+  const isWin = (ans1, ans2) => {
+    return getWin(ans1.isWin, ans2.isWin);
+  };
 
   screen.onAnswer = (answer1, answer2) => {
     timer.reset();
 
-    const isWin = getWin(answer1.isWin, answer2.isWin);
-
-    switch (isWin) {
+    switch (isWin(answer1, answer2)) {
 
       case `win`:
         Results.push(Result.WIN);
