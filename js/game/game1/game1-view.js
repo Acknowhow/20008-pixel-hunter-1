@@ -1,10 +1,6 @@
-import {
-  questions,
-  getScreenNum,
-  getTypeNum,
-} from '../../data/hunt';
-
+import {getScreen} from '../../data/hunt';
 import {drawHeader} from '../header/header';
+
 import AbstractView from "../../abstract-view";
 
 export default class Game1View extends AbstractView {
@@ -12,7 +8,7 @@ export default class Game1View extends AbstractView {
     super();
     this.state = state;
 
-    this.screen = questions[getTypeNum(this.state.type)][getScreenNum(this.state.screen)];
+    this.screen = getScreen(this.state.type, this.state.screen);
     this.options = Object.keys(this.screen);
 
     this.optionsParams = this.options.map((option) => (

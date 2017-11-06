@@ -1,6 +1,5 @@
 import {
   initialGame,
-  tick,
   getTypeNum,
   getScreenNum,
   nextType,
@@ -16,7 +15,7 @@ import {
 import Clock from '../../data/game-timer';
 import greetingElement from '../../welcome/greeting/greeting';
 import Game1View from './game1-view';
-import {getWin} from './../game-utils';
+import {getWin, tick} from './../game-utils';
 import {showElement} from '../../utils';
 import {changeView} from "../../../materials/toComponentsTransition_01.10/utils";
 
@@ -59,7 +58,7 @@ const changeScreen = (state) => {
   };
 
   const isNextScreen = () => {
-    return nextScreen(state, state.screen);
+    nextScreen(state, state.screen);
   };
 
 
@@ -69,18 +68,16 @@ const changeScreen = (state) => {
   };
 
   const updateLives = (ansWins, gameState, livesLeft) => {
-    // if (livesLeft - 1 < 0) {
-    //
-    //   Results.push(Result.GAME_OVER);
-    //   return Results;
-    // }
+
     gameState = Object.assign({}, gameState);
     gameState.lives = livesLeft;
+
     return gameState;
   };
 
   const isWin = (ans1, ans2) => {
     return getWin(ans1.isWin, ans2.isWin);
+
   };
 
   screen.onAnswer = (answer1, answer2) => {
@@ -88,30 +85,27 @@ const changeScreen = (state) => {
 
     switch (isWin(answer1, answer2)) {
 
-      case `win`:
-        Results.push(Result.WIN);
-        changeView(changeScreen(updateLives(`win`, state, state.lives)));
+      case Result.WIN:
+        // Results.push(Result.WIN);
+        changeView(changeScreen(nextScreen(updateLives(Result.WIN, state, state.lives), state.screen)));
         break;
 
-      case `lose`:
-        Results.push(Result.LOSE);
-        changeView(changeScreen(updateLives(`lose`, state, state.lives - 1)));
+      case Result.LOSE:
+        // Results.push(Result.LOSE);
+        changeView(changeScreen(nextScreen(updateLives(Result.LOSE, state, state.lives - 1), state.screen)));
         break;
 
-      case `none`:
-        Results.push(Result.NONE);
-        changeView(changeScreen(updateLives(`none`, state, state.lives - 1)));
+      case Result.NONE:
+        // Results.push(Result.NONE);
+        changeView(changeScreen(nextScreen(updateLives(Result.LOSE, state, state.lives - 1), state.screen)));
         break;
     }
 
     // Result.NEXT_SCREEN = isNextScreen() ? Results.push(Result.NEXT_SCREEN) : nextGameType;
-
     // If result is winning, calculate score, if not, assign into answers array with win result
     // Updates answer object with score
     // const getAnsScore = calculateScore(currentAnswer, state, screenNum);
     //
-    //
-    // // Pushes game answer into array
     // ansPush(gameAnswers, assignCurrentAnswer(getAnsScore, screenNum, isWin));
   };
 

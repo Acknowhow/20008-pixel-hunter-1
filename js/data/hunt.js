@@ -22,13 +22,14 @@ export const getScreenNum = (sNum) => {
   return `screen_${sNum}`;
 };
 
-const getScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNum}`];
+export const getScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNum}`];
 
 export const nextType = (game, gameType) => {
   const nxtType = gameType + 1;
 
-  if (!getScreen(nxtType, game.screen)) {
-    throw new RangeError(`Can't find screen ${nxtType}`);
+  if (!getScreen(nxtType, initialGame.screen)) {
+
+    return Result.GAME_OVER;
   }
   game = Object.assign({}, game);
   game.type = nxtType;
@@ -40,18 +41,13 @@ export const nextScreen = (game, gameScreen) => {
   const nxtScreen = gameScreen + 1;
 
   if (!getScreen(game.type, nxtScreen)) {
-    throw new RangeError(`Can't find screen ${nxtScreen}`);
+    // Here must launch calculate bonus function
+    nextType(game, game.type);
+
   }
   game = Object.assign({}, game);
   game.screen = nxtScreen;
 
-  return game;
-};
-
-// Is used for inner timer method
-export const tick = (game) => {
-  game = Object.assign({}, game);
-  game.time--;
   return game;
 };
 
