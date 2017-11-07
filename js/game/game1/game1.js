@@ -1,14 +1,10 @@
 import {
   initialGame,
   getScreen,
-  getTypeNum,
-  getScreenNum,
-  mapAnsType,
-  ansPush,
-  assignAnswer,
-  Result,
-  gameAnswers,
-  // calculateScore,
+  // getTypeNum,
+  // getScreenNum,
+  // mapAnsType,
+  Result
 } from '../../data/hunt';
 
 import Clock from '../../data/game-timer';
@@ -20,9 +16,9 @@ import {changeView} from "../../../materials/toComponentsTransition_01.10/utils"
 
 
 // Function maps default answer object by type and current screen
-const getAns = (t, s) => {
-  return mapAnsType(t, s);
-};
+// const getAns = (t, s) => {
+//   return mapAnsType(t, s);
+// };
 
 const changeScreen = (state) => {
 
@@ -38,16 +34,16 @@ const changeScreen = (state) => {
   };
 
   // Get current type and screen
-  const typeKey = getTypeNum(state.type);
-  const screenKey = getScreenNum(state.screen);
+  // const typeKey = getTypeNum(state.type);
+  // const screenKey = getScreenNum(state.screen);
 
   // Current answer object from db
-  const answerDefault = () => {
-    return getAns(typeKey, screenKey);
+  // const answerDefault = () => {
+  //   return getAns(typeKey, screenKey);
+  //
+  // };
 
-  };
-
-  const [answer] = answerDefault();
+  // const [answer] = answerDefault();
   const Results = [];
 
   const setLives = (_state, livesLeft) => {

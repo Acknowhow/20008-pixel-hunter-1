@@ -28,11 +28,11 @@ export const getScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNu
 const PAINT = `paint`;
 const PHOTO = `photo`;
 
-const PHOTO_1 = `photo_1`;
-const PHOTO_2 = `photo_2`;
-
-const PAINT_1 = `paint_1`;
-const PAINT_2 = `paint_2`;
+// const PHOTO_1 = `photo_1`;
+// const PHOTO_2 = `photo_2`;
+//
+// const PAINT_1 = `paint_1`;
+// const PAINT_2 = `paint_2`;
 
 export const gameAnswers = [];
 export const questions = {
