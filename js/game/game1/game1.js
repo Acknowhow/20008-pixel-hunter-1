@@ -14,7 +14,6 @@ import greetingElement from '../../welcome/greeting/greeting';
 import Game1View from './game1-view';
 import {getWin, tick} from './../game-utils';
 import {showElement} from '../../utils';
-import {changeView} from "../../../materials/toComponentsTransition_01.10/utils";
 
 
 // Function maps default answer object by type and current screen
@@ -163,12 +162,24 @@ const changeScreen = (state) => {
     switch (currentState.NEXT_SCREEN) {
       case `next`:
 
-        changeView(changeScreen(state));
+        showElement(changeScreen(state));
         break;
 
       case `last`:
         isNextType(state, state.type + 1);
 
+        break;
+    }
+
+    switch (currentState.NEXT_TYPE) {
+      case `next`:
+
+        showElement(changeScreen(state));
+        break;
+
+      case `last`:
+
+        showElement(changeScreen(greetingElement()));
         break;
     }
 

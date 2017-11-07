@@ -353,6 +353,9 @@ const answer = {
   }
 };
 
+// current game answers
+export const Answers = [];
+
 export const Results = {
   WIN: `win`,
   LOSE: `lose`,
