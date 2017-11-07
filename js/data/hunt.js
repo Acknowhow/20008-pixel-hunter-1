@@ -2,17 +2,10 @@ export const initialGame = {
   type: 1,
   screen: 0,
   lives: 3,
-  time: 5
-};
-
-export const Result = {
-  WIN: `win`,
-  LOSE: `lose`,
-  NONE: `none`,
-  NEXT_SCREEN: `next_screen`,
-  NEXT_TYPE: `next_screen`,
-  GAME_OVER: `game_over`,
-  GAME_WON: `game_won`
+  time: 5,
+  NEXT_SCREEN: null,
+  NEXT_TYPE: null,
+  GAME_OVER: null
 };
 
 export const getTypeNum = (tNum) => {
@@ -28,13 +21,13 @@ export const getScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNu
 const PAINT = `paint`;
 const PHOTO = `photo`;
 
-// const PHOTO_1 = `photo_1`;
-// const PHOTO_2 = `photo_2`;
-//
-// const PAINT_1 = `paint_1`;
-// const PAINT_2 = `paint_2`;
+const PHOTO_1 = `photo_1`;
+const PHOTO_2 = `photo_2`;
 
-export const gameAnswers = [];
+const PAINT_1 = `paint_1`;
+const PAINT_2 = `paint_2`;
+
+
 export const questions = {
   'type_1': {
     'screen_0': {
@@ -180,136 +173,136 @@ export const questions = {
       }
     }
   },
-  // 'type_3': {
-  //   'screen_0': {
-  //     Option1: {
-  //       title: {
-  //         text: `Найдите рисунок среди изображений`
-  //       },
-  //       question: {
-  //         [PHOTO_1]: {
-  //           src: `http://i.imgur.com/LWFCQSK.jpg`,
-  //           name: `Cheetah`,
-  //           alt: `Option 1`,
-  //           width: 304,
-  //           height: 455,
-  //           isWin: false
-  //         },
-  //         [PAINT_1]: {
-  //           src: `http://i.imgur.com/FA4D3kO.jpg`,
-  //           name: `Lizard`,
-  //           alt: `Option 1`,
-  //           width: 304,
-  //           height: 455,
-  //           isWin: true
-  //         },
-  //         [PHOTO_2]: {
-  //           src: `http://i.imgur.com/y9cN0UD.jpg`,
-  //           name: `Figs`,
-  //           alt: `Option 1`,
-  //           width: 304,
-  //           height: 455,
-  //           isWin: false
-  //         }
-  //       }
-  //     },
-  //     Option2: {
-  //       title: {
-  //         text: `Найдите изображение среди рисунков`
-  //       },
-  //       question: {
-  //         [PHOTO_1]: {
-  //           src: `http://i.imgur.com/OI49pzH.jpg`,
-  //           name: `Bumble bee`,
-  //           alt: `Option 2`,
-  //           width: 304,
-  //           height: 455,
-  //           isWin: true
-  //         },
-  //         [PAINT_1]: {
-  //           src: `http://i.imgur.com/Sjjnuyi.jpg`,
-  //           name: `Metal spheres`,
-  //           alt: `Option 2`,
-  //           width: 304,
-  //           height: 455,
-  //           isWin: false
-  //         },
-  //         [PAINT_2]: {
-  //           src: `http://i.imgur.com/rvDgwaA.jpg`,
-  //           name: `Watermelon`,
-  //           alt: `Option 2`,
-  //           width: 304,
-  //           height: 455,
-  //           isWin: false
-  //         }
-  //       }
-  //     }
-  //   },
-  //   'screen_1': {
-  //     Option1: {
-  //       title: {
-  //         text: `Найдите рисунок среди изображений`
-  //       },
-  //       question: {
-  //         [PHOTO_1]: {
-  //           src: `http://i.imgur.com/Eb5bc8u.jpg`,
-  //           name: `Books abstract`,
-  //           alt: `Option 1`,
-  //           width: 304,
-  //           height: 455,
-  //           isWin: false
-  //         },
-  //         [PAINT_1]: {
-  //           src: `http://i.imgur.com/Sjjnuyi.jpg`,
-  //           name: `Metal spheres`,
-  //           alt: `Option 1`,
-  //           width: 304,
-  //           height: 455,
-  //           isWin: true
-  //         },
-  //         [PHOTO_2]: {
-  //           src: `http://i.imgur.com/Spk7kTG.jpg`,
-  //           name: `Mug`,
-  //           alt: `Option 1`,
-  //           width: 304,
-  //           height: 455,
-  //           isWin: false
-  //         }
-  //       }
-  //     },
-  //     Option2: {
-  //       title: {
-  //         text: `Найдите изображение среди рисунков`
-  //       },
-  //       question: {
-  //         [PHOTO_1]: {
-  //           src: `http://i.imgur.com/OI49pzH.jpg`,
-  //           name: `Bumble bee`,
-  //           alt: `Option 2`,
-  //           width: 304,
-  //           height: 455,
-  //           isWin: true
-  //         },
-  //         [PAINT_1]: {
-  //           src: `http://i.imgur.com/l8J6vbh.jpg`,
-  //           name: `Woman showered`,
-  //           alt: `Option 2`,
-  //           width: 304,
-  //           height: 455,
-  //           isWin: false
-  //         },
-  //         [PAINT_2]: {
-  //           src: `http://i.imgur.com/mgbDqkB.jpg`,
-  //           name: `Pomegranate`,
-  //           alt: `Option 2`,
-  //           width: 304,
-  //           height: 455,
-  //           isWin: false
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
+  'type_3': {
+    'screen_0': {
+      Option1: {
+        title: {
+          text: `Найдите рисунок среди изображений`
+        },
+        question: {
+          [PHOTO_1]: {
+            src: `http://i.imgur.com/LWFCQSK.jpg`,
+            name: `Cheetah`,
+            alt: `Option 1`,
+            width: 304,
+            height: 455,
+            isWin: false
+          },
+          [PAINT_1]: {
+            src: `http://i.imgur.com/FA4D3kO.jpg`,
+            name: `Lizard`,
+            alt: `Option 1`,
+            width: 304,
+            height: 455,
+            isWin: true
+          },
+          [PHOTO_2]: {
+            src: `http://i.imgur.com/y9cN0UD.jpg`,
+            name: `Figs`,
+            alt: `Option 1`,
+            width: 304,
+            height: 455,
+            isWin: false
+          }
+        }
+      },
+      Option2: {
+        title: {
+          text: `Найдите изображение среди рисунков`
+        },
+        question: {
+          [PHOTO_1]: {
+            src: `http://i.imgur.com/OI49pzH.jpg`,
+            name: `Bumble bee`,
+            alt: `Option 2`,
+            width: 304,
+            height: 455,
+            isWin: true
+          },
+          [PAINT_1]: {
+            src: `http://i.imgur.com/Sjjnuyi.jpg`,
+            name: `Metal spheres`,
+            alt: `Option 2`,
+            width: 304,
+            height: 455,
+            isWin: false
+          },
+          [PAINT_2]: {
+            src: `http://i.imgur.com/rvDgwaA.jpg`,
+            name: `Watermelon`,
+            alt: `Option 2`,
+            width: 304,
+            height: 455,
+            isWin: false
+          }
+        }
+      }
+    },
+    'screen_1': {
+      Option1: {
+        title: {
+          text: `Найдите рисунок среди изображений`
+        },
+        question: {
+          [PHOTO_1]: {
+            src: `http://i.imgur.com/Eb5bc8u.jpg`,
+            name: `Books abstract`,
+            alt: `Option 1`,
+            width: 304,
+            height: 455,
+            isWin: false
+          },
+          [PAINT_1]: {
+            src: `http://i.imgur.com/Sjjnuyi.jpg`,
+            name: `Metal spheres`,
+            alt: `Option 1`,
+            width: 304,
+            height: 455,
+            isWin: true
+          },
+          [PHOTO_2]: {
+            src: `http://i.imgur.com/Spk7kTG.jpg`,
+            name: `Mug`,
+            alt: `Option 1`,
+            width: 304,
+            height: 455,
+            isWin: false
+          }
+        }
+      },
+      Option2: {
+        title: {
+          text: `Найдите изображение среди рисунков`
+        },
+        question: {
+          [PHOTO_1]: {
+            src: `http://i.imgur.com/OI49pzH.jpg`,
+            name: `Bumble bee`,
+            alt: `Option 2`,
+            width: 304,
+            height: 455,
+            isWin: true
+          },
+          [PAINT_1]: {
+            src: `http://i.imgur.com/l8J6vbh.jpg`,
+            name: `Woman showered`,
+            alt: `Option 2`,
+            width: 304,
+            height: 455,
+            isWin: false
+          },
+          [PAINT_2]: {
+            src: `http://i.imgur.com/mgbDqkB.jpg`,
+            name: `Pomegranate`,
+            alt: `Option 2`,
+            width: 304,
+            height: 455,
+            isWin: false
+          }
+        }
+      }
+    }
+  }
 };
 
 // GAME answers
@@ -317,12 +310,14 @@ const Answers = {
   'type_1': {
     'screen_0': {
       isWin: null,
+      lives: 0,
       lifeBonus: 0,
       speedBonus: 0,
       totalScore: 0
     },
     'screen_1': {
       isWin: null,
+      lives: 0,
       lifeBonus: 0,
       speedBonus: 0,
       totalScore: 0
@@ -331,12 +326,14 @@ const Answers = {
   'type_2': {
     'screen_0': {
       isWin: null,
+      lives: 0,
       lifeBonus: 0,
       speedBonus: 0,
       totalScore: 0
     },
     'screen_1': {
       isWin: null,
+      lives: 0,
       lifeBonus: 0,
       speedBonus: 0,
       totalScore: 0
@@ -345,17 +342,28 @@ const Answers = {
   'type_3': {
     'screen_0': {
       isWin: null,
+      lives: 0,
       lifeBonus: 0,
       speedBonus: 0,
-      totalScore: 0
+      totalScore: 0,
+      NEXT_SCREEN: null,
+      NEXT_TYPE: null,
+      GAME_OVER: null
     },
     'screen_1': {
       isWin: null,
+      lives: 0,
       lifeBonus: 0,
       speedBonus: 0,
       totalScore: 0
     }
   }
+};
+
+export const Results = {
+  WIN: `win`,
+  LOSE: `lose`,
+  NONE: `none`
 };
 
 const getAnsKeys = (answers) => {

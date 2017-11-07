@@ -1,10 +1,11 @@
 import {
   initialGame,
+  Results,
   getScreen,
-  // getTypeNum,
-  // getScreenNum,
-  // mapAnsType,
-  Result
+  getTypeNum,
+  getScreenNum,
+  mapAnsType,
+  assignAnswer
 } from '../../data/hunt';
 
 import Clock from '../../data/game-timer';
@@ -33,17 +34,45 @@ const changeScreen = (state) => {
   };
 
   // Get current type and screen
-  // const typeKey = getTypeNum(state.type);
-  // const screenKey = getScreenNum(state.screen);
+  const typeKey = getTypeNum(state.type);
+  const screenKey = getScreenNum(state.screen);
+
+  const isWin = (ans1, ans2) => {
+    return getWin(ans1.isWin, ans2.isWin);
+
+  };
+
+  const getAns = (t, s) => {
+    return mapAnsType(t, s);
+  };
+
+  const isNext = (_state, scr) => {
+    try {
+      nextScreen(_state, scr);
+
+    } catch (nxtScr) {
+      if (nxtScr instanceof RangeError) {
+        state = Object.assign({}, state);
+        state.NEXT_SCREEN = `last`;
+
+        return state;
+      }
+    }
+    return state;
+  };
+
 
   // Current answer object from db
-  // const answerDefault = () => {
-  //   return getAns(typeKey, screenKey);
-  //
-  // };
+  const answerDefault = () => {
+    return getAns(typeKey, screenKey);
 
-  // const [answer] = answerDefault();
-  const Results = [];
+  };
+
+  const answer = (win) => {
+    return assignAnswer(answerDefault(), screenKey, win);
+
+  };
+
 
   const setLives = (_state, livesLeft) => {
     if (livesLeft < 0) {
@@ -52,40 +81,12 @@ const changeScreen = (state) => {
 
     state = Object.assign({}, _state);
     state.lives = livesLeft;
+    return state;
   };
 
-  const updateLives = (win) => {
-    switch (win) {
-
-      case Result.WIN:
-        Results.push(Result.NEXT_SCREEN);
-
-        setLives(state, state.lives);
-        break;
-
-      default:
-        try {
-          setLives(state, state.lives - 1);
-
-        } catch (life) {
-          if (life instanceof RangeError) {
-            Results.push(Result.GAME_OVER);
-
-            setLives(state, initialGame.lives);
-          }
-
-        }
-        break;
-    }
-
-    return Results;
-  };
 
   // Gets win result
-  const isWin = (ans1, ans2) => {
-    return getWin(ans1.isWin, ans2.isWin);
 
-  };
 
   // Updates lives based on result
   const response = (a1, a2) => {
@@ -170,42 +171,57 @@ const changeScreen = (state) => {
   screen.onAnswer = (answer1, answer2) => {
     timer.reset();
 
-    nxtScreen(state, state.screen);
-
-
-    switch (response(answer1, answer2)) {
-
-      case Results[Result.WIN]:
-        showElement(changeScreen(state));
-        break;
-
-      case Results[Result.NEXT_SCREEN]:
-        showElement(changeScreen(state));
-        break;
-
-      case Results[Result.GAME_OVER]:
-        screen.onReturn = () => {
-          showElement(greetingElement());
-        };
-        break;
+    switch (getWin(answer1.isWin, answer2.isWin)) {
+      case Results.WIN:
+        // Assign to lives state
+        setLives(state, state.lives);
+        nxtScreen(state, state.screen + 1);
 
     }
 
-    // Result.NEXT_SCREEN = isNextScreen() ? Results.push(Result.NEXT_SCREEN) : nextGameType;
-    // If result is winning, calculate score, if not, assign into answers array with win result
-
-    // Updates answer object with score
-    // const getAnsScore = calculateScore(currentAnswer, state, screenNum);
-    //
-    // ansPush(gameAnswers, assignCurrentAnswer(getAnsScore, screenNum, isWin));
   };
 
-  // on Return to greeting screen
-  screen.onReturn = () => {
-    showElement(greetingElement());
-  };
+
+
+
+
+  // switch (response(answer1, answer2)) {
+  //
+  //   case Results[Result.WIN]:
+  //     showElement(changeScreen(state));
+  //     break;
+  //
+  //   case Results[Result.NEXT_SCREEN]:
+  //     showElement(changeScreen(state));
+  //     break;
+  //
+  //   case Results[Result.GAME_OVER]:
+  //     screen.onReturn = () => {
+  //       showElement(greetingElement());
+  //     };
+  //     break;
+  //
+  // }
+
+  // If result is winning, calculate score, if not, assign into answers array with win result
+
+  //   ansPush(gameAnswers, assignCurrentAnswer(answer, screenNum, isWin));
+
+  // Updates answer object with score
+  // const getAnsScore = calculateScore(currentAnswer, state, screenNum);
+  //
+  // ansPush(gameAnswers, assignCurrentAnswer(getAnsScore, screenNum, isWin));
+};
+
+// on Return to greeting screen
+screen.onReturn = () => {
+  showElement(greetingElement());
+};
 
   return screen;
+};
+
+
 };
 
 export default () => changeScreen(initialGame);
