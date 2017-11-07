@@ -10,7 +10,15 @@ export const Result = {
   LOSE: `lose`,
   NONE: `none`,
   NEXT_SCREEN: `next_screen`,
-  GAME_OVER: `game_over`
+  NEXT_TYPE: `next_screen`,
+  GAME_OVER: `game_over`,
+  GAME_WON: `game_won`
+};
+
+export const initialScreen = {
+  TYPE_NUM: 0,
+  SCREEN_NUM: 0
+
 };
 
 export const getTypeNum = (tNum) => {
@@ -25,28 +33,33 @@ export const getScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNu
 
 
 export const nextType = (game, gameType) => {
-  const nxtType = gameType;
+  const nxtT = gameType;
+
+  if (!getScreen(nxtT, game.screen)) {
+    throw new RangeError(`Can't find type ${nxtT}`);
+
+  }
 
   game = Object.assign({}, game);
-  game.type = nxtType;
+  game.type = nxtT;
 
   return game;
 };
 
 export const nextScreen = (game, gameScreen) => {
-  const nxtScr = gameScreen + 1;
+  const nxtS = gameScreen;
 
 
-  if (!getScreen(nxtScr)) {
+  if (!getScreen(game.type, nxtS)) {
     // First must check if there is next type
     // Here must launch calculate bonus function !!! Just a sample call, must return GAME_OVER (assigned)
     // game = questions[`type_${game.type + 1}`] ? nextType(game, game.type + 1) : Result.GAME_OVER;
-    throw new RangeError(`Can't find level ${nxtScr}`);
+    throw new RangeError(`Can't find level ${nxtS}`);
 
   }
 
   game = Object.assign({}, game);
-  game.screen = nxtScr;
+  game.screen = nxtS;
 
   return game;
 };

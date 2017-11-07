@@ -1,5 +1,6 @@
 import {
   initialGame,
+  initialScreen,
   getTypeNum,
   getScreenNum,
   nextType,
@@ -68,6 +69,8 @@ const changeScreen = (state) => {
 
       case Result.WIN:
         setLives(state, state.lives);
+
+        Results.push(Result.NEXT_SCREEN);
         break;
 
       case Result.LOSE || Result.NONE:
@@ -78,8 +81,10 @@ const changeScreen = (state) => {
           if (life instanceof RangeError) {
             Results.push(Result.GAME_OVER);
 
-            setLives(initialGame, initialGame.lives);
+            // Set lives to zero
+            setLives(state, state.lives);
           }
+
           Results.push(Result.NEXT_SCREEN);
         }
 
@@ -87,6 +92,7 @@ const changeScreen = (state) => {
     }
   };
 
+  // Gets win result
   const isWin = (ans1, ans2) => {
     return getWin(ans1.isWin, ans2.isWin);
 
@@ -98,8 +104,40 @@ const changeScreen = (state) => {
 
   };
 
+  const switchScreen = (gameStatus, gameScreen) => {
+
+    try {
+      nextScreen(gameStatus, gameScreen + 1);
+    } catch (thatScreen) {
+
+      if (thatScreen instanceof RangeError) {
+        Results.push(Result.NEXT_TYPE);
+
+        // Set screen to initial state
+        nextScreen(gameStatus, initialScreen.SCREEN_NUM);
+      }
+    }
+  };
+
+  const nxtScreen = (st, scr) => {
+    return switchScreen(st, scr);
+
+  };
+
+  const switchType = (gameStatus) => {
+
+
+  };
+
+  const nxtType = (st, typ) => {
+    return switchType(nextType(st, typ));
+  };
+
+
   screen.onAnswer = (answer1, answer2) => {
     timer.reset();
+
+    result(answer1, answer2);
 
     switch (isWin(answer1, answer2)) {
 
@@ -107,21 +145,19 @@ const changeScreen = (state) => {
         changeView(changeScreen(nextScreen(updateLives(Result.WIN, state, state.lives), state.screen)));
         break;
 
-      case Result.LOSE:
+      case Result.NEXT_SCREEN:
         changeView(changeScreen(nextScreen(updateLives(Result.LOSE, state, state.lives - 1), state.screen)));
         break;
 
-      case Result.NONE:
+      case Result.GAME_OVER:
         changeView(changeScreen(nextScreen(updateLives(Result.NONE, state, state.lives - 1), state.screen)));
         break;
 
-      case Result.GAME_OVER:
-        screen.onReturn();
-        break;
     }
 
     // Result.NEXT_SCREEN = isNextScreen() ? Results.push(Result.NEXT_SCREEN) : nextGameType;
     // If result is winning, calculate score, if not, assign into answers array with win result
+
     // Updates answer object with score
     // const getAnsScore = calculateScore(currentAnswer, state, screenNum);
     //
