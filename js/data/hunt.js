@@ -419,9 +419,7 @@ const calculateSpeedBonus = (timeElapsed) => {
 };
 
 export const calculateScore = (ansObj, state, scrNum) => {
-  let time = state.time;
-
-  let speedBonus = calculateSpeedBonus(time);
+  let speedBonus = calculateSpeedBonus(state.time);
 
   ansObj = Object.assign({}, ansObj);
 

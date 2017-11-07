@@ -147,7 +147,8 @@ const changeScreen = (state) => {
 
     switch (getWin(answer1.isWin, answer2.isWin)) {
       case Results.WIN:
-        ansPush(Answers, assignAnswer(getAnsScore(state, state.screen), state.screen, Results.WIN));
+        ansPush(Answers, calculateScore(assignAnswer(answerCurrent, screenKey, Results.WIN), state, screenKey));
+        console.log(Answers);
 
         // Assign to lives state
         setLives(state, state.lives);
@@ -181,7 +182,6 @@ const changeScreen = (state) => {
         // //////// Calculate life bonus
         Answers.map(({key}) => (Answers[key]));
 
-        console.log(Answers);
         isNextType(state, state.type + 1);
 
         break;
@@ -233,11 +233,9 @@ const changeScreen = (state) => {
     showElement(greetingElement());
   };
 
-
   return screen;
 
 };
-
 
 export default () => changeScreen(initialGame);
 
