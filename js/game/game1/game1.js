@@ -54,7 +54,7 @@ const changeScreen = (state) => {
 
 
   const getAnsScore = (_state, _screenNum) => {
-    return calculateScore(answer(typeKey, screenKey), _state, _screenNum);
+    return calculateScore(answerCurrent, _state, _screenNum);
 
   };
 
@@ -126,9 +126,7 @@ const changeScreen = (state) => {
 
 
     if (!getScreen(_state.type, nxtS)) {
-      // First must check if there is next type
-      // Here must launch calculate bonus function !!! Just a sample call, must return GAME_OVER (assigned)
-      // game = questions[`type_${game.type + 1}`] ? nextType(game, game.type + 1) : Result.GAME_OVER;
+      currentState.NEXT_SCREEN = `last`;
       throw new RangeError(`Can't find level ${nxtS}`);
 
     }
@@ -157,23 +155,20 @@ const changeScreen = (state) => {
       case Results.WIN:
         ansPush(Answers, assignAnswer(getAnsScore(state, state.screen), state.screen, Results.WIN));
 
-        console.log(answerCurrent);
-        console.log(Answers);
         // Assign to lives state
         setLives(state, state.lives);
         isNextScreen(state, state.screen + 1);
 
         break;
       case Results.NONE:
-        console.log(getAns(typeKey, screenKey));
-        ansPush(Answers, assignAnswer(answer(typeKey, screenKey), screenKey, Results.NONE));
+        ansPush(Answers, assignAnswer(answerCurrent, screenKey, Results.NONE));
 
         setLives(state, state.lives - 1);
         isNextScreen(state, state.screen + 1);
 
         break;
       case Results.LOSE:
-        ansPush(Answers, assignAnswer(answer(typeKey, screenKey), screenKey, Results.LOSE));
+        ansPush(Answers, assignAnswer(answerCurrent, screenKey, Results.LOSE));
 
         setLives(state, state.lives - 1);
         isNextScreen(state, state.screen + 1);
@@ -188,6 +183,10 @@ const changeScreen = (state) => {
         break;
 
       case `last`:
+        // //////// Calculate life bonus
+        Answers.map(({key}) => (Answers[key]));
+
+        console.log(Answers);
         isNextType(state, state.type + 1);
 
         break;

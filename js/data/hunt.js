@@ -2,7 +2,7 @@ export const initialGame = {
   type: 1,
   screen: 0,
   lives: 3,
-  time: 5,
+  time: 30
 };
 
 export const currentState = {
@@ -419,17 +419,14 @@ const calculateSpeedBonus = (timeElapsed) => {
 };
 
 export const calculateScore = (ansObj, state, scrNum) => {
-  let lives = state.lives;
   let time = state.time;
 
-  let lifeBonus = calculateLifeBonus(lives);
   let speedBonus = calculateSpeedBonus(time);
 
   ansObj = Object.assign({}, ansObj);
-  ansObj[scrNum][`lifeBonus`] = lifeBonus;
 
   ansObj[scrNum][`speedBonus`] = speedBonus;
-  ansObj[scrNum][`totalScore`] = lifeBonus + speedBonus;
+  ansObj[scrNum][`totalScore`] = SCORE_BASE + speedBonus;
 
   return ansObj;
 };
