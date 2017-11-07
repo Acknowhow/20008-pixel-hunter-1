@@ -419,19 +419,17 @@ const calculateSpeedBonus = (timeElapsed) => {
 };
 
 export const calculateScore = (ansObj, state, scrNum) => {
-  const lives = state.lives;
-  const time = state.time;
+  let lives = state.lives;
+  let time = state.time;
 
-  const lifeBonus = calculateLifeBonus(lives);
-  const speedBonus = calculateSpeedBonus(time);
+  let lifeBonus = calculateLifeBonus(lives);
+  let speedBonus = calculateSpeedBonus(time);
 
-  const totalScore = SCORE_BASE + lifeBonus + speedBonus;
   ansObj = Object.assign({}, ansObj);
+  ansObj[scrNum][`lifeBonus`] = lifeBonus;
 
-  ansObj[scrNum].lifeBonus = lifeBonus;
-
-  ansObj[scrNum].speedBonus = speedBonus;
-  ansObj[scrNum].totalScore = totalScore;
+  ansObj[scrNum][`speedBonus`] = speedBonus;
+  ansObj[scrNum][`totalScore`] = lifeBonus + speedBonus;
 
   return ansObj;
 };

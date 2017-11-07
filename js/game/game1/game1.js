@@ -45,13 +45,16 @@ const changeScreen = (state) => {
     return mapAnsType(t, s);
   };
 
-  const answerDefault = () => {
-    return getAns(typeKey, screenKey);
+  const answer = (tKey, sKey) => {
+    return getAns(tKey, sKey);
 
   };
 
+  const [answerCurrent] = answer(typeKey, screenKey);
+
+
   const getAnsScore = (_state, _screenNum) => {
-    return calculateScore(answerDefault(), _state, _screenNum);
+    return calculateScore(answer(typeKey, screenKey), _state, _screenNum);
 
   };
 
@@ -91,13 +94,6 @@ const changeScreen = (state) => {
 
 
   // Current answer object from db
-
-
-  const answerIs = (win) => {
-    return assignAnswer(answerDefault(), screenKey, win);
-
-  };
-
 
   const setLives = (_state, livesLeft) => {
     if (livesLeft < 0) {
@@ -144,29 +140,40 @@ const changeScreen = (state) => {
     return state;
   };
 
-
-  screen.onAnswer = (answer1, answer2) => {
+  const resetTimer = () => {
     timer.reset();
     state = Object.assign({}, state);
+
     state.time = initialGame.time;
+    return state;
+  };
+
+
+  screen.onAnswer = (answer1, answer2) => {
+    resetTimer();
+
 
     switch (getWin(answer1.isWin, answer2.isWin)) {
       case Results.WIN:
-        ansPush(Answers, assignAnswer(getAnsScore(state, screenKey), screenKey, Results.WIN));
+        ansPush(Answers, assignAnswer(getAnsScore(state, state.screen), state.screen, Results.WIN));
+
+        console.log(answerCurrent);
+        console.log(Answers);
         // Assign to lives state
         setLives(state, state.lives);
         isNextScreen(state, state.screen + 1);
 
         break;
       case Results.NONE:
-        ansPush(Answers, assignAnswer(answerDefault(), screenKey, Results.NONE));
+        console.log(getAns(typeKey, screenKey));
+        ansPush(Answers, assignAnswer(answer(typeKey, screenKey), screenKey, Results.NONE));
 
         setLives(state, state.lives - 1);
         isNextScreen(state, state.screen + 1);
 
         break;
       case Results.LOSE:
-        ansPush(Answers, assignAnswer(answerDefault(), screenKey, Results.LOSE));
+        ansPush(Answers, assignAnswer(answer(typeKey, screenKey), screenKey, Results.LOSE));
 
         setLives(state, state.lives - 1);
         isNextScreen(state, state.screen + 1);
