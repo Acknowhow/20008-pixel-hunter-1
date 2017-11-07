@@ -55,10 +55,10 @@ const changeScreen = (state) => {
   const [answerCurrent] = answer(typeKey, screenKey);
 
 
-  const getAnsScore = (_state, _screenNum) => {
-    return calculateScore(answerCurrent, _state, _screenNum);
-
-  };
+  // const getAnsScore = (_state, _screenNum) => {
+  //   return calculateScore(answerCurrent, _state, _screenNum);
+  //
+  // };
 
   const isNextScreen = (_state, scr) => {
     try {
@@ -148,7 +148,6 @@ const changeScreen = (state) => {
     switch (getWin(answer1.isWin, answer2.isWin)) {
       case Results.WIN:
         ansPush(Answers, calculateScore(assignAnswer(answerCurrent, screenKey, Results.WIN), state, screenKey));
-        console.log(Answers);
 
         // Assign to lives state
         setLives(state, state.lives);
