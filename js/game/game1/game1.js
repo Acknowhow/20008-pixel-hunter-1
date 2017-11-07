@@ -19,11 +19,6 @@ import {getWin, tick} from './../game-utils';
 import {showElement} from '../../utils';
 
 
-// Function maps default answer object by type and current screen
-// const getAns = (t, s) => {
-//   return mapAnsType(t, s);
-// };
-
 const changeScreen = (state) => {
   state = Object.assign({}, state);
   state.time = initialGame.time;
@@ -53,12 +48,6 @@ const changeScreen = (state) => {
   };
 
   const [answerCurrent] = answer(typeKey, screenKey);
-
-
-  // const getAnsScore = (_state, _screenNum) => {
-  //   return calculateScore(answerCurrent, _state, _screenNum);
-  //
-  // };
 
   const isNextScreen = (_state, scr) => {
     try {
@@ -200,34 +189,6 @@ const changeScreen = (state) => {
 
   };
 
-
-  // switch (response(answer1, answer2)) {
-  //
-  //   case Results[Result.WIN]:
-  //     showElement(changeScreen(state));
-  //     break;
-  //
-  //   case Results[Result.NEXT_SCREEN]:
-  //     showElement(changeScreen(state));
-  //     break;
-  //
-  //   case Results[Result.GAME_OVER]:
-  //     screen.onReturn = () => {
-  //       showElement(greetingElement());
-  //     };
-  //     break;
-  //
-  // }
-
-  // If result is winning, calculate score, if not, assign into answer array with win result
-
-  //   ansPush(gameAnswers, assignCurrentAnswer(answer, screenNum, isWin));
-
-  // Updates answer object with score
-  // const getAnsScore = calculateScore(currentAnswer, state, screenNum);
-  //
-  // ansPush(gameAnswers, assignCurrentAnswer(getAnsScore, screenNum, isWin));
-  // on Return to greeting screen
   screen.onReturn = () => {
     showElement(greetingElement());
   };
