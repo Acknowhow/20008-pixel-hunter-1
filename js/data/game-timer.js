@@ -23,7 +23,6 @@ export default class Clock {
           this.reset();
         }
 
-        return this.state.time;
       }, 1000);
     };
 
@@ -37,6 +36,6 @@ export default class Clock {
 
   reset() {
     clearTimeout(this.count);
-    return this.state.time;
+
   }
 }
