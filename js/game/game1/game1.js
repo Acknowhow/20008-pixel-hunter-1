@@ -24,7 +24,7 @@ import {showElement} from '../../utils';
 const changeScreen = (state) => {
 
   const screen = new Game1View(state);
-  const timer = new Clock(state, state.time, screen, tick);
+  const timer = new Clock(state, screen, tick);
   timer.start();
 
   // Gets current time from timer Object, assign to current state
@@ -99,6 +99,10 @@ const changeScreen = (state) => {
     return state;
   };
 
+  const getCurrrentState = () => {
+    return currentState;
+  };
+
 
   const nextType = (_state, gameType) => {
     const nxtT = gameType;
@@ -108,9 +112,10 @@ const changeScreen = (state) => {
 
     }
 
+    currentState.NEXT_TYPE = `next`;
     state = Object.assign({}, _state);
-    state.type = nxtT;
 
+    state.type = nxtT;
     return state;
   };
 
@@ -128,8 +133,8 @@ const changeScreen = (state) => {
     }
 
     state = Object.assign({}, _state);
-    state.screen = initialGame.screen;
-    state.NEXT_SCREEN = `last`;
+    state.screen = nxtS;
+    currentState.NEXT_SCREEN = `next`;
 
     return state;
   };
@@ -145,11 +150,25 @@ const changeScreen = (state) => {
         isNextScreen(state, state.screen + 1);
 
         break;
-      case Results.NEXT_SCREEN === `last`:
+      case Results.NONE:
+        setLives(state, state.lives - 1);
+        isNextScreen(state, state.screen + 1);
+
+        break;
+    }
+
+    switch (currentState.NEXT_SCREEN) {
+      case `next`:
+
+        changeScreen(state);
+        break;
+
+      case `last`:
         isNextType(state, state.type + 1);
 
         break;
     }
+
   };
 
 

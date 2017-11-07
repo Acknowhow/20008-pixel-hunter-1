@@ -1,8 +1,7 @@
 export default class Clock {
-  constructor(state, time, screen, tick) {
+  constructor(state, screen, tick) {
 
     this.state = state;
-    this._time = time;
     this.screen = screen;
     this.tick = tick;
   }
@@ -37,8 +36,7 @@ export default class Clock {
   }
 
   reset() {
-    this.state.time = this._time;
     clearTimeout(this.count);
-    this.currentTime(this.state);
+    return this.state.time;
   }
 }
