@@ -2,11 +2,14 @@ import {
   initialGame,
   Results,
   currentState,
+  calculateScore,
   getScreen,
   getTypeNum,
   getScreenNum,
   mapAnsType,
-  assignAnswer
+  ansPush,
+  assignAnswer,
+  Answers
 } from '../../data/hunt';
 
 import Clock from '../../data/game-timer';
@@ -40,6 +43,16 @@ const changeScreen = (state) => {
 
   const getAns = (t, s) => {
     return mapAnsType(t, s);
+  };
+
+  const answerDefault = () => {
+    return getAns(typeKey, screenKey);
+
+  };
+
+  const getAnsScore = (_state, _screenNum) => {
+    return calculateScore(answerDefault(), _state, _screenNum);
+
   };
 
   const isNextScreen = (_state, scr) => {
@@ -78,10 +91,7 @@ const changeScreen = (state) => {
 
 
   // Current answer object from db
-  const answerDefault = () => {
-    return getAns(typeKey, screenKey);
 
-  };
 
   const answerIs = (win) => {
     return assignAnswer(answerDefault(), screenKey, win);
@@ -98,11 +108,6 @@ const changeScreen = (state) => {
     state.lives = livesLeft;
     return state;
   };
-
-  const getCurrrentState = () => {
-    return currentState;
-  };
-
 
   const nextType = (_state, gameType) => {
     const nxtT = gameType;
@@ -147,12 +152,22 @@ const changeScreen = (state) => {
 
     switch (getWin(answer1.isWin, answer2.isWin)) {
       case Results.WIN:
+        ansPush(Answers, assignAnswer(getAnsScore(state, screenKey), screenKey, Results.WIN));
         // Assign to lives state
         setLives(state, state.lives);
         isNextScreen(state, state.screen + 1);
 
         break;
       case Results.NONE:
+        ansPush(Answers, assignAnswer(answerDefault(), screenKey, Results.NONE));
+
+        setLives(state, state.lives - 1);
+        isNextScreen(state, state.screen + 1);
+
+        break;
+      case Results.LOSE:
+        ansPush(Answers, assignAnswer(answerDefault(), screenKey, Results.LOSE));
+
         setLives(state, state.lives - 1);
         isNextScreen(state, state.screen + 1);
 
