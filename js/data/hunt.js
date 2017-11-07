@@ -3,9 +3,11 @@ export const initialGame = {
   screen: 0,
   lives: 3,
   time: 5,
+};
+
+export const currentState = {
   NEXT_SCREEN: null,
-  NEXT_TYPE: null,
-  GAME_OVER: null
+  NEXT_TYPE: null
 };
 
 export const getTypeNum = (tNum) => {

@@ -1,6 +1,7 @@
 import {
   initialGame,
   Results,
+  currentState,
   getScreen,
   getTypeNum,
   getScreenNum,
@@ -37,23 +38,37 @@ const changeScreen = (state) => {
   const typeKey = getTypeNum(state.type);
   const screenKey = getScreenNum(state.screen);
 
-  const isWin = (ans1, ans2) => {
-    return getWin(ans1.isWin, ans2.isWin);
-
-  };
-
   const getAns = (t, s) => {
     return mapAnsType(t, s);
   };
 
-  const isNext = (_state, scr) => {
+  const isNextScreen = (_state, scr) => {
     try {
       nextScreen(_state, scr);
 
     } catch (nxtScr) {
       if (nxtScr instanceof RangeError) {
+        currentState.NEXT_SCREEN = `last`;
+
         state = Object.assign({}, state);
-        state.NEXT_SCREEN = `last`;
+        state.screen = initialGame.screen;
+
+        return state;
+      }
+    }
+    return state;
+  };
+
+  const isNextType = (_state, tp) => {
+    try {
+      nextType(_state, tp);
+
+    } catch (nxtTp) {
+      if (nxtTp instanceof RangeError) {
+        currentState.NEXT_TYPE = `last`;
+
+        state = Object.assign({}, state);
+
 
         return state;
       }
@@ -85,15 +100,6 @@ const changeScreen = (state) => {
   };
 
 
-  // Gets win result
-
-
-  // Updates lives based on result
-  const response = (a1, a2) => {
-    updateLives(isWin(a1, a2));
-
-  };
-
   const nextType = (_state, gameType) => {
     const nxtT = gameType;
 
@@ -108,22 +114,8 @@ const changeScreen = (state) => {
     return state;
   };
 
-
-  const switchType = (_state, gameType) => {
-    try {
-      nextType(_state, gameType + 1);
-
-    } catch (thatType) {
-      if (thatType instanceof RangeError) {
-        Results.push(Result.GAME_WON);
-
-      }
-    }
-    return Results;
-  };
-
   const nxtType = (_state, gameType) => {
-    return switchType(_state, gameType);
+
   };
 
 
@@ -140,31 +132,10 @@ const changeScreen = (state) => {
     }
 
     state = Object.assign({}, _state);
-    state.screen = nxtS;
+    state.screen = initialGame.screen;
+    state.NEXT_SCREEN = `last`;
 
     return state;
-  };
-
-  const switchScreen = (_state, gameScreen) => {
-    try { // Check if next screen exists
-      nextScreen(_state, gameScreen + 1);
-      Results.push(Result.NEXT_SCREEN);
-
-    } catch (thatScreen) {
-      if (thatScreen instanceof RangeError) {
-        Results.push(Result.NEXT_TYPE);
-
-        nextScreen(_state, initialGame.screen);
-        nxtType(_state, _state.type);
-      }
-
-    }
-    return Results;
-  };
-
-  const nxtScreen = (_state, gameScreen) => {
-    return switchScreen(_state, gameScreen);
-
   };
 
 
@@ -175,14 +146,14 @@ const changeScreen = (state) => {
       case Results.WIN:
         // Assign to lives state
         setLives(state, state.lives);
-        nxtScreen(state, state.screen + 1);
+        isNextScreen(state, screen);
+
+        break;
+      case Results.NEXT_SCREEN === `last`:
 
     }
 
   };
-
-
-
 
 
   // switch (response(answer1, answer2)) {
@@ -211,18 +182,15 @@ const changeScreen = (state) => {
   // const getAnsScore = calculateScore(currentAnswer, state, screenNum);
   //
   // ansPush(gameAnswers, assignCurrentAnswer(getAnsScore, screenNum, isWin));
-};
-
-// on Return to greeting screen
-screen.onReturn = () => {
-  showElement(greetingElement());
-};
+  // on Return to greeting screen
+  screen.onReturn = () => {
+    showElement(greetingElement());
+  };
 
   return screen;
-};
-
 
 };
+
 
 export default () => changeScreen(initialGame);
 
