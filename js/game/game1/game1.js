@@ -143,6 +143,8 @@ const changeScreen = (state) => {
 
   screen.onAnswer = (answer1, answer2) => {
     timer.reset();
+    state = Object.assign({}, state);
+    state.time = initialGame.time;
 
     switch (getWin(answer1.isWin, answer2.isWin)) {
       case Results.WIN:
