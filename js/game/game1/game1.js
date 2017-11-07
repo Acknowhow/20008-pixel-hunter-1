@@ -145,8 +145,9 @@ const changeScreen = (state) => {
   };
 
   const switchScreen = (_state, gameScreen) => {
-    try {
+    try { // Check if next screen exists
       nextScreen(_state, gameScreen + 1);
+      Results.push(Result.NEXT_SCREEN);
 
     } catch (thatScreen) {
       if (thatScreen instanceof RangeError) {
@@ -189,7 +190,6 @@ const changeScreen = (state) => {
         break;
 
     }
-
 
     // Result.NEXT_SCREEN = isNextScreen() ? Results.push(Result.NEXT_SCREEN) : nextGameType;
     // If result is winning, calculate score, if not, assign into answers array with win result
