@@ -36,7 +36,7 @@ export default class Clock {
 
   reset() {
     clearTimeout(this.count);
+    return this.state.time;
 
-    return this.state;
   }
 }

@@ -25,6 +25,8 @@ import {showElement} from '../../utils';
 // };
 
 const changeScreen = (state) => {
+  state = Object.assign({}, state);
+  state.time = initialGame.time;
 
   const screen = new Game1View(state);
   const timer = new Clock(state, screen, tick);
@@ -138,17 +140,9 @@ const changeScreen = (state) => {
     return state;
   };
 
-  const resetTimer = () => {
-    timer.reset();
-    state = Object.assign({}, state);
-
-    state.time = initialGame.time;
-    return state;
-  };
-
 
   screen.onAnswer = (answer1, answer2) => {
-    resetTimer();
+    state.time = timer.reset();
 
 
     switch (getWin(answer1.isWin, answer2.isWin)) {
@@ -158,6 +152,7 @@ const changeScreen = (state) => {
         // Assign to lives state
         setLives(state, state.lives);
         isNextScreen(state, state.screen + 1);
+
 
         break;
       case Results.NONE:
@@ -237,6 +232,7 @@ const changeScreen = (state) => {
   screen.onReturn = () => {
     showElement(greetingElement());
   };
+
 
   return screen;
 
