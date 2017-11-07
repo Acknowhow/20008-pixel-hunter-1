@@ -18,7 +18,7 @@ export const getScreenNum = (sNum) => {
   return `screen_${sNum}`;
 };
 
-export const getScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNum}`];
+export const getScreen = (tNum, sNum) => question[`type_${tNum}`][`screen_${sNum}`];
 
 const PAINT = `paint`;
 const PHOTO = `photo`;
@@ -30,7 +30,7 @@ const PAINT_1 = `paint_1`;
 const PAINT_2 = `paint_2`;
 
 
-export const questions = {
+export const question = {
   'type_1': {
     'screen_0': {
       Option1: {
@@ -308,18 +308,16 @@ export const questions = {
 };
 
 // GAME answers
-const Answers = {
+const answer = {
   'type_1': {
     'screen_0': {
       isWin: null,
-      lives: 0,
       lifeBonus: 0,
       speedBonus: 0,
       totalScore: 0
     },
     'screen_1': {
       isWin: null,
-      lives: 0,
       lifeBonus: 0,
       speedBonus: 0,
       totalScore: 0
@@ -328,14 +326,12 @@ const Answers = {
   'type_2': {
     'screen_0': {
       isWin: null,
-      lives: 0,
       lifeBonus: 0,
       speedBonus: 0,
       totalScore: 0
     },
     'screen_1': {
       isWin: null,
-      lives: 0,
       lifeBonus: 0,
       speedBonus: 0,
       totalScore: 0
@@ -344,17 +340,12 @@ const Answers = {
   'type_3': {
     'screen_0': {
       isWin: null,
-      lives: 0,
       lifeBonus: 0,
       speedBonus: 0,
       totalScore: 0,
-      NEXT_SCREEN: null,
-      NEXT_TYPE: null,
-      GAME_OVER: null
     },
     'screen_1': {
       isWin: null,
-      lives: 0,
       lifeBonus: 0,
       speedBonus: 0,
       totalScore: 0
@@ -368,15 +359,15 @@ export const Results = {
   NONE: `none`
 };
 
-const getAnsKeys = (answers) => {
-  return Object.keys(answers);
+const getAnsKeys = (ans) => {
+  return Object.keys(ans);
 };
 
-const ansKeys = getAnsKeys(Answers);
+const ansKeys = getAnsKeys(answer);
 
 
 export const mapAnsType = (tNum, sNum) => {
-  return ansKeys.map((type) => ({type, [sNum]: Answers[type][sNum]})).filter((key) => {
+  return ansKeys.map((type) => ({type, [sNum]: answer[type][sNum]})).filter((key) => {
 
     return key.type === `${tNum}`;
   });

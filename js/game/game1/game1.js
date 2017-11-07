@@ -68,7 +68,7 @@ const changeScreen = (state) => {
         currentState.NEXT_TYPE = `last`;
 
         state = Object.assign({}, state);
-
+        state.type = initialGame.type;
 
         return state;
       }
@@ -83,7 +83,7 @@ const changeScreen = (state) => {
 
   };
 
-  const answer = (win) => {
+  const answerIs = (win) => {
     return assignAnswer(answerDefault(), screenKey, win);
 
   };
@@ -114,10 +114,6 @@ const changeScreen = (state) => {
     return state;
   };
 
-  const nxtType = (_state, gameType) => {
-
-  };
-
 
   const nextScreen = (_state, gameScreen) => {
     const nxtS = gameScreen;
@@ -146,13 +142,14 @@ const changeScreen = (state) => {
       case Results.WIN:
         // Assign to lives state
         setLives(state, state.lives);
-        isNextScreen(state, screen);
+        isNextScreen(state, state.screen + 1);
 
         break;
       case Results.NEXT_SCREEN === `last`:
+        isNextType(state, state.type + 1);
 
+        break;
     }
-
   };
 
 
@@ -174,7 +171,7 @@ const changeScreen = (state) => {
   //
   // }
 
-  // If result is winning, calculate score, if not, assign into answers array with win result
+  // If result is winning, calculate score, if not, assign into answer array with win result
 
   //   ansPush(gameAnswers, assignCurrentAnswer(answer, screenNum, isWin));
 
