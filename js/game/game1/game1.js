@@ -1,9 +1,9 @@
 import {
   initialGame,
+  getScreen,
   getTypeNum,
   getScreenNum,
   nextType,
-  nextScreen,
   mapAnsType,
   ansPush,
   assignAnswer,
@@ -118,17 +118,37 @@ const changeScreen = (state) => {
     return switchType(st, typ);
   };
 
-  const switchScreen = (gameStatus, gameScreen) => {
+
+  const nextScreen = (_state, gameScreen) => {
+    const nxtS = gameScreen;
+
+
+    if (!getScreen(_state.type, nxtS)) {
+      // First must check if there is next type
+      // Here must launch calculate bonus function !!! Just a sample call, must return GAME_OVER (assigned)
+      // game = questions[`type_${game.type + 1}`] ? nextType(game, game.type + 1) : Result.GAME_OVER;
+      throw new RangeError(`Can't find level ${nxtS}`);
+
+    }
+
+    state = Object.assign({}, _state);
+    state.screen = nxtS;
+
+    return state;
+  };
+
+  const switchScreen = (_state, gameScreen) => {
     try {
-      nextScreen(gameStatus, gameScreen + 1);
+      nextScreen(_state, gameScreen + 1);
 
     } catch (thatScreen) {
       if (thatScreen instanceof RangeError) {
         Results.push(Result.NEXT_TYPE);
 
-        nextScreen(gameStatus, initialGame.screen);
-        nxtType(gameStatus, state.type);
+        nextScreen(_state, initialGame.screen);
+        nxtType(_state, _state.type);
       }
+
     }
     return Results;
   };

@@ -41,23 +41,6 @@ export const nextType = (game, gameType) => {
   return game;
 };
 
-export const nextScreen = (game, gameScreen) => {
-  const nxtS = gameScreen;
-
-
-  if (!getScreen(game.type, nxtS)) {
-    // First must check if there is next type
-    // Here must launch calculate bonus function !!! Just a sample call, must return GAME_OVER (assigned)
-    // game = questions[`type_${game.type + 1}`] ? nextType(game, game.type + 1) : Result.GAME_OVER;
-    throw new RangeError(`Can't find level ${nxtS}`);
-
-  }
-
-  game = Object.assign({}, game);
-  game.screen = nxtS;
-
-  return game;
-};
 
 const PAINT = `paint`;
 const PHOTO = `photo`;
