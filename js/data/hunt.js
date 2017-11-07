@@ -15,11 +15,6 @@ export const Result = {
   GAME_WON: `game_won`
 };
 
-export const initialScreen = {
-  TYPE_NUM: 0,
-  SCREEN_NUM: 0
-
-};
 
 export const getTypeNum = (tNum) => {
   return `type_${tNum}`;

@@ -1,6 +1,5 @@
 import {
   initialGame,
-  initialScreen,
   getTypeNum,
   getScreenNum,
   nextType,
@@ -53,27 +52,25 @@ const changeScreen = (state) => {
 
   const Results = [];
 
-  const setLives = (gameState, livesLeft) => {
+  const setLives = (_state, livesLeft) => {
     if (livesLeft < 0) {
       throw new RangeError(`Can't set negative lives`);
     }
 
-    gameState = Object.assign({}, gameState);
-    gameState.lives = livesLeft;
-
-    return gameState;
+    state = Object.assign({}, _state);
+    state.lives = livesLeft;
   };
 
   const updateLives = (win) => {
     switch (win) {
 
       case Result.WIN:
-        setLives(state, state.lives);
-
         Results.push(Result.NEXT_SCREEN);
+
+        setLives(state, state.lives);
         break;
 
-      case Result.LOSE || Result.NONE:
+      default:
         try {
           setLives(state, state.lives - 1);
 
@@ -81,13 +78,11 @@ const changeScreen = (state) => {
           if (life instanceof RangeError) {
             Results.push(Result.GAME_OVER);
 
-            // Set lives to zero
-            setLives(state, state.lives);
+            setLives(state, initialGame.lives);
           }
 
-          Results.push(Result.NEXT_SCREEN);
         }
-
+        Results.push(Result.NEXT_SCREEN);
         break;
     }
 
@@ -131,7 +126,7 @@ const changeScreen = (state) => {
       if (thatScreen instanceof RangeError) {
         Results.push(Result.NEXT_TYPE);
 
-        nextScreen(gameStatus, initialScreen.SCREEN_NUM);
+        nextScreen(gameStatus, initialGame.screen);
         nxtType(gameStatus, state.type);
       }
     }
