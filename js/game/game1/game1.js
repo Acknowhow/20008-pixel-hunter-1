@@ -12,7 +12,6 @@ import greetingElement from '../../welcome/greeting/greeting';
 import Game1View from './game1-view';
 import {getWin, tick} from './../game-utils';
 import {showElement} from '../../utils';
-import {changeView} from "../../../materials/toComponentsTransition_01.10/utils";
 
 
 // Function maps default answer object by type and current screen
@@ -176,11 +175,11 @@ const changeScreen = (state) => {
     switch (response(answer1, answer2)) {
 
       case Results[Result.WIN]:
-        changeView(changeScreen(state));
+        showElement(changeScreen(state));
         break;
 
       case Results[Result.NEXT_SCREEN]:
-        changeView(changeScreen(state));
+        showElement(changeScreen(state));
         break;
 
       case Results[Result.GAME_OVER]:
