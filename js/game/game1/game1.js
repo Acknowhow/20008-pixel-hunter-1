@@ -3,7 +3,6 @@ import {
   getScreen,
   getTypeNum,
   getScreenNum,
-  nextType,
   mapAnsType,
   ansPush,
   assignAnswer,
@@ -49,7 +48,6 @@ const changeScreen = (state) => {
   };
 
   const [answer] = answerDefault();
-
   const Results = [];
 
   const setLives = (_state, livesLeft) => {
@@ -82,7 +80,6 @@ const changeScreen = (state) => {
           }
 
         }
-        Results.push(Result.NEXT_SCREEN);
         break;
     }
 
@@ -101,9 +98,24 @@ const changeScreen = (state) => {
 
   };
 
-  const switchType = (gameStatus, gameType) => {
+  const nextType = (_state, gameType) => {
+    const nxtT = gameType;
+
+    if (!getScreen(nxtT, _state.screen)) {
+      throw new RangeError(`Can't find type ${nxtT}`);
+
+    }
+
+    state = Object.assign({}, _state);
+    state.type = nxtT;
+
+    return state;
+  };
+
+
+  const switchType = (_state, gameType) => {
     try {
-      nextType(gameStatus, gameType + 1);
+      nextType(_state, gameType + 1);
 
     } catch (thatType) {
       if (thatType instanceof RangeError) {
@@ -114,8 +126,8 @@ const changeScreen = (state) => {
     return Results;
   };
 
-  const nxtType = (st, typ) => {
-    return switchType(st, typ);
+  const nxtType = (_state, gameType) => {
+    return switchType(_state, gameType);
   };
 
 

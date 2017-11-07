@@ -15,7 +15,6 @@ export const Result = {
   GAME_WON: `game_won`
 };
 
-
 export const getTypeNum = (tNum) => {
   return `type_${tNum}`;
 };
@@ -25,22 +24,6 @@ export const getScreenNum = (sNum) => {
 };
 
 export const getScreen = (tNum, sNum) => questions[`type_${tNum}`][`screen_${sNum}`];
-
-
-export const nextType = (game, gameType) => {
-  const nxtT = gameType;
-
-  if (!getScreen(nxtT, game.screen)) {
-    throw new RangeError(`Can't find type ${nxtT}`);
-
-  }
-
-  game = Object.assign({}, game);
-  game.type = nxtT;
-
-  return game;
-};
-
 
 const PAINT = `paint`;
 const PHOTO = `photo`;
