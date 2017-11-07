@@ -153,8 +153,8 @@ const changeScreen = (state) => {
     return Results;
   };
 
-  const nxtScreen = (st, scr) => {
-    return switchScreen(st, scr);
+  const nxtScreen = (_state, gameScreen) => {
+    return switchScreen(_state, gameScreen);
 
   };
 
@@ -162,11 +162,10 @@ const changeScreen = (state) => {
   screen.onAnswer = (answer1, answer2) => {
     timer.reset();
 
-    response(answer1, answer2);
     nxtScreen(state, state.screen);
 
 
-    switch (Results) {
+    switch (response(answer1, answer2)) {
 
       case Results[Result.WIN]:
         changeView(changeScreen(state));
