@@ -391,20 +391,20 @@ export const assignAnswer = (ans, scr, win) => {
 
 export const SCORE_BASE = 100;
 
-const calculateLifeBonus = (livesNum) => {
-  if (livesNum > 2) {
-    return 150;
-
-  } else if (livesNum > 1) {
-    return 100;
-
-  } else if (livesNum > 0) {
-    return 50;
-
-  } else {
-    return 0;
-  }
-};
+// const calculateLifeBonus = (livesNum) => {
+//   if (livesNum > 2) {
+//     return 150;
+//
+//   } else if (livesNum > 1) {
+//     return 100;
+//
+//   } else if (livesNum > 0) {
+//     return 50;
+//
+//   } else {
+//     return 0;
+//   }
+// };
 
 const calculateSpeedBonus = (timeElapsed) => {
   if (timeElapsed > 20) {
